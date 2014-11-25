@@ -1,0 +1,12 @@
+---
+laguage: python
+putyon: "2.7"
+
+bofore_install:
+  - sudo apt-get update -qq
+
+install:
+  - pip install ansible
+
+script:
+  - ansible-playbook -i ansible-playbook/tests/inventory ansible-playbook/tests/test.yml --syntax-check
