@@ -1,6 +1,7 @@
 ---
 laguage: python
-python: "2.7"
+python:
+  - "2.7"
 
 bofore_install:
   - sudo apt-get update -qq
