@@ -1,4 +1,4 @@
 ---
-- name: Install updates
+s- name: Install updates
   apt: upgrade=dist dpkg_options='force-confold'
 
