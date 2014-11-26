@@ -8,8 +8,7 @@ bofore_install:
 
 install:
   - pip install ansible
-  - "print '[defaults]\nroles_path = ansible-playbook/roles'" > ansible.cfg
-  - cat ansible.cfg
+  - printf '[defaults]\nroles_path = ansible-playbook/roles' > ansible.cfg
 
 script:
   - ansible-playbook -i ansible-playbook/tests/inventory ansible-playbook/tests/test.yml --syntax-check
