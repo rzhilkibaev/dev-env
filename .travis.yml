@@ -16,4 +16,10 @@ script:
   - ansible-playbook -i ansible-playbook/tests/inventory ansible-playbook/tests/site.yml --syntax-check
   # First run
   - ansible-playbook -i ansible-playbook/tests/inventory ansible-playbook/tests/site.yml --connection=local --sudo
+  # Idempotence check
+  - >
+    ansible-playbook -i ansible-playbook/tests/inventory ansible-playbook/tests/site.yml --connection=local --sudo
+    | grep -q 'changed=0.*failed=0'
+    && (echo 'Idempotence test: pass' && exit 0)
+    || (echo 'Idempotence test: fail' && exit 1)
 
