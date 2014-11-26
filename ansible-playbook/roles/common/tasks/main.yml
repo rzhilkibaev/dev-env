@@ -1,4 +1,5 @@
 ---
 - name: Install updates
   apt: upgrade=dist update_cache=yes dpkg_options='force-confold'
+  when: "{{ lookup('env','CI') }}" != true
 
