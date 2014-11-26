@@ -8,7 +8,7 @@ bofore_install:
 
 install:
   - pip install ansible
-  - "print '[defaults]\nroles_path = ansible-playbook/roles' > ansible.cfg"
+  - "print '[defaults]\nroles_path = ansible-playbook/roles'" > ansible.cfg
   - cat ansible.cfg
 
 script:
