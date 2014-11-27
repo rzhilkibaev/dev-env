@@ -42,4 +42,4 @@ script:
   # Check result
   - >
     "ls" -1 | grep -q "fail"
-    && (echo -e "\e[31mFAIL\e[39m" && exit 1) || (echo -e "\e[31mSUCCESS\e[39m" && exit 0)
+    && (echo -e "\e[31mFAIL\e[39m" && exit 1) || (echo -e "\e[32mSUCCESS\e[39m" && exit 0)
