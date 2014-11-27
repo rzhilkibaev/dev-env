@@ -22,8 +22,7 @@ script:
   - >
     ansible-playbook -i ansible-playbook/tests/inventory ansible-playbook/tests/site.yml --connection=local --sudo
     | grep -q 'changed=0.*failed=0'
-    && (echo 'Idempotence test: pass')
-    || (echo 'Idempotence test: fail' && touch failed)
+    && (echo 'Idempotence: \e[32mOk\e[39m') || (echo 'Idempotence: \e[31mfail\e[39m' && touch failed)
 
   # Check Git
   - >
@@ -42,5 +41,5 @@ script:
 
   # Check result
   - >
-    "ls" -l | grep -q "fail"
-    && (echo -e "\e[31mSUCCESS\e[39m" && exit 0) || (echo -e "\e[31mFAIL\e[39m" && exit 1)
+    "ls" -1 | grep -q "fail"
+    && (echo -e "\e[31mFAIL\e[39m" && exit 1) || (echo -e "\e[31mSUCCESS\e[39m" && exit 0)
