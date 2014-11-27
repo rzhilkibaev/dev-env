@@ -1,6 +1,17 @@
 ---
+- name: Update apt cache
+  apt: update_cache=yes
+
 - name: Install updates
-  apt: upgrade=dist update_cache=yes dpkg_options='force-confold'
+  apt: upgrade=dist dpkg_options='force-confold'
   when: not lookup('env','CI') # skip the step in CI to avoid large updates
 
+- name: Install Git
+  apt: name=git state=latest 
+
+- name: Install Subversion
+  apt: name=subversion state=latest
+
+- name: Install Mercurial
+  apt: name=mercurial state=latest
 

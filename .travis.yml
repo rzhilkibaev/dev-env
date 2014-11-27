@@ -14,12 +14,23 @@ install:
 script:
   # Syntax check
   - ansible-playbook -i ansible-playbook/tests/inventory ansible-playbook/tests/site.yml --syntax-check
+
   # First run
   - ansible-playbook -i ansible-playbook/tests/inventory ansible-playbook/tests/site.yml --connection=local --sudo
+
   # Idempotence check
   - >
     ansible-playbook -i ansible-playbook/tests/inventory ansible-playbook/tests/site.yml --connection=local --sudo
     | grep -q 'changed=0.*failed=0'
-    && (echo 'Idempotence test: pass' && exit 0)
-    || (echo 'Idempotence test: fail' && exit 1)
+    && (echo 'Idempotence test: pass')
+    || (echo 'Idempotence test: fail' && touch failed)
 
+  # Check git
+  - >
+  git --version | grep -q "git version" 
+  && (echo -e "Git: \e[32mOk\e[39m") || (echo -e "Git: \e[31mfail\e[39m" && touch failed)
+
+  # Check result
+  - >
+  "ls" -l | grep -q "failed"
+  && (echo -e "\e[31mSUCCESS\e[39m" && exit 0) || (echo -e "\e[31mFAIL\e[39m" && exit 1)
