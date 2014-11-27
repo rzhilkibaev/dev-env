@@ -27,20 +27,20 @@ script:
 
   # Check Git
   - >
-  git --version | grep -q "git version" 
-  && (echo -e "Git: \e[32mOk\e[39m") || (echo -e "Git: \e[31mfail\e[39m" && touch fail)
+    git --version | grep -q "git version" 
+    && (echo -e "Git: \e[32mOk\e[39m") || (echo -e "Git: \e[31mfail\e[39m" && touch fail)
 
   # Check Subversion
   - >
-  svn --version | grep -q "svn, version" 
-  && (echo -e "Subversion: \e[32mOk\e[39m") || (echo -e "Subversion: \e[31mfail\e[39m" && touch fail)
+    svn --version | grep -q "svn, version" 
+    && (echo -e "Subversion: \e[32mOk\e[39m") || (echo -e "Subversion: \e[31mfail\e[39m" && touch fail)
 
   # Check Mercurial
   - >
-  hg --version | grep -q "Mercurial Distributed SCM" 
-  && (echo -e "Mercurial: \e[32mOk\e[39m") || (echo -e "Mercurial: \e[31mfail\e[39m" && touch fail)
+    hg --version | grep -q "Mercurial Distributed SCM" 
+    && (echo -e "Mercurial: \e[32mOk\e[39m") || (echo -e "Mercurial: \e[31mfail\e[39m" && touch fail)
 
   # Check result
   - >
-  "ls" -l | grep -q "fail"
-  && (echo -e "\e[31mSUCCESS\e[39m" && exit 0) || (echo -e "\e[31mFAIL\e[39m" && exit 1)
+    "ls" -l | grep -q "fail"
+    && (echo -e "\e[31mSUCCESS\e[39m" && exit 0) || (echo -e "\e[31mFAIL\e[39m" && exit 1)
