@@ -4,7 +4,6 @@ python:
   - "2.7"
 
 bofore_install:
-  - cd ansible-playbook
   - sudo apt-get update -qq
 
 install:
@@ -15,7 +14,8 @@ install:
   - sudo $ANSIBLE_GALAXY install smola.java
 
 script:
-  - pwd  
+  - cd ansible-playbook
+
   # Syntax check
   - ansible-playbook -i tests/inventory site.yml --syntax-check
 
@@ -50,5 +50,5 @@ script:
 
   # Check if any step failed
   - >
-    "ls" -1 | grep -q "fail"
+    ls -1 | grep -q "fail"
     && (echo -e "\e[31mFAIL\e[39m" && exit 1) || (echo -e "\e[32mSUCCESS\e[39m" && exit 0)
