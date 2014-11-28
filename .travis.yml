@@ -9,10 +9,10 @@ bofore_install:
 
 install:
   - pip install ansible
+  - export ANSIBLE_GALAXY=`which ansible-galaxy`
   # Tell Ansible where the roles are
   #- printf '[defaults]\nroles_path = ansible-playbook/roles' > ansible.cfg
-  - which ansible-galaxy
-  - sudo ansible-galaxy install smola.java
+  - sudo $ANSIBLE_GALAXY install smola.java
 
 script:
   
