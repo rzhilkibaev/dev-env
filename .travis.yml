@@ -11,7 +11,7 @@ install:
   - pip install ansible
   # Tell Ansible where the roles are
   #- printf '[defaults]\nroles_path = ansible-playbook/roles' > ansible.cfg
-  - ansible-galaxy install smola.java
+  - sudo ansible-galaxy install smola.java
 
 script:
   
