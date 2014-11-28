@@ -1,0 +1,6 @@
+---
+java_packages:
+  - oracle-java7-installer
+  - oracle-java8-installer
+  - oracle-java8-set-default
+

@@ -39,7 +39,12 @@ script:
     hg --version | grep -q "Mercurial Distributed SCM" 
     && (echo -e "Mercurial: \e[32mOk\e[39m") || (echo -e "Mercurial: \e[31mfail\e[39m" && touch fail)
 
-  # Check result
+  # Check java
+  - >
+    java -version 2>&1 | grep -q "java version \"1.8"
+    && (echo -e "java: \e[32mOk\e[39m") || (echo -e "java: \e[31mfail\e[39m" && touch fail)
+
+  # Check if any step failed
   - >
     "ls" -1 | grep -q "fail"
     && (echo -e "\e[31mFAIL\e[39m" && exit 1) || (echo -e "\e[32mSUCCESS\e[39m" && exit 0)
