@@ -4,24 +4,26 @@ python:
   - "2.7"
 
 bofore_install:
+  - cd ansible-playbook
   - sudo apt-get update -qq
 
 install:
   - pip install ansible
   # Tell Ansible where the roles are
-  - printf '[defaults]\nroles_path = ansible-playbook/roles' > ansible.cfg
+  #- printf '[defaults]\nroles_path = ansible-playbook/roles' > ansible.cfg
   - ansible-galaxy install smola.java
 
 script:
+  
   # Syntax check
-  - ansible-playbook -i ansible-playbook/tests/inventory ansible-playbook/tests/site.yml --syntax-check
+  - ansible-playbook -i tests/inventory site.yml --syntax-check
 
   # First run
-  - ansible-playbook -i ansible-playbook/tests/inventory ansible-playbook/tests/site.yml --connection=local --sudo
+  - ansible-playbook -i tests/inventory site.yml --connection=local --sudo
 
   # Idempotence check
   - >
-    ansible-playbook -i ansible-playbook/tests/inventory ansible-playbook/tests/site.yml --connection=local --sudo
+    ansible-playbook -i tests/inventory site.yml --connection=local --sudo
     | grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence: \e[32mOk\e[39m') || (echo 'Idempotence: \e[31mfail\e[39m' && touch failed)
 
