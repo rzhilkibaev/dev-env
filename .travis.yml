@@ -15,7 +15,7 @@ install:
   - sudo $ANSIBLE_GALAXY install smola.java
 
 script:
-  
+  - pwd  
   # Syntax check
   - ansible-playbook -i tests/inventory site.yml --syntax-check
 
