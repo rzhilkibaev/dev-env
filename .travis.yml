@@ -22,33 +22,37 @@ script:
   # First run
   - ansible-playbook -i tests/inventory site.yml --connection=local --sudo
 
+  # Set success flag
+  - touch success
+
   # Idempotence check
   - >
     ansible-playbook -i tests/inventory site.yml --connection=local --sudo
     | grep -q 'changed=0.*failed=0'
-    && (echo 'Idempotence: \e[32mOk\e[39m') || (echo 'Idempotence: \e[31mfail\e[39m' && touch failed)
+    && (echo "Idempotence: \e[32mOk\e[39m") || (echo "Idempotence: \e[31mfail\e[39m" && rm -f success)
 
   # Check Git
   - >
     git --version | grep -q "git version" 
-    && (echo -e "Git: \e[32mOk\e[39m") || (echo -e "Git: \e[31mfail\e[39m" && touch fail)
+    && (echo -e "Git: \e[32mOk\e[39m") || (echo -e "Git: \e[31mfail\e[39m" && rm -f success)
 
   # Check Subversion
   - >
     svn --version | grep -q "svn, version" 
-    && (echo -e "Subversion: \e[32mOk\e[39m") || (echo -e "Subversion: \e[31mfail\e[39m" && touch fail)
+    && (echo -e "Subversion: \e[32mOk\e[39m") || (echo -e "Subversion: \e[31mfail\e[39m" && rm -f success)
 
   # Check Mercurial
   - >
     hg --version | grep -q "Mercurial Distributed SCM" 
-    && (echo -e "Mercurial: \e[32mOk\e[39m") || (echo -e "Mercurial: \e[31mfail\e[39m" && touch fail)
+    && (echo -e "Mercurial: \e[32mOk\e[39m") || (echo -e "Mercurial: \e[31mfail\e[39m" && rm -f success)
 
   # Check java
   - >
     java -version 2>&1 | grep -q "java version \"1.8"
-    && (echo -e "java: \e[32mOk\e[39m") || (echo -e "java: \e[31mfail\e[39m" && touch fail)
+    && (echo -e "java: \e[32mOk\e[39m") || (echo -e "java: \e[31mfail\e[39m" && rm -f success)
 
   # Check if any step failed
   - >
-    ls -1 | grep -q "fail"
-    && (echo -e "\e[31mFAIL\e[39m" && exit 1) || (echo -e "\e[32mSUCCESS\e[39m" && exit 0)
+    ls -1 | grep -q "success"
+    && (echo -e "\e[32mSUCCESS\e[39m" && exit 0) || (echo -e "\e[31mFAIL\e[39m" && exit 1)
+
