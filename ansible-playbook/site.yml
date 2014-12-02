@@ -2,6 +2,6 @@
 - hosts: dev
   remote_user: root
   roles:
-    - common
     - smola.java
+    - common
 
