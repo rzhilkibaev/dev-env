@@ -8,8 +8,5 @@
 
 - name: Install Git, Subversion and Mercurial
   apt: name={{ item }} state=latest 
-  with_items:
-    - git
-    - subversion
-    - mercurial
+  with_items: packages
 

@@ -1,0 +1,6 @@
+---
+# list of packages to install
+packages:
+  - git
+  - subversion
+  - mercurial
