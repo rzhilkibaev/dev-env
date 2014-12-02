@@ -4,3 +4,4 @@ packages:
   - git
   - subversion
   - mercurial
+  - ant
