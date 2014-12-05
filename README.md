@@ -7,3 +7,4 @@ What gets installed:
  - Git
  - Subversion
  - Mercurial
+ - Vim
