@@ -32,4 +32,4 @@ script:
   - java -version
   - ant -version
   - mvn --version
-
+  - vim --version

@@ -1,4 +1,6 @@
 ---
+# user for which everything is installed/configured
+user: dev
 # list of packages to install
 packages:
   - git

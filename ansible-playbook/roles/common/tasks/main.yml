@@ -16,3 +16,6 @@
 - name: Configure vim
   copy: src=files/.vimrc dest=/home/{{ user }} owner={{ user }} group={{ user }} mode="u=rw,g=r,o=r"
 
+- name: Configure git
+  copy: src=files/.gitconfig dest=/home/{{ user }} owner={{ user }} group={{ user }} mode="u=rw,g=r,o=r"
+
