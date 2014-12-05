@@ -13,6 +13,7 @@ install:
   - sudo $ANSIBLE_GALAXY install groover.maven
 
 script:
+  - cat /proc/version
   - cd ansible-playbook
 
   # Syntax check
