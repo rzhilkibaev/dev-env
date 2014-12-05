@@ -9,9 +9,8 @@ bofore_install:
 install:
   - pip install ansible
   - export ANSIBLE_GALAXY=`which ansible-galaxy`
-  # Tell Ansible where the roles are
-  #- printf '[defaults]\nroles_path = ansible-playbook/roles' > ansible.cfg
   - sudo $ANSIBLE_GALAXY install smola.java
+  - sudo $ANSIBLE_GALAXY install groover.maven
 
 script:
   - cd ansible-playbook
@@ -31,4 +30,5 @@ script:
   - hg --version
   - java -version
   - ant -version
+  - mvn --version
 
