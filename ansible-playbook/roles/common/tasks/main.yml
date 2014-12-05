@@ -10,3 +10,9 @@
   apt: name={{ item }} state=latest 
   with_items: packages
 
+- name: Ensure user exists
+  user: name={{ user }} uid=1040 group={{ user }}
+
+- name: Configure vim
+  copy: src=files/.vimrc dest=/home/{{ user }} owner={{ user }} group={{ user }} mode="u=rw,g=r,o=r"
+
