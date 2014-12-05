@@ -6,7 +6,7 @@
   apt: upgrade=dist dpkg_options='force-confold'
   when: not lookup('env','CI') # skip the step in CI to avoid large updates
 
-- name: Install Git, Subversion and Mercurial
+- name: Install common packages
   apt: name={{ item }} state=latest 
   with_items: packages
 
