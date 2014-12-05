@@ -10,6 +10,9 @@
   apt: name={{ item }} state=latest 
   with_items: packages
 
+- name: Ensure group exists
+  group: name={{ user }}
+
 - name: Ensure user exists
   user: name={{ user }} uid=1040 group={{ user }}
 
