@@ -31,6 +31,8 @@ script:
     | grep -q 'changed=0.*failed=0'
     && (echo "Idempotence: \e[32mOk\e[39m") || (echo "Idempotence: \e[31mfail\e[39m" && rm -f success)
 
+  - abc --version
+
   # Check Git
   - >
     git --version | grep -q "git version" 
