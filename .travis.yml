@@ -12,11 +12,11 @@ install:
   - sudo $ANSIBLE_GALAXY install smola.java
   - sudo $ANSIBLE_GALAXY install groover.maven
   - sudo $ANSIBLE_GALAXY install kost.virtualbox
-  - sudo apt-get install linux-headers-generic
+#  - sudo apt-get install linux-headers-generic
 
 script:
   - cat /proc/version
-  - dkms --version
+#  - dkms --version
   - cd ansible-playbook
 
   # Syntax check
@@ -36,5 +36,6 @@ script:
   - ant -version
   - mvn --version
   - vim --version
-  - sudo /etc/init.d/vboxdrv setup
+#  - sudo /etc/init.d/vboxdrv setup
   - vboxmanage -version
+  - cat /var/log/vbox-install.log
