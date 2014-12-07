@@ -8,3 +8,5 @@ packages:
   - mercurial
   - ant
   - vim
+  - dkms # recommended for virtualbox
+  - vagrant
