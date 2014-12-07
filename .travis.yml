@@ -11,6 +11,7 @@ install:
   - export ANSIBLE_GALAXY=`which ansible-galaxy`
   - sudo $ANSIBLE_GALAXY install smola.java
   - sudo $ANSIBLE_GALAXY install groover.maven
+  - sudo $ANSIBLE_GALAXY install kost.virtualbox
 
 script:
   - cat /proc/version
@@ -33,3 +34,4 @@ script:
   - ant -version
   - mvn --version
   - vim --version
+  - vboxmanage -version
