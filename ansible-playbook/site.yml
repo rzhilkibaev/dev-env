@@ -5,5 +5,5 @@
     - smola.java
     - common
     - groover.maven
-    - kost.virtualbox
+    - { role: kost.virtualbox, tags: virt }
 
