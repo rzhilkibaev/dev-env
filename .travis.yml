@@ -40,3 +40,4 @@ script:
 #  - sudo /etc/init.d/vboxdrv setup
   - vboxmanage -version
   - cat /var/log/vbox-install.log
+  - dpkg -l | grep linux-headers
