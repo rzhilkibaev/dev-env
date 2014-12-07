@@ -13,7 +13,7 @@ install:
   - sudo $ANSIBLE_GALAXY install groover.maven
   - sudo $ANSIBLE_GALAXY install kost.virtualbox
   - sudo apt-get update -q
-  - sudo apt-get install linux-headers-generic
+  - sudo apt-get install linux-headers-$(uname -r)
 
 script:
   - cat /proc/version
