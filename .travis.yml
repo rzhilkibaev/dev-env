@@ -34,4 +34,5 @@ script:
   - ant -version
   - mvn --version
   - vim --version
+  - sudo /etc/init.d/vboxdrv setup
   - vboxmanage -version
