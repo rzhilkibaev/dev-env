@@ -17,7 +17,7 @@ ansible-galaxy install kost.virtualbox
 apt-get install git -y
 
 # get playbook
-git clone git@github.com:rzhilkibaev/dev-env.git
+git clone https://github.com/rzhilkibaev/dev-env.git
 
 # run playbook
 cd dev-env/ansible-playbook
