@@ -3,7 +3,6 @@
 cd /tmp
 
 # install ansible
-apt-get install software-properties-common -y
 apt-add-repository ppa:ansible/ansible -y
 apt-get update
 apt-get install ansible -y
@@ -21,6 +20,7 @@ git clone https://github.com/rzhilkibaev/dev-env.git
 
 # run playbook
 cd dev-env/ansible-playbook
+export ANSIBLE_NOCOWS=1
 
-#ansible-playbook -i tests/inventory site.yml --connection=local --sudo
+ansible-playbook -i tests/inventory site.yml --connection=local --sudo
 
