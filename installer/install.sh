@@ -22,5 +22,5 @@ git clone https://github.com/rzhilkibaev/dev-env.git
 # run playbook
 cd dev-env/ansible-playbook
 
-ansible-playbook -i tests/inventory site.yml --connection=local --sudo
+#ansible-playbook -i tests/inventory site.yml --connection=local --sudo
 
