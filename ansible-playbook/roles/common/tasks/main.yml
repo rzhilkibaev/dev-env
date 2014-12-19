@@ -14,7 +14,7 @@
   group: name={{ user }}
 
 - name: Ensure user exists
-  user: name={{ user }} uid=1040 group={{ user }}
+  user: name={{ user }} group={{ user }}
 
 - name: Configure vim
   copy: src=.vimrc dest=/home/{{ user }} owner={{ user }} group={{ user }} mode="u=rw,g=r,o=r"
