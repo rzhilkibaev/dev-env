@@ -8,3 +8,4 @@ packages:
   - mercurial
   - ant
   - vim
+  - tree
