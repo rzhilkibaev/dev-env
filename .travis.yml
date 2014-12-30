@@ -12,10 +12,9 @@ install:
   - sudo $ANSIBLE_GALAXY install smola.java
   - sudo $ANSIBLE_GALAXY install groover.maven
   - sudo $ANSIBLE_GALAXY install kost.virtualbox
-
-script:
   - cd ansible-playbook
 
+script:
   # Syntax check
   - ansible-playbook -i tests/inventory site.yml --syntax-check
 
