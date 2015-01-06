@@ -2,10 +2,21 @@
 
 # this is plain bash script installer, it doesn't use ansible.
 
-set WORKING_DIRECTORY=/var/tmp/dev-env-plain-installer
-set DOWNLOAD_CACHE_DIRECTORY=$WORKING_DIRECTORY/cache
-set LOG_FILE=$WORKING_DIRECTORY/log.txt
-set PACKAGES=virtualbox-4.3 dkms git subversion mercurial ant vim tree ansible oracle-java7-installer oracle-java8-installer oracle-java8-set-default
+WORKING_DIRECTORY=/var/tmp/dev-env-plain-installer
+DOWNLOAD_CACHE_DIRECTORY=$WORKING_DIRECTORY/cache
+LOG_FILE=$WORKING_DIRECTORY/log.txt
+
+#Java
+PACKAGES=oracle-java7-installer oracle-java8-installer oracle-java8-set-default
+
+# VirtualBox
+PACKAGES=$PACKAGES virtualbox-4.3 dkms
+
+# SVC
+PACKAGES=$PACKAGES git subversion mercurial
+
+# Misc
+PACKAGES=$PACKAGES ant vim tree ansible
 
 mkdir -p $WORKING_DIRECTORY
 
