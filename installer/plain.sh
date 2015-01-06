@@ -9,8 +9,7 @@ USERNAME=$SUDO_USER
 
 # Java
 # temporarily comment out java since it takes tens of minutes to download
-PACKAGES="oracle-java8-installer oracle-java8-set-default"
-#PACKAGES="oracle-java7-installer oracle-java8-installer oracle-java8-set-default"
+PACKAGES="oracle-java7-installer oracle-java8-installer oracle-java8-set-default"
 
 
 # Virtualization
