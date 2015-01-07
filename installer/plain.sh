@@ -14,7 +14,7 @@ PACKAGES="oracle-java7-installer oracle-java8-installer oracle-java8-set-default
 
 # Virtualization
 PACKAGES="$PACKAGES virtualbox-4.3 dkms lxc-docker cgroup-lite apparmor"
-#TODO vagrant?
+#TODO vagrant (not in apt-get)?
 
 # SVC
 PACKAGES="$PACKAGES git subversion mercurial kdiff3"
@@ -28,8 +28,8 @@ M2_HOME=/usr/local/maven
 PACKAGES="$PACKAGES postgresql-9.3"
 
 # Misc
-PACKAGES="$PACKAGES vim tree ansible curl"
-#TODO jedit crhomium eclipse skype?
+PACKAGES="$PACKAGES vim tree ansible curl python-pip python3-pip chromium-browser skype"
+#TODO jedit eclipse?
 
 ##################################################
 # Prepare
@@ -54,6 +54,9 @@ echo "deb http://get.docker.com/ubuntu docker main" > /etc/apt/sources.list.d/do
 # Jenkins
 wget -q -O - https://jenkins-ci.org/debian/jenkins-ci.org.key | apt-key add -
 echo "deb http://pkg.jenkins-ci.org/debian binary/" > /etc/apt/sources.list.d/jenkins.list
+
+# Skype
+apt-add-repository "deb http://archive.canonical.com/ $UBUNTU_CODENAME partner"
 
 # Accept Oracle License
 echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
