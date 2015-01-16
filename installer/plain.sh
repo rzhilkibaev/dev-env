@@ -28,7 +28,7 @@ M2_HOME=/usr/local/maven
 PACKAGES="$PACKAGES postgresql-9.3"
 
 # Misc
-PACKAGES="$PACKAGES vim tree ansible curl python-pip python3-pip chromium-browser skype"
+PACKAGES="$PACKAGES vim tree ansible curl python-pip python3-pip chromium-browser skype remmina remmina-plugin-rdp"
 #TODO jedit eclipse?
 
 ##################################################
