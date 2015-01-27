@@ -56,6 +56,7 @@ wget -q -O - https://jenkins-ci.org/debian/jenkins-ci.org.key | apt-key add -
 echo "deb http://pkg.jenkins-ci.org/debian binary/" > /etc/apt/sources.list.d/jenkins.list
 
 # Skype
+dpkg --add-architecture i386
 apt-add-repository "deb http://archive.canonical.com/ $UBUNTU_CODENAME partner"
 
 # Accept Oracle License
