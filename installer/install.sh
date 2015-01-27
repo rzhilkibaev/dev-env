@@ -76,7 +76,7 @@ apt-get install $PACKAGES -y
 
 # Maven
 mkdir -p $M2_HOME
-wget http://apache.mirrors.lucidnetworks.net/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz -O $DOWNLOAD_CACHE_DIRECTORY/apache-maven-bin.tar.gz
+wget --progress=dot:mega http://apache.mirrors.lucidnetworks.net/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz -O $DOWNLOAD_CACHE_DIRECTORY/apache-maven-bin.tar.gz
 tar --strip-components=1 -xzf $DOWNLOAD_CACHE_DIRECTORY/apache-maven-bin.tar.gz -C $M2_HOME
 
 ##################################################
