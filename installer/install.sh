@@ -2,6 +2,12 @@
 
 # This is a plain bash script installer, it doesn't use ansible.
 
+# Check for root privileges
+if [ "$(whoami)" != "root" ]; then
+	echo "Must be root."
+	exit 1
+fi
+
 WORKING_DIRECTORY=/tmp/dev-env-plain-installer
 DOWNLOAD_CACHE_DIRECTORY=$WORKING_DIRECTORY/cache
 UBUNTU_CODENAME=trusty
