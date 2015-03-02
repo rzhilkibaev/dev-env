@@ -88,9 +88,9 @@ cat > /home/$USERNAME/.gitconfig <<"EOL"
 [push]
         default = simple
 [diff]
-        tool = vimdiff
+        tool = kdiff3
 [merge]
-        tool = vimdiff
+        tool = kdiff3
 [difftool]
         prompt = false
 EOL
