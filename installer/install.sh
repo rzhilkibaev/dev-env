@@ -83,6 +83,9 @@ tar --strip-components=1 -xzf $DOWNLOAD_CACHE_DIRECTORY/apache-maven-bin.tar.gz 
 ##################################################
 # Configure
 
+# Docker
+gpasswd -a $USERNAME docker
+
 # Git
 cat > /home/$USERNAME/.gitconfig <<"EOL"
 [push]
