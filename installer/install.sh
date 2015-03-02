@@ -105,6 +105,19 @@ cat > /home/$USERNAME/.gitconfig <<"EOL"
 EOL
 chown $USERNAME:$USERNAME /home/$USERNAME/.gitconfig
 
+# Subversion
+wget --no-verbose https://gist.githubusercontent.com/rzhilkibaev/aa618af6215e698eaf95/raw/cbfbd5c40b02c9f013a66151d634accf10749854/svn-kdiff3-wrapper.sh -O /usr/bin/svn-kdiff3-wrapper.sh
+mkdir /home/$USERNAME/.subversion
+cat > /home/$USERNAME/.subversion/config <<"EOL"
+[helpers]
+editor-cmd = vim
+diff-cmd = /usr/bin/svn-kdiff3-wrapper.sh
+diff3-cmd = /usr/bin/svn-kdiff3-wrapper.sh
+merge-tool-cmd = /usr/bin/svn-kdiff3-wrapper.sh
+EOL
+chown -R $USERNAME:$USERNAME /home/$USERNAME/.subversion
+chmod +x /usr/bin/svn-kdiff3-wrapper.sh
+
 # Vim
 cat > /home/$USERNAME/.vimrc <<"EOL"
 :set nowrap
