@@ -17,3 +17,9 @@ Host falcon.jaspersoft.com
 EOL
 chown $USERNAME:$USERNAME /home/$USERNAME/.ssh/config
 chmod 600 /home/$USERNAME/.ssh/config
+
+# jst
+mkdir ~/src
+cd ~/src
+git clone https://github.com/rzhilkibaev/jst.git
+sudo ~/src/jst/bin/install
