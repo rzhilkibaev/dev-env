@@ -12,7 +12,7 @@ USERNAME=$SUDO_USER
 cat > /home/$USERNAME/.ssh/config <<"EOL"
 Host falcon.jaspersoft.com
     HostName falcon.jaspersoft.com
-    IdentityFile ~/.ssh/<private_key>
+    IdentityFile ~/.ssh/id_dsa
 
 EOL
 chown $USERNAME:$USERNAME /home/$USERNAME/.ssh/config
