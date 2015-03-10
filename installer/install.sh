@@ -90,7 +90,11 @@ tar --strip-components=1 -xzf $DOWNLOAD_CACHE_DIRECTORY/apache-maven-bin.tar.gz 
 # Configure
 
 # Docker
+# allow non-sudo access
 gpasswd -a $USERNAME docker
+# orphaned volumes cleanup script
+wget --no-verbose https://raw.githubusercontent.com/chadoe/docker-cleanup-volumes/master/docker-cleanup-volumes.sh -O /var/local/bin/docker-cleanup-volumes.sh
+chmod +x /var/local/bin/docker-cleanup-volumes.sh
 
 # Git
 cat > /home/$USERNAME/.gitconfig <<"EOL"
