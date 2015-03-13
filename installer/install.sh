@@ -81,6 +81,8 @@ apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-conf
 
 apt-get install $PACKAGES -y
 
+pip install pjson
+
 # Maven
 mkdir -p $M2_HOME
 wget --no-verbose http://apache.mirrors.lucidnetworks.net/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz -O $DOWNLOAD_CACHE_DIRECTORY/apache-maven-bin.tar.gz
