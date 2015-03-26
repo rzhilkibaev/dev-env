@@ -128,6 +128,10 @@ chmod +x /usr/bin/svn-kdiff3-wrapper.sh
 cat > /home/$USERNAME/.vimrc <<"EOL"
 :set nowrap
 :set tabstop=4
+
+"XML folding
+let g:xml_syntax_folding=1
+autocmd FileType xml setlocal foldmethod=syntax
 EOL
 chown $USERNAME:$USERNAME /home/$USERNAME/.vimrc
 
