@@ -8,9 +8,6 @@ fi
 
 USERNAME=$SUDO_USER
 
-chown $USERNAME:$USERNAME /home/$USERNAME/.ssh/config
-chmod 600 /home/$USERNAME/.ssh/config
-
 # jst
 mkdir ~/src
 cd ~/src
