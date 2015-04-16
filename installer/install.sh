@@ -26,12 +26,9 @@ PACKAGES="$PACKAGES virtualbox-4.3 dkms lxc-docker cgroup-lite apparmor"
 PACKAGES="$PACKAGES git subversion mercurial kdiff3"
 
 # Build tools
-PACKAGES="$PACKAGES ant jenkins"
+PACKAGES="$PACKAGES ant"
 MAVEN_VERSION="3.2.5"
 M2_HOME=/usr/local/maven
-
-# DB
-PACKAGES="$PACKAGES postgresql-9.3"
 
 # Misc
 PACKAGES="$PACKAGES vim tree ansible curl python-pip python3-pip skype remmina remmina-plugin-rdp xrdp vino apt-file"
@@ -56,10 +53,6 @@ echo "deb http://download.virtualbox.org/virtualbox/debian $UBUNTU_CODENAME cont
 # Docker
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
 echo "deb http://get.docker.com/ubuntu docker main" > /etc/apt/sources.list.d/docker.list
-
-# Jenkins
-wget -q -O - https://jenkins-ci.org/debian/jenkins-ci.org.key | apt-key add -
-echo "deb http://pkg.jenkins-ci.org/debian binary/" > /etc/apt/sources.list.d/jenkins.list
 
 # Skype
 dpkg --add-architecture i386
@@ -94,6 +87,7 @@ tar --strip-components=1 -xzf $DOWNLOAD_CACHE_DIRECTORY/apache-maven-bin.tar.gz 
 # Docker
 # allow non-sudo access
 gpasswd -a $USERNAME docker
+service docker restart
 # orphaned volumes cleanup script
 wget --no-verbose https://raw.githubusercontent.com/chadoe/docker-cleanup-volumes/master/docker-cleanup-volumes.sh -O /var/local/bin/docker-cleanup-volumes.sh
 chmod +x /var/local/bin/docker-cleanup-volumes.sh
