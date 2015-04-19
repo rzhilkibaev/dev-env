@@ -8,15 +8,11 @@ if [ "$(whoami)" != "root" ]; then
 	exit 1
 fi
 
-WORKING_DIRECTORY=/tmp/dev-env-plain-installer
-DOWNLOAD_CACHE_DIRECTORY=$WORKING_DIRECTORY/cache
 UBUNTU_CODENAME=trusty
 USERNAME=$SUDO_USER
 
 # Java
-# temporarily comment out java since it takes tens of minutes to download
 PACKAGES="oracle-java7-installer oracle-java8-installer oracle-java8-set-default"
-
 
 # Virtualization
 PACKAGES="$PACKAGES virtualbox-4.3 dkms lxc-docker cgroup-lite apparmor vagrant"
@@ -31,13 +27,9 @@ M2_HOME=/usr/local/maven
 
 # Misc
 PACKAGES="$PACKAGES vim tree ansible curl python-pip python3-pip skype remmina remmina-plugin-rdp xrdp vino apt-file"
-#TODO jedit eclipse?
 
 ##################################################
 # Prepare
-
-mkdir -p $WORKING_DIRECTORY
-mkdir -p $DOWNLOAD_CACHE_DIRECTORY
 
 # Ansible
 apt-add-repository ppa:ansible/ansible -y
@@ -77,8 +69,7 @@ pip install pjson
 
 # Maven
 mkdir -p $M2_HOME
-wget --no-verbose http://apache.mirrors.lucidnetworks.net/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz -O $DOWNLOAD_CACHE_DIRECTORY/apache-maven-bin.tar.gz
-tar --strip-components=1 -xzf $DOWNLOAD_CACHE_DIRECTORY/apache-maven-bin.tar.gz -C $M2_HOME
+wget -qO- http://apache.mirrors.lucidnetworks.net/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | tar --strip-components=1 -xzC $M2_HOME
 
 ##################################################
 # Configure
@@ -88,7 +79,7 @@ tar --strip-components=1 -xzf $DOWNLOAD_CACHE_DIRECTORY/apache-maven-bin.tar.gz 
 gpasswd -a $USERNAME docker
 service docker restart
 # orphaned volumes cleanup script
-wget --no-verbose https://raw.githubusercontent.com/chadoe/docker-cleanup-volumes/master/docker-cleanup-volumes.sh -O /var/local/bin/docker-cleanup-volumes.sh
+wget -q https://raw.githubusercontent.com/chadoe/docker-cleanup-volumes/master/docker-cleanup-volumes.sh -O /var/local/bin/docker-cleanup-volumes.sh
 chmod +x /var/local/bin/docker-cleanup-volumes.sh
 
 # Git
@@ -105,7 +96,8 @@ EOL
 chown $USERNAME:$USERNAME /home/$USERNAME/.gitconfig
 
 # Subversion
-wget --no-verbose https://gist.githubusercontent.com/rzhilkibaev/aa618af6215e698eaf95/raw/cbfbd5c40b02c9f013a66151d634accf10749854/svn-kdiff3-wrapper.sh -O /usr/bin/svn-kdiff3-wrapper.sh
+wget -q https://github.com/rzhilkibaev/dev-env/raw/master/installer/svn-kdiff3-wrapper -O /usr/bin/svn-kdiff3-wrapper
+chmod +x /usr/bin/svn-kdiff3-wrapper
 mkdir /home/$USERNAME/.subversion
 cat > /home/$USERNAME/.subversion/config <<"EOL"
 [helpers]
@@ -115,7 +107,6 @@ diff3-cmd = /usr/bin/svn-kdiff3-wrapper.sh
 merge-tool-cmd = /usr/bin/svn-kdiff3-wrapper.sh
 EOL
 chown -R $USERNAME:$USERNAME /home/$USERNAME/.subversion
-chmod +x /usr/bin/svn-kdiff3-wrapper.sh
 
 # Vim
 cat > /home/$USERNAME/.vimrc <<"EOL"
