@@ -19,8 +19,7 @@ PACKAGES="oracle-java7-installer oracle-java8-installer oracle-java8-set-default
 
 
 # Virtualization
-PACKAGES="$PACKAGES virtualbox-4.3 dkms lxc-docker cgroup-lite apparmor"
-#TODO vagrant (not in apt-get)?
+PACKAGES="$PACKAGES virtualbox-4.3 dkms lxc-docker cgroup-lite apparmor vagrant"
 
 # SVC
 PACKAGES="$PACKAGES git subversion mercurial kdiff3"
