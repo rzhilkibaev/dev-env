@@ -26,7 +26,7 @@ MAVEN_VERSION="3.2.5"
 M2_HOME=/usr/local/maven
 
 # Misc
-PACKAGES="$PACKAGES vim tree ansible curl python-pip python3-pip skype remmina remmina-plugin-rdp xrdp vino apt-file"
+PACKAGES="$PACKAGES vim vim-syntax-docker tree ansible curl python-pip python3-pip skype remmina remmina-plugin-rdp xrdp vino apt-file"
 
 ##################################################
 # Prepare
