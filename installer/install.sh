@@ -109,7 +109,36 @@ EOL
 chown -R $USERNAME:$USERNAME /home/$USERNAME/.subversion
 
 # Vim
+git clone https://github.com/gmarik/Vundle.vim.git $USERNAME/.vim/bundle/Vundle.vim
+
 cat > /home/$USERNAME/.vimrc <<"EOL"
+set nocompatible                                        " not compatible with vi, required by Vundle
+filetype off                                            " required by Vundle
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required by Vundle
+Plugin 'gmarik/Vundle.vim'
+Plugin 'chase/vim-ansible-yaml'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
 :set nowrap
 :set tabstop=4
 
@@ -118,6 +147,8 @@ let g:xml_syntax_folding=1
 autocmd FileType xml setlocal foldmethod=syntax
 EOL
 chown $USERNAME:$USERNAME /home/$USERNAME/.vimrc
+vim +PluginInstall +qall
+chown -R $USERNAME:$USERNAME /home/$USERNAME/.vim
 
 # Bash
 echo "export M2_HOME=$M2_HOME" > /home/$USERNAME/.bashrc
@@ -129,6 +160,7 @@ PROMPT_COMMAND='echo -ne "\033]0;`basename ${PWD}` ${PWD}\007"'
 
 export ANSIBLE_NOCOWS=1
 
+alias ll="ls -lAh --group-directories-first"
 alias lll="ll --color=always | less -R"
 EOL
 chown $USERNAME:$USERNAME /home/$USERNAME/.bashrc
