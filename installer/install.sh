@@ -21,7 +21,7 @@ PACKAGES="$PACKAGES virtualbox-4.3 dkms lxc-docker cgroup-lite apparmor vagrant"
 PACKAGES="$PACKAGES git subversion mercurial kdiff3"
 
 # Build tools
-PACKAGES="$PACKAGES ant"
+PACKAGES="$PACKAGES ant ant-contrib"
 MAVEN_VERSION="3.2.5"
 M2_HOME=/usr/local/maven
 
