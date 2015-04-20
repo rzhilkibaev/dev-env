@@ -145,6 +145,12 @@ filetype plugin indent on    " required
 "XML folding
 let g:xml_syntax_folding=1
 autocmd FileType xml setlocal foldmethod=syntax
+
+"Highlight current line and column
+:set cursorline                                                                                                                                                                                                                               
+:set cursorcolumn
+:hi CursorLine   cterm=NONE ctermbg=black
+:hi CursorColumn cterm=NONE ctermbg=black
 EOL
 chown $USERNAME:$USERNAME /home/$USERNAME/.vimrc
 vim +PluginInstall +qall
