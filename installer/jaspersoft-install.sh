@@ -3,7 +3,7 @@
 # run common installer
 wget -qO- https://github.com/rzhilkibaev/dev-env/raw/master/installer/install.sh | bash
 
-PACKAGES="jenkins"
+PACKAGES="jenkins oracle-java7-set-default"
 
 PORT_JENKINS=10000
 
