@@ -121,6 +121,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'chase/vim-ansible-yaml'
+Plugin 'fholgado/minibufexpl.vim' 
 call vundle#end()
 
 " Put your non-Plugin stuff after this line
