@@ -141,6 +141,9 @@ autocmd FileType xml setlocal foldmethod=syntax
 :set cursorcolumn
 :hi CursorLine   cterm=NONE ctermbg=black
 :hi CursorColumn cterm=NONE ctermbg=black
+
+" Toggle NERDTree
+map <C-n> :NERDTreeToggle<CR>
 EOL
 chown $USERNAME:$USERNAME /home/$USERNAME/.vimrc
 vim +PluginInstall +qall
