@@ -132,6 +132,7 @@ filetype plugin indent on
 :set tabstop=4 shiftwidth=4 expandtab
 :set hidden
 :set wildmenu
+:set number
 
 "XML folding
 let g:xml_syntax_folding=1
