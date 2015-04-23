@@ -163,6 +163,8 @@ export ANSIBLE_NOCOWS=1
 alias ll="ls -lAh --group-directories-first"
 alias lll="ll --color=always | less -R"
 
+alias docker-remove-untagged-images='docker rmi $(docker images | grep "^<none>" | awk "{print \$3}")'                                                                                                                                       
+
 docker-memory-usage(){
     for line in `docker ps | awk '{print $1}' | grep -v CONTAINER`; do docker ps | grep $line | awk '{printf $NF" "}' && echo $(( `cat /sys/fs/cgroup/memory/docker/$line*/memory.usage_in_bytes` / 1024 / 1024 ))MB ; done
 }
