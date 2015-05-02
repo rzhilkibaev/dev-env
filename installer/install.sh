@@ -152,7 +152,7 @@ vim +PluginInstall +qall
 chown -R $USERNAME:$USERNAME /home/$USERNAME/.vim
 
 # Bash
-echo "export M2_HOME=$M2_HOME" > /home/$USERNAME/.bashrc
+echo "export M2_HOME=$M2_HOME" >> /home/$USERNAME/.bashrc
 cat >> /home/$USERNAME/.bashrc <<"EOL"
 export PATH=$PATH:$M2_HOME/bin
 
