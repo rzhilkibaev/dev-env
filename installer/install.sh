@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-# This is a plain bash script installer, it doesn't use ansible.
+set -e
+set -o pipefail
 
 # Check for root privileges
 if [ "$(whoami)" != "root" ]; then
