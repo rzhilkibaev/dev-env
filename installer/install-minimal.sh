@@ -17,6 +17,8 @@ PACKAGES="git subversion vim curl python-pip python3-pip tree"
 apt-add-repository ppa:webupd8team/java -y
 PACKAGES="$PACKAGES oracle-java8-installer oracle-java8-set-default ant ant-contrib"
 #PACKAGES="$PACKAGES oracle-java7-installer oracle-java8-installer oracle-java8-set-default ant ant-contrib"
+echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
+echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
 
 # Ansible
 apt-add-repository ppa:ansible/ansible -y
