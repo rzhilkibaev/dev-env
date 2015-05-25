@@ -28,11 +28,13 @@ PACKAGES="$PACKAGES ansible"
 apt-get update && apt-get install -y $PACKAGES
 
 # Vagrant 
+echo "Installing Vagrant"
 wget -q https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb -O /tmp/vagrant.deb
 dpkg -i /tmp/vagrant.deb
 rm -f /tmp/vagrant.deb
 
 # Maven
+echo "Installing Maven"
 MAVEN_VERSION="3.2.5"
 M2_HOME=/usr/local/maven
 mkdir -p $M2_HOME
@@ -40,6 +42,7 @@ wget -qO- http://apache.mirrors.lucidnetworks.net/maven/maven-3/$MAVEN_VERSION/b
 
 ##################################################
 # Configure
+echo "Configuring"
 
 # Git
 cat > /home/$USERNAME/.gitconfig <<"EOL"
