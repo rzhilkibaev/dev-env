@@ -105,7 +105,7 @@ autocmd FileType xml setlocal foldmethod=syntax
 :hi CursorColumn cterm=NONE ctermbg=black
 EOL
 chown $USERNAME:$USERNAME /home/$USERNAME/.vimrc
-vim -E -u NONE -S /home/$USERNAME/.vimrc +PluginInstall +qall
+#vim -E -u NONE -S /home/$USERNAME/.vimrc +PluginInstall +qall
 chown -R $USERNAME:$USERNAME /home/$USERNAME/.vim
 
 # Bash
@@ -129,4 +129,5 @@ docker-memory-usage(){
 EOL
 chown $USERNAME:$USERNAME /home/$USERNAME/.bashrc
 
+echo "!!!!!!!! Run vim +PluginInstall"
 echo "Done"
