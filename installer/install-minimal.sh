@@ -105,7 +105,7 @@ autocmd FileType xml setlocal foldmethod=syntax
 :hi CursorColumn cterm=NONE ctermbg=black
 EOL
 chown $USERNAME:$USERNAME /home/$USERNAME/.vimrc
-vim +PluginInstall +qall
+vim -E -u NONE -S /home/$USERNAME/ +PluginInstall +qall
 chown -R $USERNAME:$USERNAME /home/$USERNAME/.vim
 
 # Bash
