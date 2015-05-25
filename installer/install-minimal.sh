@@ -2,6 +2,8 @@
 
 set -e
 set -o pipefail
+set -x
+set -v
 
 # Check for root privileges
 if [ "$(whoami)" != "root" ]; then
