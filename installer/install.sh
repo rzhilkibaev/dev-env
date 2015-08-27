@@ -85,7 +85,7 @@ function setup_container() {
 
     # Install
     apt-get update && apt-get install -y \
-        git subversion vim tree ansible curl python-pip python3-pip \
+        git subversion vim tree ansible curl python-pip python3-pip sshfs \
         oracle-java7-installer oracle-java8-installer oracle-java8-set-default ant ant-contrib
 
     # Install Maven
