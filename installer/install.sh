@@ -158,6 +158,9 @@ autocmd FileType xml setlocal foldmethod=syntax
 :set cursorcolumn
 :hi CursorLine   cterm=NONE ctermbg=black
 :hi CursorColumn cterm=NONE ctermbg=black
+
+"Use CLIPBOARD for yank, put, etc...
+:set clipboard=unnamedplus
 EOL
     chown $USERNAME:$USERNAME /home/$USERNAME/.vimrc
     chown -R $USERNAME:$USERNAME /home/$USERNAME/.vim
