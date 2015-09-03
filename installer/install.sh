@@ -8,7 +8,7 @@
 #   vmheadless      suitable for a hadless VM; includes everything from 'container' and adds docker
 #   vmgui           suitable for a GUI VM; includes everything from 'vmheadless' and adds GUI software
 #   physical        suitable for a physical machine; includes everything from 'vmgui' and adds VM management software
-set -x
+#set -x
 set -e
 set -o pipefail
 
