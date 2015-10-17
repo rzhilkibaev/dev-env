@@ -161,6 +161,9 @@ autocmd FileType xml setlocal foldmethod=syntax
 
 "Use CLIPBOARD for yank, put, etc...
 :set clipboard=unnamedplus
+
+"Highlight all occurences when searching
+:set hlsearch
 EOL
     chown $USERNAME:$USERNAME /home/$USERNAME/.vimrc
     chown -R $USERNAME:$USERNAME /home/$USERNAME/.vim
