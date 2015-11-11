@@ -13,7 +13,7 @@ set -e
 set -o pipefail
 
 MAVEN_VERSION="3.2.5"
-VAGRANT_VERSION="1.7.2"
+VAGRANT_VERSION="1.7.4"
 
 TARGET_ENV=$1
 
