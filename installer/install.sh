@@ -212,7 +212,7 @@ function setup_vmgui() {
     fi
     apt-add-repository "deb http://archive.canonical.com/ $DISTRIB_CODENAME partner"
     # Install
-    apt-get update && apt-get install -y skype kdiff3 remmina remmina-plugin-rdp xrdp vino
+    apt-get update && apt-get install -y skype kdiff3 meld remmina remmina-plugin-rdp xrdp vino
     # Configure Git
 cat > /home/$USERNAME/.gitconfig <<"EOL"
 [push]
