@@ -205,6 +205,7 @@ function setup_vmheadless() {
 function setup_vmgui() {
     # Prepare Skype
     dpkg --add-architecture i386
+    # set DISTRIB_CODENAME
     source /etc/lsb-release
     if [ "$DISTRIB_CODENAME" = "rafaela" ] || [ "$DISTRIB_CODENAME" = "rebecca" ]; then
         DISTRIB_CODENAME=trusty
