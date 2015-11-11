@@ -240,7 +240,7 @@ function setup_physical() {
     # Install VirtualBox
     wget -q -O - https://www.virtualbox.org/download/oracle_vbox.asc | apt-key add -
     echo "deb http://download.virtualbox.org/virtualbox/debian $DISTRIB_CODENAME contrib" > /etc/apt/sources.list.d/virtualbox.list
-    apt-get update && apt-get install -y virtualbox-5.0
+    apt-get update && apt-get install -y dkms virtualbox-5.0
 }
 
 main
