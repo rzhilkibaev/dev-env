@@ -109,8 +109,8 @@ EOL
     # Configure Subversion
     #wget -q https://github.com/rzhilkibaev/dev-env/raw/master/installer/svn-diff-vimdiff.sh -O /usr/bin/svn-diff-vimdiff.sh
     #chmod +x /usr/bin/svn-diff-vimdiff.sh
-    #wget -q https://github.com/rzhilkibaev/dev-env/raw/master/installer/svn-merge-vimdiff.sh -O /usr/bin/svn-merge-vimdiff.sh 
-    #chmod +x /usr/bin/svn-merge-vimdiff.sh
+    #wget -q https://github.com/rzhilkibaev/dev-env/raw/master/installer/svn-merge-tool-cmd-vimdiff.sh -O /usr/bin/svn-merge-tool-cmd-vimdiff.sh 
+    #chmod +x /usr/bin/svn-merge-tool-cmd-vimdiff.sh
     mkdir -p /home/$USERNAME/.subversion
 cat > /home/$USERNAME/.subversion/config <<"EOL"
 [helpers]
