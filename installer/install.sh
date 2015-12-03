@@ -116,7 +116,7 @@ cat > /home/$USERNAME/.subversion/config <<"EOL"
 [helpers]
 editor-cmd = vim
 diff-cmd = /usr/bin/svn-diff-vimdiff.sh
-merge-tool-cmd = /usr/bin/svn-merge-vimdiff.sh
+merge-tool-cmd = /usr/bin/svn-merge-tool-cmd-vimdiff.sh
 EOL
     chown -R $USERNAME:$USERNAME /home/$USERNAME/.subversion
 
