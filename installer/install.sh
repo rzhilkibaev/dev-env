@@ -156,8 +156,8 @@ autocmd FileType xml setlocal foldmethod=syntax
 "Highlight current line and column
 :set cursorline                                                                                                                                                                                                                               
 :set cursorcolumn
-:hi CursorLine   cterm=NONE ctermbg=black
-:hi CursorColumn cterm=NONE ctermbg=black
+:hi CursorLine   cterm=NONE ctermbg=255
+:hi CursorColumn cterm=NONE ctermbg=255
 
 "Use CLIPBOARD for yank, put, etc...
 :set clipboard=unnamedplus
@@ -182,6 +182,9 @@ export ANSIBLE_NOCOWS=1
 
 alias ll="ls -lAh --group-directories-first"
 alias lll="ll --color=always | less -R"
+
+# Enable 256 colors in terminal
+export TERM=xterm-256color
 
 # dev-env managed section end
 EOL
@@ -234,6 +237,9 @@ diff3-cmd = /usr/bin/svn-kdiff3-wrapper.sh
 merge-tool-cmd = /usr/bin/svn-kdiff3-wrapper.sh
 EOL
     chown -R $USERNAME:$USERNAME /home/$USERNAME/.subversion
+    # Configure gvim
+    echo '"Resize gvim window'        > /home/$USERNAME/.gvimrc
+    echo ':set lines=60 columns=200' >> /home/$USERNAME/.gvimrc
 }
 
 function setup_physical() {
