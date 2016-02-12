@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # ssh host manager
 """
+SSH Host Manager
 Usage:
        sshhm --help
        sshhm (hosts|mounts)
