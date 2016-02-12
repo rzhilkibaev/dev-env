@@ -1,0 +1,98 @@
+#!/usr/bin/env python3
+# ssh host manager
+"""
+Usage:
+       sshhm --help
+       sshhm (hosts|mounts)
+       sshhm add HOST HOSTNAME USER
+       sshhm (rm|mount|unmount|umount) HOST
+
+Commands:
+    hosts      print managed hosts
+    add        add a host
+    mounts     print mounted hosts
+    mount      mount host's file system to ~/sshmnt/HOST
+    unmount    unmount host's file system (must be root)
+    umount     synonym to unmount
+    rm         remove managed host
+"""
+
+import docopt
+import os
+import subprocess
+
+ssh_config_file = os.path.expanduser("~") + "/.ssh/config"
+mount_root = os.path.expanduser("~") + "/sshmnt"
+
+def main(args):
+    if (args["hosts"]):
+        list_hosts()
+    elif (args["add"]):
+        add_host(args["HOST"], args["HOSTNAME"], args["USER"])
+    elif (args["rm"]):
+        remove_host(args["HOST"])
+    elif (args["mount"]):
+        mount_host(args["HOST"])
+    elif (args["unmount"] or args["umount"]):
+        unmount_host(args["HOST"])
+    elif (args["mounts"]):
+        list_mounts()
+    else:
+        raise ValueError("Unknown arguments:\n" + str(args))
+    
+def list_hosts():
+    host_column_width = 20
+    print("HOST".ljust(host_column_width), "HOSTNAME")
+    with open(ssh_config_file) as f:
+        for config_line in f:
+            if (" " not in config_line.strip()):
+                continue
+            key, value = config_line.strip().split(" ")
+            if (key == "Host"):
+                host = value
+            elif (key == "HostName"):
+                print(host.ljust(host_column_width), value)
+
+def add_host(host, host_name, user):
+    with open(ssh_config_file, "a") as f:
+        f.write("Host " + host + "\n")
+        f.write("     HostName " + host_name + "\n")
+        f.write("     User " + user + "\n")
+        f.write("     StrictHostKeyChecking no\n")
+        f.write("     UserKnownHostsFile /dev/null\n")
+        f.write("\n")
+
+def remove_host(host):
+    unmount_host(host)
+    copy_line = True
+    with open(ssh_config_file) as src, open(ssh_config_file + ".new", "w") as dest:
+        for config_line in src:
+            if (config_line.startswith("Host ")):
+                if (config_line.strip() == "Host " + host):
+                    copy_line = False
+                else:
+                    copy_line = True
+            if (copy_line):
+                dest.write(config_line)
+
+    os.rename(ssh_config_file, ssh_config_file + ".bak")
+    os.rename(ssh_config_file + ".new", ssh_config_file)
+
+def mount_host(host):
+    mount_point = mount_root + "/" + host
+    os.makedirs(mount_point, exist_ok = True)
+    subprocess.check_call(["sshfs", host + ":/", mount_point])
+
+def unmount_host(host):
+    mount_point = mount_root + "/" + host
+    if (os.path.isdir(mount_point)):
+        subprocess.check_call(["umount", mount_point])
+        os.rmdir(mount_point)
+
+def list_mounts():
+    print(os.listdir(mount_root))
+
+if (__name__ == "__main__"):
+    args = docopt.docopt(__doc__, version="0.1")
+    main(args)
+
