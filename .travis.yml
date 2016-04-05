@@ -1,4 +1,4 @@
 language: bash
 
 script:
-    - bash ls -lA
+    - bash setup.sh
