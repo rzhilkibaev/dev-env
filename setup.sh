@@ -31,14 +31,16 @@ function main() {
 }
 
 install_subversion() {
+    echo "Installing subversion"
     if [ ! -d "/home/$USERNAME/.subversion" ]; then
-        apt-get update -qq && apt-get install -y -qq subversion
+        apt-get update -qq && apt-get install -y subversion
         ln -s "$(pwd)/home/.subversion" "/home/$USERNAME/.subversion"
         chown $USERNAME:$USERNAME "/home/$USERNAME/.subversion"
     fi
 }
 
 install_git() {
+    echo "Installing git"
     # git is already installed, just configure
 
     if [ ! -f "/home/$USERNAME/.gitconfig" ]; then
@@ -48,6 +50,7 @@ install_git() {
 }
 
 install_vim() {
+    echo "Installing vim"
     # vim is already installed, just configure
 
     # install Vundle if not present
@@ -60,7 +63,7 @@ install_vim() {
 }
 
 install_basic_tools() {
-    apt-get update -qq && apt-get install -y -qq subversion vim tree python-pip python3-pip sshfs cifs-utils 
+    apt-get update -qq && apt-get install -y subversion vim tree python-pip python3-pip sshfs cifs-utils 
 }
 
 install_devops_tools() {
@@ -71,17 +74,20 @@ install_devops_tools() {
 }
 
 install_java_tools() {
+    echo "Installing java tools"
     install_oracle_java 8
-    apt-get install -y -qq ant ant-contrib maven
+    apt-get install -y ant ant-contrib maven
 }
 
 install_oracle_java() {
+    echo "Installing java $1"
     apt-add-repository ppa:webupd8team/java -y
     echo oracle-java$1-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
-    apt-get update -qq && apt-get install -y -qq oracle-java$1-installer oracle-java$1-set-default
+    apt-get update -qq && apt-get install -y oracle-java$1-installer oracle-java$1-set-default
 }
 
 install_packer() {
+    echo "Installing packer"
     if ! program_exists packer; then
         local PACKER_VERSION="0.10.0"
         wget --directory-prefix="/usr/local/bin/" "https://releases.hashicorp.com/packer/$PACKER_VERSION/packer_${PACKER_VERSION}_linux_amd64.zip"
@@ -92,21 +98,24 @@ install_packer() {
 }
 
 install_ansible() {
+    echo "Installing ansible"
     if ! program_exists ansible; then
         apt-add-repository ppa:ansible/ansible -y
-        apt-get update -qq && apt-get install -y -qq ansible vagrant
+        apt-get update -qq && apt-get install -y ansible
         ! grep --quiet "export ANSIBLE_NOCOWS" && echo "export ANSIBLE_NOCOWS=1" >> "/home/$USERNAME/.bashrc"
     fi
 }
 
 install_vagrant() {
+    echo "Installing vagrant"
     if ! program_exists vagrant; then
         apt-get update -qq && apt-get install -y vagrant
     fi
 }
 
 install_docker() {
-    # install docker-engine
+    echo "Installing docker-engine"
+    # install docker-engine 
     if ! program_exists docker; then
         apt-key adv --keyserver "hkp://p80.pool.sks-keyservers.net:80" --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
         echo "deb https://apt.dockerproject.org/repo ubuntu-$(lsb_release -cs) main" > "/etc/apt/sources.list.d/docker.list"
@@ -116,12 +125,14 @@ install_docker() {
     fi
 
     # install docker-machine
+    echo "Installing docker-machine"
     if ! program_exists docker-machine; then
         curl -L "https://github.com/docker/machine/releases/download/v0.6.0/docker-machine-$(uname -s)-$(uname -m)" > "/usr/local/bin/docker-machine"
         chmod +x /usr/local/bin/docker-machine
     fi
 
     # install docker-compose
+    echo "Installing docker-compose"
     if ! program_exists docker-compose; then
         curl -L "https://github.com/docker/compose/releases/download/1.6.2/docker-compose-$(uname -s)-$(uname -m)" > "/usr/local/bin/docker-compose"
         chmod +x "/usr/local/bin/docker-compose"
