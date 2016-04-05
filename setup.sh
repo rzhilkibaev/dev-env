@@ -34,7 +34,7 @@ check_root() {
 
 install_devops_tools() {
     apt-add-repository ppa:ansible/ansible -y
-    apt-get update && apt-get install -y ansible vagrant
+    apt-get update -qq && apt-get install -y ansible vagrant
     #install_packer
     #install_docker
 
@@ -48,7 +48,7 @@ install_java_tools() {
 install_oracle_java() {
     apt-add-repository ppa:webupd8team/java -y
     echo oracle-java$1-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
-    apt-get update && apt-get install -y oracle-java$1-installer oracle-java$1-set-default
+    apt-get update -qq && apt-get install -y oracle-java$1-installer oracle-java$1-set-default
 }
 
 main
