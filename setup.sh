@@ -33,7 +33,7 @@ function main() {
 install_subversion() {
     echo "Installing subversion"
     if [ ! -d "/home/$USERNAME/.subversion" ]; then
-        apt-get update -qq && apt-get install -y subversion
+        apt-get update -qq && apt-get-install subversion
         ln -s "$(pwd)/home/.subversion" "/home/$USERNAME/.subversion"
         chown $USERNAME:$USERNAME "/home/$USERNAME/.subversion"
     fi
@@ -63,7 +63,7 @@ install_vim() {
 }
 
 install_basic_tools() {
-    apt-get update -qq && apt-get install -y subversion vim tree python-pip python3-pip sshfs cifs-utils 
+    apt-get update -qq && apt-get-install subversion vim tree python-pip python3-pip sshfs cifs-utils 
 }
 
 install_devops_tools() {
@@ -76,14 +76,14 @@ install_devops_tools() {
 install_java_tools() {
     echo "Installing java tools"
     install_oracle_java 8
-    apt-get install -y ant ant-contrib maven
+    apt-get-install ant ant-contrib maven
 }
 
 install_oracle_java() {
     echo "Installing java $1"
     apt-add-repository ppa:webupd8team/java -y
     echo oracle-java$1-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
-    apt-get update -qq && apt-get install -y oracle-java$1-installer oracle-java$1-set-default
+    apt-get update -qq && apt-get-install oracle-java$1-installer oracle-java$1-set-default
 }
 
 install_packer() {
@@ -101,7 +101,7 @@ install_ansible() {
     echo "Installing ansible"
     if ! program_exists ansible; then
         apt-add-repository ppa:ansible/ansible -y
-        apt-get update -qq && apt-get install -y ansible
+        apt-get update -qq && apt-get-install ansible
         ! grep --quiet "export ANSIBLE_NOCOWS" && echo "export ANSIBLE_NOCOWS=1" >> "/home/$USERNAME/.bashrc"
     fi
 }
@@ -109,7 +109,7 @@ install_ansible() {
 install_vagrant() {
     echo "Installing vagrant"
     if ! program_exists vagrant; then
-        apt-get update -qq && apt-get install -y vagrant
+        apt-get update -qq && apt-get-install vagrant
     fi
 }
 
@@ -119,7 +119,7 @@ install_docker() {
     if ! program_exists docker; then
         apt-key adv --keyserver "hkp://p80.pool.sks-keyservers.net:80" --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
         echo "deb https://apt.dockerproject.org/repo ubuntu-$(lsb_release -cs) main" > "/etc/apt/sources.list.d/docker.list"
-        apt-get update -qq && apt-get install -y linux-image-extra-$(uname -r) docker-engine
+        apt-get update -qq && apt-get-install linux-image-extra-$(uname -r) docker-engine
         # allow running docker without sudo
         usermod -aG docker $USERNAME
     fi
@@ -141,6 +141,14 @@ install_docker() {
 
 program_exists() {
     hash "$1" 2>/dev/null
+}
+
+apt-get-install() {
+    if [ -n "$TRAVIS" ]; then
+        apt-get install -y --dry-run "$@"
+    else
+        apt-get install -y "$@"
+    fi
 }
 
 check_root() {
