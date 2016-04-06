@@ -9,6 +9,8 @@
 #set -x
 set -eo pipefail
 
+export CI=true
+
 
 USERNAME=$SUDO_USER
 export DEBIAN_FRONTEND=noninteractive
@@ -21,10 +23,7 @@ function main() {
     install_git
     install_subversion
 
-    # skip java in travis, takes too long
-    if [ -z "$TRAVIS" ]; then
-        install_java_tools
-    fi
+    install_java_tools
     install_devops_tools
 
     echo Done
@@ -76,7 +75,9 @@ install_devops_tools() {
 install_java_tools() {
     echo "Installing java tools"
     install_oracle_java 8
-    apt-get-install ant ant-contrib maven
+    if ! program_exists ant; then
+        apt-get-install ant ant-contrib maven
+    fi
 }
 
 install_oracle_java() {
@@ -90,7 +91,7 @@ install_packer() {
     echo "Installing packer"
     if ! program_exists packer; then
         local PACKER_VERSION="0.10.0"
-        wget --directory-prefix="/usr/local/bin/" "https://releases.hashicorp.com/packer/$PACKER_VERSION/packer_${PACKER_VERSION}_linux_amd64.zip"
+        wget --progress=bar:force:noscroll --directory-prefix="/usr/local/bin/" "https://releases.hashicorp.com/packer/$PACKER_VERSION/packer_${PACKER_VERSION}_linux_amd64.zip"
         # -o tells unzip to overwrite existing files
         unzip -o "/usr/local/bin/packer_${PACKER_VERSION}_linux_amd64.zip" -d "/usr/local/bin/"
         rm "/usr/local/bin/packer_${PACKER_VERSION}_linux_amd64.zip"
@@ -127,14 +128,14 @@ install_docker() {
     # install docker-machine
     echo "Installing docker-machine"
     if ! program_exists docker-machine; then
-        curl -L "https://github.com/docker/machine/releases/download/v0.6.0/docker-machine-$(uname -s)-$(uname -m)" > "/usr/local/bin/docker-machine"
+        wget --progress=bar:force:noscroll "https://github.com/docker/machine/releases/download/v0.6.0/docker-machine-$(uname -s)-$(uname -m)" -O "/usr/local/bin/docker-machine"
         chmod +x /usr/local/bin/docker-machine
     fi
 
     # install docker-compose
     echo "Installing docker-compose"
     if ! program_exists docker-compose; then
-        curl -L "https://github.com/docker/compose/releases/download/1.6.2/docker-compose-$(uname -s)-$(uname -m)" > "/usr/local/bin/docker-compose"
+        wget --progress=bar:force:noscroll "https://github.com/docker/compose/releases/download/1.6.2/docker-compose-$(uname -s)-$(uname -m)" -O "/usr/local/bin/docker-compose"
         chmod +x "/usr/local/bin/docker-compose"
     fi
 }
@@ -144,7 +145,7 @@ program_exists() {
 }
 
 apt-get-install() {
-    if [ -n "$TRAVIS" ]; then
+    if [ -n "$CI" ]; then
         apt-get install -y --dry-run "$@"
     else
         apt-get install -y "$@"
