@@ -9,9 +9,6 @@
 #set -x
 set -eo pipefail
 
-export CI=true
-
-
 USERNAME=$SUDO_USER
 export DEBIAN_FRONTEND=noninteractive
 
