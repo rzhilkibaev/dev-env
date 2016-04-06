@@ -16,6 +16,8 @@ function main() {
     
     check_root
 
+    install_basic_tools
+
     install_vim
     install_git
     install_subversion
@@ -59,7 +61,7 @@ install_vim() {
 }
 
 install_basic_tools() {
-    apt-get update -qq && apt-get-install subversion vim tree python-pip python3-pip sshfs cifs-utils 
+    apt-get update -qq && apt-get-install tree python-pip python3-pip sshfs cifs-utils 
 }
 
 install_devops_tools() {
