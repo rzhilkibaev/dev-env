@@ -120,8 +120,10 @@ install_docker() {
         apt-key adv --keyserver "hkp://p80.pool.sks-keyservers.net:80" --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
         echo "deb https://apt.dockerproject.org/repo ubuntu-$(lsb_release -cs) main" > "/etc/apt/sources.list.d/docker.list"
         apt-get update -qq && apt-get-install linux-image-extra-$(uname -r) docker-engine
-        # allow running docker without sudo
-        usermod -aG docker $USERNAME
+        if [ -z "$CI" ]; then
+            # allow running docker without sudo
+            usermod -aG docker $USERNAME
+        fi
     fi
 
     # install docker-machine
