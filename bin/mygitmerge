@@ -1,0 +1,91 @@
+#!/bin/bash
+# This script, when used as a Git mergetool, opens each "side" of the conflict
+# markers in a two-way vimdiff window. This combines all the awesome of Git's
+# automatic merging savvy with the awesome and simplicity of a simple two-way
+# diff.
+#
+# Add this mergetool to your ~/.gitconfig (you can substitute gvim for vim):
+#
+# git config --global merge.tool diffconflicts
+# git config --global mergetool.diffconflicts.cmd 'diffconflicts vim $BASE $LOCAL $REMOTE $MERGED'
+# git config --global mergetool.diffconflicts.trustExitCode true
+# git config --global mergetool.diffconflicts.keepBackup false
+#
+# git mergetool
+#
+# This tool will open two tabs in Vim with each providing a different way to
+# view the conflicts.
+#
+#   Tab1 is a two-way diff of just the conflicts. Resolve the conflicts here
+#   and save the file.
+#       +------------------------------------------------+
+#       |  LEFTCONFL (REMOTE)   |   RIGHTCONFL (LOCAL)   |
+#       +------------------------------------------------+
+#   Tab2 is a traditional three-way diff
+#       +--------------------------------+
+#       |  REMOTE   |   BASE   |  LOCAL  |
+#       +--------------------------------+
+#       |             MERGED             |
+#       +--------------------------------+
+#
+# Workflow:
+#
+# 1.    Save your changes to the RIGHTCONFL temporary file (the right window on the
+#       first tab; also the only file that isn't read-only).
+# 2.    The LOCAL, BASE, and REMOTE versions of the file are available in the
+#       second tabpage if you want to look at them.
+# 3.    When vimdiff exits cleanly, the file containing the conflict markers
+#       will be updated with the contents of your RIGHTCONFL file edits.
+#
+# NOTE: Use :cq to abort the merge and exit Vim with an error code.
+# 
+# This script is a modified version of the one found at http://vim.wikia.com/wiki/A_better_Vimdiff_Git_mergetool
+
+if [[ -z $@ || $# != "5" ]] ; then
+    echo -e "Usage: $0 \$EDITOR \$BASE \$LOCAL \$REMOTE \$MERGED"
+    exit 1
+fi
+
+cmd=$1
+BASE="$2"
+LOCAL="$3"
+REMOTE="$4"
+MERGED="$5"
+printf -v QBASE '%q' "${BASE}"
+printf -v QLOCAL '%q' "${LOCAL}"
+printf -v QREMOTE '%q' "${REMOTE}"
+printf -v QMERGED '%q' "${MERGED}"
+
+# Use gnu sed if on OSX for better portability (brew install gnu-sed)
+GNU_SED="gsed"
+type $GNU_SED >/dev/null 2>&1 || GNU_SED="sed"
+
+# Temporary files for left and right side, keeping file extensions for syntax highlighting
+MERGED_PATH="$(dirname ${MERGED})"
+MERGED_FILE="$(basename ${MERGED})"
+LEFTCONFL="${MERGED_PATH}/.REMOTE.$$.${MERGED_FILE}"
+RIGHTCONFL="${MERGED_PATH}/.LOCAL.$$.${MERGED_FILE}"
+
+# Always delete our temp files; Git will handle it's own temp files
+trap 'rm -f "'"${LEFTCONFL}"'" "'"${RIGHTCONFL}"'"' SIGINT SIGTERM EXIT
+
+# Remove the conflict markers for each 'side' and put each into a temp file
+$GNU_SED -r -e '/^<<<<<<< /,/^=======\r?$/d' -e '/^>>>>>>> /d' "${MERGED}" > "${LEFTCONFL}"
+$GNU_SED -r -e '/^=======\r?$/,/^>>>>>>> /d' -e '/^<<<<<<< /d' "${MERGED}" > "${RIGHTCONFL}"
+
+# here readonly mode (-R) used just for the [RO] indicator, which is not preset in nonmodifiable mode
+# Fire up vim in nonmodifiable and readonly mode
+# go to right hand window and make it modifiable and writable
+$cmd -f -M -R -d "${LEFTCONFL}" "${RIGHTCONFL}" \
+    -c ":tabedit $QMERGED" -c ":diffs $QLOCAL" -c ":vert diffs $QBASE" -c ":vert diffs $QREMOTE" \
+    -c ":wincmd j" \
+    -c ":tabprev" -c ":wincmd l" -c ":set modifiable" -c ":set write" -c ":set noro"
+
+EC=$?
+
+# Overwrite $MERGED only if vimdiff exits cleanly.
+if [[ $EC == "0" ]] ; then
+    cat "${RIGHTCONFL}" > "${MERGED}"
+fi
+
+exit $EC

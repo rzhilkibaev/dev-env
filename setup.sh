@@ -4,7 +4,7 @@
 #
 # Guidelines
 # - This script is executed once in a few months, execution speed doesn't matter much. Readability does.
-# - Each install_* and configure_* function should be independent.
+# - Each install_* function should be independent.
 
 #set -x
 set -eo pipefail
@@ -41,10 +41,15 @@ install_git() {
     echo "Installing git"
     # git is already installed, just configure
 
-    if [ ! -f "/home/$USERNAME/.gitconfig" ]; then
-        ln -s "$(pwd)/home/.gitconfig" "/home/$USERNAME/.gitconfig"
-        chown $USERNAME:$USERNAME "/home/$USERNAME/.gitconfig"
-    fi
+    # setup .gitconfig
+    local gitconfig_file="/home/$USERNAME/.gitconfig"
+    rm -f $gitconfig_file
+    ln -s "$(pwd)/home/.gitconfig" $gitconfig_file
+    chown $USERNAME:$USERNAME $gitconfig_file
+
+    # setup merge script
+    rm -f /usr/local/bin/mygitmerge
+    ln -s "$(pwd)/bin/mygitmerge" /usr/local/bin/mygitmerge
 }
 
 install_vim() {

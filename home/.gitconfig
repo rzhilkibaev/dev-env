@@ -3,6 +3,13 @@
 [diff]
     tool = vimdiff
 [merge]
-    tool = vimdiff
+	tool = mygitmerge
+[user]
+	email = rzhilkibaev@gmail.com
+	name = Renat
 [difftool]
     prompt = false
+[mergetool "mygitmerge"]
+	cmd = mygitmerge vim $BASE $LOCAL $REMOTE $MERGED
+    keepBackup = false
+    trustExitCode = true
