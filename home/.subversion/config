@@ -6,4 +6,4 @@ merge-tool-cmd = mysvnmerge
 [auth]
 password-stores =
 [miscellany]
-global-ignores = .settings .project .classpath test-output *.swp
+global-ignores = .settings .project .classpath test-output *.sw* target
