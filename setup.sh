@@ -30,11 +30,10 @@ function main() {
 
 install_subversion() {
     echo "Installing subversion"
-    if [ ! -d "/home/$USERNAME/.subversion" ]; then
-        apt-get update -qq && apt-get-install subversion
-        ln -s "$(pwd)/home/.subversion" "/home/$USERNAME/.subversion"
-        chown $USERNAME:$USERNAME "/home/$USERNAME/.subversion"
-    fi
+    mkdir -p "/home/$USERNAME/.subversion"
+    apt-get update -qq && apt-get-install subversion
+    ln -s "$(pwd)/home/.subversion/config" "/home/$USERNAME/.subversion/config"
+    chown $USERNAME:$USERNAME "/home/$USERNAME/.subversion"
 
     # setup merge script
     rm -f /usr/local/bin/mysvnmerge
