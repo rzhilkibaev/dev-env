@@ -1,8 +1,8 @@
 [helpers]
 editor-cmd = vim
-diff-cmd = svn-diff-vimdiff.sh
-diff3-cmd = svn-diff-vimdiff.sh
-merge-tool-cmd = svn-merge-tool-cmd-vimdiff.sh
+#diff-cmd = svn-diff-vimdiff.sh
+#diff3-cmd = svn-diff-vimdiff.sh
+merge-tool-cmd = mysvnmerge
 [auth]
 password-stores =
 [miscellany]

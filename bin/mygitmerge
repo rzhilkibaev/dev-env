@@ -77,7 +77,7 @@ $GNU_SED -r -e '/^=======\r?$/,/^>>>>>>> /d' -e '/^<<<<<<< /d' "${MERGED}" > "${
 # Fire up vim in nonmodifiable and readonly mode
 # go to right hand window and make it modifiable and writable
 $cmd -f -M -R -d "${LEFTCONFL}" "${RIGHTCONFL}" \
-    -c ":tabedit $QMERGED" -c ":diffs $QLOCAL" -c ":vert diffs $QBASE" -c ":vert diffs $QREMOTE" \
+    -c "tabedit $QMERGED | diffs $QLOCAL | setl stl=MINE | vert diffs $QBASE | setl stl=BASE | vert diffs $QREMOTE | setl stl=THEIRS" \
     -c ":wincmd j" \
     -c ":tabprev" -c ":wincmd l" -c ":set modifiable" -c ":set write" -c ":set noro"
 

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# external tool for svn merge-tool-cmd
+#
+# fail if mygitmerge fails
+set -e
+
+BASE=$1
+THEIRS=$2
+MINE=$3
+MERGED=$4
+WCPATH=$5
+
+mygitmerge vim "$BASE" "$MINE" "$THEIRS" "$MERGED"

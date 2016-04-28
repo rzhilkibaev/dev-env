@@ -1,3 +1,6 @@
+# svn
+home/.subversion/servers
+home/.subversion/README.txt
 # vim
 .*.sw*
 

@@ -35,6 +35,10 @@ install_subversion() {
         ln -s "$(pwd)/home/.subversion" "/home/$USERNAME/.subversion"
         chown $USERNAME:$USERNAME "/home/$USERNAME/.subversion"
     fi
+
+    # setup merge script
+    rm -f /usr/local/bin/mysvnmerge
+    ln -s "$(pwd)/bin/mysvnmerge" /usr/local/bin/mysvnmerge
 }
 
 install_git() {
