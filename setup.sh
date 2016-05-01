@@ -30,29 +30,21 @@ function main() {
 
 install_subversion() {
     echo "Installing subversion"
-    mkdir -p "/home/$USERNAME/.subversion"
     apt-get update -qq && apt-get-install subversion
-    ln -s "$(pwd)/home/.subversion/config" "/home/$USERNAME/.subversion/config"
+    make_symlink "$(pwd)/home/.subversion/config" "/home/$USERNAME/.subversion/config"
     chown $USERNAME:$USERNAME "/home/$USERNAME/.subversion"
-
     # setup merge script
-    rm -f /usr/local/bin/mysvnmerge
-    ln -s "$(pwd)/bin/mysvnmerge" /usr/local/bin/mysvnmerge
+    make_symlink "$(pwd)/bin/mysvnmerge" /usr/local/bin/mysvnmerge
 }
 
 install_git() {
     echo "Installing git"
     # git is already installed, just configure
-
     # setup .gitconfig
-    local gitconfig_file="/home/$USERNAME/.gitconfig"
-    rm -f $gitconfig_file
-    ln -s "$(pwd)/home/.gitconfig" $gitconfig_file
-    chown $USERNAME:$USERNAME $gitconfig_file
-
+    make_symlink "$(pwd)/home/.gitconfig" "/home/$USERNAME/.gitconfig"
+    chown $USERNAME:$USERNAME "/home/$USERNAME/.gitconfig"
     # setup merge script
-    rm -f /usr/local/bin/mygitmerge
-    ln -s "$(pwd)/bin/mygitmerge" /usr/local/bin/mygitmerge
+    make_symlink "$(pwd)/bin/mygitmerge" /usr/local/bin/mygitmerge
 }
 
 install_vim() {
@@ -166,6 +158,16 @@ check_root() {
         echo "Must be root."
         exit 1
     fi
+}
+
+make_symlink() {
+    local target="$1"
+    local link_name="$2"
+
+    # ensure link path (won't complain if exists)
+    mkdir -p $(dirname "$link_name")
+    rm -f "$link_name"
+    ln -s "$target" "$link_name"
 }
 
 main
