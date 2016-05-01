@@ -1,6 +1,6 @@
 [helpers]
 editor-cmd = vim
-#diff-cmd = svn-diff-vimdiff.sh
+diff-cmd = mysvndiff
 #diff3-cmd = svn-diff-vimdiff.sh
 merge-tool-cmd = mysvnmerge
 [auth]
