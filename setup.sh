@@ -24,6 +24,7 @@ function main() {
 
     install_java_tools
     install_devops_tools
+    install_frontend_tools
 
     echo Done
 }
@@ -139,6 +140,15 @@ install_docker() {
         wget --progress=bar:force:noscroll "https://github.com/docker/compose/releases/download/1.7.0/docker-compose-$(uname -s)-$(uname -m)" -O "/usr/local/bin/docker-compose"
         chmod +x "/usr/local/bin/docker-compose"
     fi
+}
+
+install_frontend_tools() {
+    echo "Installing nodejs"
+    wget -qO- https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
+    echo "deb https://deb.nodesource.com/node_4.x $(lsb_release -cs) main" > /etc/apt/sources.list.d/nodesource.list
+    echo "deb-src https://deb.nodesource.com/node_4.x $(lsb_release -cs) main" >> /etc/apt/sources.list.d/nodesource.list
+    apt-get update -qq && apt-get install -y nodejs
+    npm install npm -g
 }
 
 program_exists() {
