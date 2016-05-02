@@ -13,6 +13,8 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'mileszs/ack.vim'
 Plugin 'rking/ag.vim'
 Plugin 'tmhedberg/SimpylFold'
+" git wrapper
+Plugin 'tpope/vim-fugitive'
 call vundle#end()
 
 " Put your non-Plugin stuff after this line
