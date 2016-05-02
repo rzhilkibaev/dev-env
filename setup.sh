@@ -136,7 +136,7 @@ install_docker() {
     # install docker-compose
     echo "Installing docker-compose"
     if ! program_exists docker-compose; then
-        wget --progress=bar:force:noscroll "https://github.com/docker/compose/releases/download/1.6.2/docker-compose-$(uname -s)-$(uname -m)" -O "/usr/local/bin/docker-compose"
+        wget --progress=bar:force:noscroll "https://github.com/docker/compose/releases/download/1.7.0/docker-compose-$(uname -s)-$(uname -m)" -O "/usr/local/bin/docker-compose"
         chmod +x "/usr/local/bin/docker-compose"
     fi
 }
