@@ -36,6 +36,7 @@ install_subversion() {
     chown $USERNAME:$USERNAME "/home/$USERNAME/.subversion"
     # setup merge script
     make_symlink "$(pwd)/bin/mysvnmerge" /usr/local/bin/mysvnmerge
+    make_symlink "$(pwd)/bin/mysvndiff" /usr/local/bin/mysvndiff
 }
 
 install_git() {
