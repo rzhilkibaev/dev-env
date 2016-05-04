@@ -44,3 +44,8 @@ autocmd FileType xml setlocal foldmethod=syntax
 :set hlsearch
 :set foldmethod=indent
 :set foldlevel=99
+
+" If in diff mode then ignore whitespace
+if &diff
+    set diffopt+=iwhite
+endif
