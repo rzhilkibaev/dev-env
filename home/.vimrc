@@ -25,7 +25,11 @@ filetype plugin indent on
 :set tabstop=4 shiftwidth=4 expandtab
 :set hidden
 :set wildmenu
+" Show line numbers
 :set number
+" When scrolling horizontally, advance by one character, not half the window
+" size
+:set sidescroll=1
 
 "XML folding
 let g:xml_syntax_folding=1
