@@ -1,6 +1,32 @@
 #!/usr/bin/env bash
+#
+# svn launches this script with the following arguments
+# 1 -u
+# 2 -L
+# 3 /local/path/to/file.txt (revision 63002)
+# 4 -L
+# 5 /local/path/to/file.txt (working copy)
+# 6 /local/path/to/.svn/pristine/29/298288cbe8bd66899ece76868823a6afb0d11035.svn-base
+# 7 /tmp/svn-rtej8a
 
-LEFT=${6}
-RIGHT=${7}
+set -eo pipefail
 
-vimdiff $LEFT $RIGHT
+if [[ -z $@ || $# != "7" ]] ; then
+    echo "Incorrect number of arguments provided"
+    exit 1
+fi
+
+LEFT="$6"
+RIGHT="$7"
+
+# replace tab with space and then split by spaces
+# !!!there is a tab character in the next line!!!
+SPLIT_STRING=(${3//	/ })
+FILE_NAME="${SPLIT_STRING[0]}"
+# get second item and remove last character ')'
+REVISION="${SPLIT_STRING[2]::-1}"
+
+# here readonly mode (-R) used just for the [RO] indicator, which is not present in nonmodifiable mode
+# Fire up vim in nonmodifiable and readonly mode
+# go to right hand window and make it modifiable and writable
+vim -f -M -R -d "$LEFT" "$RIGHT" -c "setl stl=$REVISION\ %r%=%y\ %l,%c\ %P | wincmd l | set modifiable | set write | set noro"
