@@ -73,7 +73,7 @@ trap 'rm -f "'"${LEFTCONFL}"'" "'"${RIGHTCONFL}"'"' SIGINT SIGTERM EXIT
 $GNU_SED -r -e '/^<<<<<<< /,/^=======\r?$/d' -e '/^>>>>>>> /d' "${MERGED}" > "${LEFTCONFL}"
 $GNU_SED -r -e '/^=======\r?$/,/^>>>>>>> /d' -e '/^<<<<<<< /d' "${MERGED}" > "${RIGHTCONFL}"
 
-# here readonly mode (-R) used just for the [RO] indicator, which is not preset in nonmodifiable mode
+# here readonly mode (-R) used just for the [RO] indicator, which is not present in nonmodifiable mode
 # Fire up vim in nonmodifiable and readonly mode
 # go to right hand window and make it modifiable and writable
 $cmd -f -M -R -d "${LEFTCONFL}" "${RIGHTCONFL}" \
