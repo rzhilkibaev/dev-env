@@ -63,7 +63,7 @@ install_vim() {
 }
 
 install_basic_tools() {
-    apt-get update -qq && apt-get-install tree python-pip python3-pip sshfs cifs-utils 
+    apt-get update -qq && apt-get-install tree python-pip python3-pip sshfs cifs-utils htop
 }
 
 install_devops_tools() {
