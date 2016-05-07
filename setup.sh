@@ -47,6 +47,7 @@ install_git() {
     chown $USERNAME:$USERNAME "/home/$USERNAME/.gitconfig"
     # setup merge script
     make_symlink "$(pwd)/bin/mygitmerge" /usr/local/bin/mygitmerge
+    apt-get-install tig
 }
 
 install_vim() {
@@ -63,7 +64,7 @@ install_vim() {
 }
 
 install_basic_tools() {
-    apt-get-install tree python-pip python3-pip sshfs cifs-utils htop tig
+    apt-get-install tree python-pip python3-pip sshfs cifs-utils htop
 }
 
 install_devops_tools() {
