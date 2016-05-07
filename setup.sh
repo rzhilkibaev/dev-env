@@ -31,7 +31,7 @@ function main() {
 
 install_subversion() {
     echo "Installing subversion"
-    apt-get update -qq && apt-get-install subversion
+    apt-get-install subversion
     make_symlink "$(pwd)/home/.subversion/config" "/home/$USERNAME/.subversion/config"
     chown $USERNAME:$USERNAME "/home/$USERNAME/.subversion"
     # setup merge script
@@ -63,7 +63,7 @@ install_vim() {
 }
 
 install_basic_tools() {
-    apt-get update -qq && apt-get-install tree python-pip python3-pip sshfs cifs-utils htop tig
+    apt-get-install tree python-pip python3-pip sshfs cifs-utils htop tig
 }
 
 install_devops_tools() {
@@ -85,7 +85,7 @@ install_oracle_java() {
     echo "Installing java $1"
     apt-add-repository ppa:webupd8team/java -y
     echo oracle-java$1-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
-    apt-get update -qq && apt-get-install oracle-java$1-installer oracle-java$1-set-default
+    apt-get-install oracle-java$1-installer oracle-java$1-set-default
 }
 
 install_packer() {
@@ -103,7 +103,7 @@ install_ansible() {
     echo "Installing ansible"
     if ! program_exists ansible; then
         apt-add-repository ppa:ansible/ansible -y
-        apt-get update -qq && apt-get-install ansible
+        apt-get-install ansible
         ! grep --quiet "export ANSIBLE_NOCOWS" && echo "export ANSIBLE_NOCOWS=1" >> "/home/$USERNAME/.bashrc"
     fi
 }
@@ -111,7 +111,7 @@ install_ansible() {
 install_vagrant() {
     echo "Installing vagrant"
     if ! program_exists vagrant; then
-        apt-get update -qq && apt-get-install vagrant
+        apt-get-install vagrant
     fi
 }
 
@@ -121,7 +121,7 @@ install_docker() {
     if ! program_exists docker; then
         apt-key adv --keyserver "hkp://p80.pool.sks-keyservers.net:80" --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
         echo "deb https://apt.dockerproject.org/repo ubuntu-$(lsb_release -cs) main" > "/etc/apt/sources.list.d/docker.list"
-        apt-get update -qq && apt-get-install linux-image-extra-$(uname -r) docker-engine
+        apt-get-install linux-image-extra-$(uname -r) docker-engine
         if [ -z "$CI" ]; then
             # allow running docker without sudo
             usermod -aG docker $USERNAME
@@ -148,7 +148,7 @@ install_frontend_tools() {
     wget -qO- https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
     echo "deb https://deb.nodesource.com/node_4.x $(lsb_release -cs) main" > /etc/apt/sources.list.d/nodesource.list
     echo "deb-src https://deb.nodesource.com/node_4.x $(lsb_release -cs) main" >> /etc/apt/sources.list.d/nodesource.list
-    apt-get update -qq && apt-get install -y nodejs
+    apt-get-install nodejs
     npm install npm -g
 }
 
@@ -157,6 +157,7 @@ program_exists() {
 }
 
 apt-get-install() {
+    apt-get update -qq
     if [ -n "$CI" ]; then
         apt-get install -y --dry-run "$@"
     else
