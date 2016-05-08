@@ -7,11 +7,12 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'chase/vim-ansible-yaml'
-Plugin 'fholgado/minibufexpl.vim' 
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'mileszs/ack.vim'
-Plugin 'rking/ag.vim'
+Plugin 'vim-airline/vim-airline'
+" convinient defaults
+Plugin 'tpope/vim-sensible'
+" python code folding
 Plugin 'tmhedberg/SimpylFold'
 " git wrapper
 Plugin 'tpope/vim-fugitive'
@@ -36,10 +37,10 @@ let g:xml_syntax_folding=1
 autocmd FileType xml setlocal foldmethod=syntax
 
 "Highlight current line and column
-:set cursorline                                                                                                                                                                                                                               
-:set cursorcolumn
-:hi CursorLine   cterm=NONE ctermbg=255
-:hi CursorColumn cterm=NONE ctermbg=255
+":set cursorline                                                                                                                                                                                                                               
+":set cursorcolumn
+":hi CursorLine   cterm=NONE ctermbg=255
+":hi CursorColumn cterm=NONE ctermbg=255
 
 "Use CLIPBOARD for yank, put, etc...
 :set clipboard=unnamedplus
@@ -53,3 +54,9 @@ autocmd FileType xml setlocal foldmethod=syntax
 if &diff
     set diffopt+=iwhite
 endif
+
+" Configure airline
+" Enable powerline fonts (nice looking airline with extra glyphs)
+let g:airline_powerline_fonts=1
+" Enable bufer list on top
+let g:airline#extensions#tabline#enabled = 1

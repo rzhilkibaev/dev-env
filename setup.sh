@@ -61,6 +61,18 @@ install_vim() {
         ln -s "$(pwd)/home/.vimrc" "/home/$USERNAME/.vimrc"
         chown $USERNAME:$USERNAME "/home/$USERNAME/.vimrc"
     fi
+
+    # install powerline fonts
+    local font_dir="/home/$USERNAME/.local/share/fonts"
+    mkdir -p $font_dir
+    cd $font_dir
+    # install font DejaVu Sans Mono
+    wget --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20Bold%20Oblique%20for%20Powerline.ttf"
+    wget --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20Bold%20for%20Powerline.ttf"
+    wget --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20Oblique%20for%20Powerline.ttf"
+    wget --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20for%20Powerline.ttf"
+    chown -R $USERNAME:$USERNAME $font_dir
+    fc-cache -vf $font_dir
 }
 
 install_basic_tools() {
