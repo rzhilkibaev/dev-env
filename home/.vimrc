@@ -74,6 +74,11 @@ endfunction
 
 let g:unite_source_history_yank_enable = 1
 
+" Solarized
+set background=light
+colorscheme solarized
+
 " Enable folding for xml file type
 let g:xml_syntax_folding=1
 autocmd FileType xml setlocal foldmethod=syntax
+
