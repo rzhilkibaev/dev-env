@@ -44,7 +44,7 @@ install_oh_my_zh() {
     # configure oh-my-zsh
     sed -i "1iPOWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv vcs background_jobs)" "$USERHOME/.zshrc"
     sed -i "1iPOWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)" "$USERHOME/.zshrc"
-    sed -i "1iDEFAUTL_USER=$USERNAME" "$USERHOME/.zshrc"
+    sed -i "1iDEFAULT_USER=$USERNAME" "$USERHOME/.zshrc"
     sed -i "1iexport TERM=xterm-256color" "$USERHOME/.zshrc"
     sed -i "/^ZSH_THEME=.*/c\ZSH_THEME=powerlevel9k\/powerlevel9k" "$USERHOME/.zshrc"
     chown -R $USERNAME:$USERNAME "$USERHOME/.oh-my-zsh"
