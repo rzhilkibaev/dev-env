@@ -10,6 +10,7 @@
 set -eo pipefail
 
 USERNAME=$SUDO_USER
+USERHOME=/home/$USERNAME
 export DEBIAN_FRONTEND=noninteractive
 
 function main() {
@@ -33,26 +34,26 @@ function main() {
 install_oh_my_zh() {
     apt-get-install zsh
     chsh -s /bin/zsh
-    git clone "https://github.com/robbyrussell/oh-my-zsh.git" "/home/$USERNAME/.oh-my-zsh"
-    cp "/home/$USERNAME/.oh-my-zsh/templates/zshrc.zsh-template" "/home/$USERNAME/.zshrc"
+    git clone "https://github.com/robbyrussell/oh-my-zsh.git" "$USERHOME/.oh-my-zsh"
+    cp "$USERHOME/.oh-my-zsh/templates/zshrc.zsh-template" "$USERHOME/.zshrc"
     install_powerline_fonts
     # install powerlevel9k theme
-    git clone "https://github.com/bhilburn/powerlevel9k.git" "/home/$USERNAME/.oh-my-zsh/custom/themes/powerlevel9k"
+    git clone "https://github.com/bhilburn/powerlevel9k.git" "$USERHOME/.oh-my-zsh/custom/themes/powerlevel9k"
     # configure oh-my-zsh
-    sed -i "1iPOWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv vcs background_jobs)" "/home/$USERNAME/.zshrc"
-    sed -i "1iPOWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)" "/home/$USERNAME/.zshrc"
-    sed -i "1iDEFAUTL_USER=$USERNAME" "/home/$USERNAME/.zshrc"
-    sed -i "1iexport TERM=xterm-256color" "/home/$USERNAME/.zshrc"
-    sed -i "/^ZSH_THEME=.*/c\ZSH_THEME=powerlevel9k\/powerlevel9k" "/home/$USERNAME/.zshrc"
-    chown -R $USERNAME:$USERNAME "/home/$USERNAME/.oh-my-zsh"
-    chown $USERNAME:$USERNAME "/home/$USERNAME/.zshrc"
+    sed -i "1iPOWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv vcs background_jobs)" "$USERHOME/.zshrc"
+    sed -i "1iPOWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)" "$USERHOME/.zshrc"
+    sed -i "1iDEFAUTL_USER=$USERNAME" "$USERHOME/.zshrc"
+    sed -i "1iexport TERM=xterm-256color" "$USERHOME/.zshrc"
+    sed -i "/^ZSH_THEME=.*/c\ZSH_THEME=powerlevel9k\/powerlevel9k" "$USERHOME/.zshrc"
+    chown -R $USERNAME:$USERNAME "$USERHOME/.oh-my-zsh"
+    chown $USERNAME:$USERNAME "$USERHOME/.zshrc"
 }
 
 install_subversion() {
     echo "Installing subversion"
     apt-get-install subversion
-    make_symlink "$(pwd)/home/.subversion/config" "/home/$USERNAME/.subversion/config"
-    chown $USERNAME:$USERNAME "/home/$USERNAME/.subversion"
+    make_symlink "$(pwd)/home/.subversion/config" "$USERHOME/.subversion/config"
+    chown $USERNAME:$USERNAME "$USERHOME/.subversion"
     # setup merge script
     make_symlink "$(pwd)/bin/mysvnmerge" /usr/local/bin/mysvnmerge
     make_symlink "$(pwd)/bin/mysvndiff" /usr/local/bin/mysvndiff
@@ -62,8 +63,8 @@ install_git() {
     echo "Installing git"
     # git is already installed, just configure
     # setup .gitconfig
-    make_symlink "$(pwd)/home/.gitconfig" "/home/$USERNAME/.gitconfig"
-    chown $USERNAME:$USERNAME "/home/$USERNAME/.gitconfig"
+    make_symlink "$(pwd)/home/.gitconfig" "$USERHOME/.gitconfig"
+    chown $USERNAME:$USERNAME "$USERHOME/.gitconfig"
     # setup merge script
     make_symlink "$(pwd)/bin/mygitmerge" /usr/local/bin/mygitmerge
     apt-get-install tig
@@ -74,20 +75,20 @@ install_vim() {
     # vim is already installed, just configure
 
     # install dein plugin manager
-    local dein_dir="/home/$USERNAME/.vim/dein/repos/github.com/Shougo/dein.vim"
+    local dein_dir="$USERHOME/.vim/dein/repos/github.com/Shougo/dein.vim"
     if [ ! -d "$dein_dir" ]; then
         mkdir -p "$dein_dir"
         git clone "https://github.com/Shougo/dein.vim.git"  "$dein_dir"
-        chown -R $USERNAME:$USERNAME "/home/$USERNAME/.vim"
+        chown -R $USERNAME:$USERNAME "$USERHOME/.vim"
     fi
-    make_symlink "$(pwd)/home/.vimrc" "/home/$USERNAME/.vimrc"
-    chown $USERNAME:$USERNAME "/home/$USERNAME/.vimrc"
+    make_symlink "$(pwd)/home/.vimrc" "$USERHOME/.vimrc"
+    chown $USERNAME:$USERNAME "$USERHOME/.vimrc"
     install_powerline_fonts
 }
 
 install_powerline_fonts() {
     # install powerline fonts
-    local font_dir="/home/$USERNAME/.local/share/fonts"
+    local font_dir="$USERHOME/.local/share/fonts"
     mkdir -p $font_dir
     cd $font_dir
     # install font DejaVu Sans Mono
@@ -141,7 +142,7 @@ install_ansible() {
     if ! program_exists ansible; then
         apt-add-repository ppa:ansible/ansible -y
         apt-get-install ansible
-        ! grep --quiet "export ANSIBLE_NOCOWS" && echo "export ANSIBLE_NOCOWS=1" >> "/home/$USERNAME/.bashrc"
+        ! grep --quiet "export ANSIBLE_NOCOWS" && echo "export ANSIBLE_NOCOWS=1" >> "$USERHOME/.bashrc"
     fi
 }
 
