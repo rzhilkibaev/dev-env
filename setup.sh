@@ -18,6 +18,7 @@ function main() {
 
     install_basic_tools
 
+    install_oh_my_zh
     install_vim
     install_git
     install_subversion
@@ -27,6 +28,24 @@ function main() {
     install_frontend_tools
 
     echo Done
+}
+
+install_oh_my_zh() {
+    apt-get-install zsh
+    chsh -s /bin/zsh
+    git clone "https://github.com/robbyrussell/oh-my-zsh.git" "/home/$USERNAME/.oh-my-zsh"
+    cp "/home/$USERNAME/.oh-my-zsh/templates/zshrc.zsh-template" "/home/$USERNAME/.zshrc"
+    install_powerline_fonts
+    # install powerlevel9k theme
+    git clone "https://github.com/bhilburn/powerlevel9k.git" "/home/$USERNAME/.oh-my-zsh/custom/themes/powerlevel9k"
+    # configure oh-my-zsh
+    sed -i "1iPOWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv vcs background_jobs)" "/home/$USERNAME/.zshrc"
+    sed -i "1iPOWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)" "/home/$USERNAME/.zshrc"
+    sed -i "1iDEFAUTL_USER=$USERNAME" "/home/$USERNAME/.zshrc"
+    sed -i "1iexport TERM=xterm-256color" "/home/$USERNAME/.zshrc"
+    sed -i "/^ZSH_THEME=.*/c\ZSH_THEME=powerlevel9k\/powerlevel9k" "/home/$USERNAME/.zshrc"
+    chown -R $USERNAME:$USERNAME "/home/$USERNAME/.oh-my-zsh"
+    chown $USERNAME:$USERNAME "/home/$USERNAME/.zshrc"
 }
 
 install_subversion() {
@@ -63,7 +82,10 @@ install_vim() {
     fi
     make_symlink "$(pwd)/home/.vimrc" "/home/$USERNAME/.vimrc"
     chown $USERNAME:$USERNAME "/home/$USERNAME/.vimrc"
+    install_powerline_fonts
+}
 
+install_powerline_fonts() {
     # install powerline fonts
     local font_dir="/home/$USERNAME/.local/share/fonts"
     mkdir -p $font_dir
