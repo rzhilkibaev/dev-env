@@ -54,13 +54,15 @@ install_vim() {
     echo "Installing vim"
     # vim is already installed, just configure
 
-    # install Vundle if not present
-    if [ ! -d "/home/$USERNAME/.vim/bundle/Vundle.vim" ]; then
-        git clone "https://github.com/gmarik/Vundle.vim.git" "/home/$USERNAME/.vim/bundle/Vundle.vim"
+    # install dein plugin manager
+    local dein_dir="/home/$USERNAME/.vim/dein/repos/github.com/Shougo/dein.vim"
+    if [ ! -d "$dein_dir" ]; then
+        mkdir -p "$dein_dir"
+        git clone "https://github.com/Shougo/dein.vim.git"  "$dein_dir"
         chown -R $USERNAME:$USERNAME "/home/$USERNAME/.vim"
-        ln -s "$(pwd)/home/.vimrc" "/home/$USERNAME/.vimrc"
-        chown $USERNAME:$USERNAME "/home/$USERNAME/.vimrc"
     fi
+    make_symlink "$(pwd)/home/.vimrc" "/home/$USERNAME/.vimrc"
+    chown $USERNAME:$USERNAME "/home/$USERNAME/.vimrc"
 
     # install powerline fonts
     local font_dir="/home/$USERNAME/.local/share/fonts"
@@ -105,7 +107,7 @@ install_packer() {
     echo "Installing packer"
     if ! program_exists packer; then
         local PACKER_VERSION="0.10.0"
-        wget --progress=bar:force:noscroll --directory-prefix="/usr/local/bin/" "https://releases.hashicorp.com/packer/$PACKER_VERSION/packer_${PACKER_VERSION}_linux_amd64.zip"
+        wget --timestamping --progress=bar:force:noscroll --directory-prefix="/usr/local/bin/" "https://releases.hashicorp.com/packer/$PACKER_VERSION/packer_${PACKER_VERSION}_linux_amd64.zip"
         # -o tells unzip to overwrite existing files
         unzip -o "/usr/local/bin/packer_${PACKER_VERSION}_linux_amd64.zip" -d "/usr/local/bin/"
         rm "/usr/local/bin/packer_${PACKER_VERSION}_linux_amd64.zip"
