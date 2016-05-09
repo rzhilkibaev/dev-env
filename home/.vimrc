@@ -58,9 +58,9 @@ let g:airline#extensions#tabline#enabled = 1 " Enable bufer list on top
 " confugure Unite
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-nnoremap <leader>r :<C-u>Unite -no-split -start-insert buffer file_mru file_rec/async:!<cr>
-nnoremap <leader>y :<C-u>Unite -no-split -start-insert history/yank<cr>
-nnoremap <leader>f :<C-u>Unite -no-split -start-insert line<cr>
+nnoremap <leader>r :<C-u>Unite -no-split -start-insert -ignorecase buffer file_mru file_rec/async:!<cr>
+nnoremap <leader>y :<C-u>Unite -no-split -start-insert -ignorecase history/yank<cr>
+nnoremap <leader>f :<C-u>Unite -no-split -start-insert -ignorecase line<cr>
 
 " Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_settings()
@@ -72,9 +72,8 @@ function! s:unite_settings()
     imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
 endfunction
 
+let g:unite_source_history_yank_enable = 1
+
 " Enable folding for xml file type
 let g:xml_syntax_folding=1
 autocmd FileType xml setlocal foldmethod=syntax
-
-let g:unite_source_history_yank_enable = 1
-
