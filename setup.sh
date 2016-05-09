@@ -9,6 +9,7 @@
 #set -x
 set -eo pipefail
 
+SETUP_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 USERNAME=$SUDO_USER
 USERHOME=/home/$USERNAME
 export DEBIAN_FRONTEND=noninteractive
@@ -32,6 +33,7 @@ function main() {
 }
 
 install_oh_my_zh() {
+    echo "Installing oh my zh"
     apt-get-install zsh
     chsh -s /bin/zsh
     git clone "https://github.com/robbyrussell/oh-my-zsh.git" "$USERHOME/.oh-my-zsh"
@@ -52,21 +54,21 @@ install_oh_my_zh() {
 install_subversion() {
     echo "Installing subversion"
     apt-get-install subversion
-    make_symlink "$(pwd)/home/.subversion/config" "$USERHOME/.subversion/config"
+    make_symlink "$SETUP_HOME/home/.subversion/config" "$USERHOME/.subversion/config"
     chown $USERNAME:$USERNAME "$USERHOME/.subversion"
     # setup merge script
-    make_symlink "$(pwd)/bin/mysvnmerge" /usr/local/bin/mysvnmerge
-    make_symlink "$(pwd)/bin/mysvndiff" /usr/local/bin/mysvndiff
+    make_symlink "$SETUP_HOME/bin/mysvnmerge" /usr/local/bin/mysvnmerge
+    make_symlink "$SETUP_HOME/bin/mysvndiff" /usr/local/bin/mysvndiff
 }
 
 install_git() {
     echo "Installing git"
     # git is already installed, just configure
     # setup .gitconfig
-    make_symlink "$(pwd)/home/.gitconfig" "$USERHOME/.gitconfig"
+    make_symlink "$SETUP_HOME/home/.gitconfig" "$USERHOME/.gitconfig"
     chown $USERNAME:$USERNAME "$USERHOME/.gitconfig"
     # setup merge script
-    make_symlink "$(pwd)/bin/mygitmerge" /usr/local/bin/mygitmerge
+    make_symlink "$SETUP_HOME/bin/mygitmerge" /usr/local/bin/mygitmerge
     apt-get-install tig
 }
 
@@ -81,8 +83,9 @@ install_vim() {
         git clone "https://github.com/Shougo/dein.vim.git"  "$dein_dir"
         chown -R $USERNAME:$USERNAME "$USERHOME/.vim"
     fi
-    make_symlink "$(pwd)/home/.vimrc" "$USERHOME/.vimrc"
-    chown $USERNAME:$USERNAME "$USERHOME/.vimrc"
+    make_symlink "$SETUP_HOME/home/.vimrc" "$USERHOME/.vimrc"
+    chown -h $USERNAME:$USERNAME "$USERHOME/.vimrc"
+    echo "installing fonts"
     install_powerline_fonts
 }
 
@@ -96,7 +99,7 @@ install_powerline_fonts() {
     wget --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20Bold%20for%20Powerline.ttf"
     wget --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20Oblique%20for%20Powerline.ttf"
     wget --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20for%20Powerline.ttf"
-    chown -R $USERNAME:$USERNAME $font_dir
+    chown -R $USERNAME:$USERNAME "$USERHOME/.local"
     fc-cache -vf $font_dir
 }
 
