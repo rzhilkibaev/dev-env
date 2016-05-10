@@ -3,6 +3,10 @@ let mapleader=','
 
 " exit INSERT mode with jj
 inoremap jj <Esc>
+" Ctrl+n to jump to next buffer
+nnoremap <C-n> :bnext<CR>
+" Ctrl+p to jump to previous buffer
+nnoremap <C-p> :bprevious<CR>
 
 " configure dein plugin manager
 set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
