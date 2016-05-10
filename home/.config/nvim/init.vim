@@ -1,5 +1,8 @@
 let mapleader=','
 
+" exit INSERT mode with jj
+inoremap jj <Esc>
+
 " configure dein plugin manager
 set runtimepath+=~/.config/nvim/dein/repos/github.com/Shougo/dein.vim
 call dein#begin(expand('~/.config/nvim/dein')) " plugins' root path

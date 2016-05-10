@@ -1,6 +1,9 @@
 set nocompatible                                        " not compatible with vi, required for extra features to work
 let mapleader=','
 
+" exit INSERT mode with jj
+inoremap jj <Esc>
+
 " configure dein plugin manager
 set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 call dein#begin(expand('~/.vim/dein')) " plugins' root path
