@@ -37,11 +37,15 @@ install_oh_my_zh() {
     echo "Installing oh my zh"
     apt-get-install zsh
     chsh -s /bin/zsh
-    git clone "https://github.com/robbyrussell/oh-my-zsh.git" "$USERHOME/.oh-my-zsh"
+    if [ ! -d "$USERHOME/.oh-my-zsh" ]; then
+        git clone "https://github.com/robbyrussell/oh-my-zsh.git" "$USERHOME/.oh-my-zsh"
+    fi
     cp "$USERHOME/.oh-my-zsh/templates/zshrc.zsh-template" "$USERHOME/.zshrc"
     install_powerline_fonts
     # install powerlevel9k theme
-    git clone "https://github.com/bhilburn/powerlevel9k.git" "$USERHOME/.oh-my-zsh/custom/themes/powerlevel9k"
+    if [ ! -d "$USERHOME/.oh-my-zsh/custom/themes/powerlevel9k" ]; then
+        git clone "https://github.com/bhilburn/powerlevel9k.git" "$USERHOME/.oh-my-zsh/custom/themes/powerlevel9k"
+    fi
     # configure oh-my-zsh
     sed -i "1iPOWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv vcs background_jobs)" "$USERHOME/.zshrc"
     sed -i "1iPOWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)" "$USERHOME/.zshrc"
@@ -115,15 +119,16 @@ install_powerline_fonts() {
     mkdir -p $font_dir
     cd $font_dir
     # install font DejaVu Sans Mono
-    wget --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20Bold%20Oblique%20for%20Powerline.ttf"
-    wget --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20Bold%20for%20Powerline.ttf"
-    wget --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20Oblique%20for%20Powerline.ttf"
-    wget --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20for%20Powerline.ttf"
+    wget -q --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20Bold%20Oblique%20for%20Powerline.ttf"
+    wget -q --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20Bold%20for%20Powerline.ttf"
+    wget -q --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20Oblique%20for%20Powerline.ttf"
+    wget -q --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20for%20Powerline.ttf"
     chown -R $USERNAME:$USERNAME "$USERHOME/.local"
     fc-cache -vf $font_dir
 }
 
 install_basic_tools() {
+    echo "Installing basic tools"
     apt-get-install tree python-pip python3-pip sshfs cifs-utils htop
 }
 
