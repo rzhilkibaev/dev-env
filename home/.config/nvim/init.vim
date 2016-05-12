@@ -60,6 +60,7 @@ let g:airline#extensions#tabline#enabled = 1 " Enable bufer list on top
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 nnoremap <leader>r :<C-u>Unite -no-split -start-insert -ignorecase buffer file_mru file_rec/async<cr>
+nnoremap <leader>g :<C-u>Unite -no-split -start-insert -ignorecase grep:.<cr>
 nnoremap <leader>y :<C-u>Unite -no-split -start-insert -ignorecase history/yank<cr>
 nnoremap <leader>f :<C-u>Unite -no-split -start-insert -ignorecase line<cr>
 
