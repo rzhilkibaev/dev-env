@@ -10,4 +10,4 @@ MINE=$3
 MERGED=$4
 WCPATH=$5
 
-mygitmerge vim "$BASE" "$MINE" "$THEIRS" "$MERGED"
+mygitmerge nvim "$BASE" "$MINE" "$THEIRS" "$MERGED"
