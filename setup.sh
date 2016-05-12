@@ -20,15 +20,15 @@ function main() {
 
     install_basic_tools
 
-    install_oh_my_zh
-    install_vim
-    install_neovim
-    install_git
-    install_subversion
+    #install_oh_my_zh
+    #install_vim
+    #install_neovim
+    #install_git
+    #install_subversion
 
-    install_java_tools
-    install_devops_tools
-    install_frontend_tools
+    #install_java_tools
+    #install_devops_tools
+    #install_frontend_tools
 
     echo Done
 }
@@ -129,7 +129,10 @@ install_powerline_fonts() {
 
 install_basic_tools() {
     echo "Installing basic tools"
-    apt-get-install tree python-pip python3-pip sshfs cifs-utils htop
+    #apt-get-install tree python-pip python3-pip sshfs cifs-utils htop
+    make_symlink "$SETUP_HOME/bin/f" "/usr/local/bin/f"
+    make_symlink "$SETUP_HOME/bin/pack" "/usr/local/bin/pack"
+    make_symlink "$SETUP_HOME/bin/unpack" "/usr/local/bin/unpack"
 }
 
 install_devops_tools() {

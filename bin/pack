@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#
+# Single script for handling archives
+
+set -eo pipefail
+
+SRC_DIR="$1"
+ARCHIVE_FILE="$2"
+
+case "$ARCHIVE_FILE" in
+    *.tar.gz)
+        tar --create --gzip --file "$ARCHIVE_FILE" "$SRC_DIR"
+        ;;
+    *.zip)
+        zip --recurse-paths "$ARCHIVE_FILE" "$SRC_DIR"
+        ;;
+    *)
+        echo "unknown format"
+        exit 1
+        ;;
+esac
+

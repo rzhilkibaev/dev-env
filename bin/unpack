@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+#
+# Single script for unpacking archives
+
+set -eo pipefail
+
+ARCHIVE_FILE="$1"
+# if $2 is empty substitute it with '.'
+DST_DIR="${2:-.}"
+
+case "$ARCHIVE_FILE" in
+    *.tar.gz)
+        tar --extract --file "$ARCHIVE_FILE" --directory "$DST_DIR"
+        ;;
+    *.zip)
+        unzip "$ARCHIVE_FILE" -d "$DST_DIR"
+        ;;
+    *)
+        echo "unknown format"
+        exit 1
+        ;;
+esac
+
