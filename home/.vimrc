@@ -53,6 +53,9 @@ set hlsearch " highlight all occurences when searching
 set foldmethod=indent " fold based on identation
 set foldlevel=99 " unfold everything on start
 
+" Transparent background
+let g:solarized_termtrans=1
+
 " ignore whitespace in diff mode
 if &diff
     set diffopt+=iwhite
