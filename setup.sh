@@ -98,7 +98,10 @@ install_neovim() {
     echo "Installing neovim"
     add-apt-repository -y ppa:neovim-ppa/unstable
     # xsel enables system clipboard
-    apt-get-install neovim xsel
+    # python-dev is required to install python support in neovim, which is required by MatchTagAlways plugin
+    apt-get-install neovim xsel python-dev
+    # add puthon support in neovim plugins
+    pip2 install neovim
 
     # install dein plugin manager
     local dein_dir="$USERHOME/.config/nvim/dein/repos/github.com/Shougo/dein.vim"

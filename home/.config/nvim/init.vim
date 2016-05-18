@@ -21,6 +21,7 @@ call dein#add('tmhedberg/SimpylFold') " python code folding
 call dein#add('altercation/vim-colors-solarized')
 call dein#add('tpope/vim-fugitive') " adds git commands to vim
 call dein#add('nathanaelkane/vim-indent-guides') " adds indentation guides
+call dein#add('valloric/MatchTagAlways') " highlight matching tags
 call dein#end()
 
 set nowrap " disable word wrapping
