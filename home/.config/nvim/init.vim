@@ -1,4 +1,4 @@
-let mapleader=','
+let mapleader="\<Space>"
 
 " exit INSERT mode with jj
 inoremap jj <Esc>
@@ -20,6 +20,7 @@ call dein#add('vim-airline/vim-airline') " advanced status line
 call dein#add('tmhedberg/SimpylFold') " python code folding
 call dein#add('altercation/vim-colors-solarized')
 call dein#add('tpope/vim-fugitive') " adds git commands to vim
+call dein#add('nathanaelkane/vim-indent-guides') " adds indentation guides
 call dein#end()
 
 set nowrap " disable word wrapping
@@ -87,3 +88,5 @@ colorscheme solarized
 let g:xml_syntax_folding=1
 autocmd FileType xml setlocal foldmethod=syntax
 
+" Enable indent guides
+let g:indent_guides_enable_on_vim_startup=1
