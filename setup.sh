@@ -176,7 +176,7 @@ install_ansible() {
     if ! program_exists ansible; then
         apt-add-repository ppa:ansible/ansible -y
         apt-get-install ansible
-        ! grep --quiet "export ANSIBLE_NOCOWS" && echo "export ANSIBLE_NOCOWS=1" >> "$USERHOME/.bashrc"
+        ! grep --quiet "export ANSIBLE_NOCOWS" "$USERHOME/.bashrc" && echo "export ANSIBLE_NOCOWS=1" >> "$USERHOME/.bashrc"
     fi
 }
 
