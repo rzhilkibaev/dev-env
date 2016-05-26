@@ -22,7 +22,6 @@ function main() {
 
     install_oh_my_zh
     install_vim
-    install_neovim
     install_git
     install_subversion
 
@@ -91,28 +90,6 @@ install_vim() {
     fi
     make_symlink "$SETUP_HOME/home/.vimrc" "$USERHOME/.vimrc"
     chown -h $USERNAME:$USERNAME "$USERHOME/.vimrc"
-    echo "installing fonts"
-    install_powerline_fonts
-}
-
-install_neovim() {
-    echo "Installing neovim"
-    add-apt-repository -y ppa:neovim-ppa/unstable
-    # xsel enables system clipboard
-    # python-dev is required to install python support in neovim, which is required by MatchTagAlways plugin
-    apt-get-install neovim xsel python-dev
-    # add puthon support in neovim plugins
-    pip2 install neovim
-
-    # install dein plugin manager
-    local dein_dir="$USERHOME/.config/nvim/dein/repos/github.com/Shougo/dein.vim"
-    if [ ! -d "$dein_dir" ]; then
-        mkdir -p "$dein_dir"
-        git clone "https://github.com/Shougo/dein.vim.git"  "$dein_dir"
-        chown -R $USERNAME:$USERNAME "$USERHOME/.config/nvim"
-    fi
-    make_symlink "$SETUP_HOME/home/.config/nvim/init.vim" "$USERHOME/.config/nvim/init.vim"
-    chown -h $USERNAME:$USERNAME "$USERHOME/.config/nvim/init.vim"
     echo "installing fonts"
     install_powerline_fonts
 }

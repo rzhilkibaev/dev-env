@@ -55,6 +55,6 @@ RIGHT=$FULL_FILE_NAME
 ln -s "$THEIRS_FILE" "$LEFT"
 
 # I use readonly mode here just for the nice lock sign it has in powerlevel9k
-nvim -f -d "$LEFT" "$RIGHT" -c "set nomodifiable | set readonly | wincmd l"
+vim -f -d "$LEFT" "$RIGHT" -c "set nomodifiable | set readonly | wincmd l"
 
 # don't bother cleaning up, it's in /tmp
