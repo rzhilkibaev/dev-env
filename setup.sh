@@ -79,7 +79,8 @@ install_git() {
 
 install_vim() {
     echo "Installing vim"
-    # vim is already installed, just configure
+    # install vim with python support
+    apt-get-install vim-nox
 
     # install dein plugin manager
     local dein_dir="$USERHOME/.vim/dein/repos/github.com/Shougo/dein.vim"
