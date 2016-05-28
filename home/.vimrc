@@ -10,7 +10,7 @@ nnoremap <C-p> :bprevious<CR>
 
 " configure dein plugin manager
 set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
-call dein#begin(expand('~/.vim/dein')) " plugins' root path
+call dein#begin(expand('~/.vim/dein')) " plugins root
 call dein#add('Shougo/dein.vim') " plugin manager
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'}) " enables parallel execution (used by other plugins)
 call dein#add('Shougo/unite.vim') " search trough file names, file content, buffers...
