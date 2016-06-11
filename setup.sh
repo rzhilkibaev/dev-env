@@ -121,6 +121,7 @@ install_devops_tools() {
     install_vagrant
     install_packer
     install_docker
+    install_terraform
 }
 
 install_java_tools() {
@@ -162,6 +163,18 @@ install_vagrant() {
     echo "Installing vagrant"
     if ! program_exists vagrant; then
         apt-get-install vagrant
+    fi
+}
+
+install_terraform() {
+    echo "Installing terraform"
+    if ! program_exists terraform; then
+        local TERRAFORM_VERSION="0.6.16"
+        local TERRAFROM_ZIP=terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+        wget --timestamping --progress=bar:force:noscroll --directory-prefix="/usr/local/bin/" "https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION/$TERRAFROM_ZIP"
+        # -o tells unzip to overwrite existing files
+        unzip -o "/usr/local/bin/$TERRAFROM_ZIP" -d "/usr/local/bin/"
+        rm "/usr/local/bin/$TERRAFROM_ZIP"
     fi
 }
 
