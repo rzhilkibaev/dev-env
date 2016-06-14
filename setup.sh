@@ -121,13 +121,14 @@ install_devops_tools() {
     install_vagrant
     install_packer
     install_docker
+    install_terraform
 }
 
 install_java_tools() {
     echo "Installing java tools"
     install_oracle_java 8
     if ! program_exists ant; then
-        apt-get-install ant ant-contrib maven
+        apt-get-install ant ant-contrib maven gradle
     fi
 }
 
@@ -140,13 +141,11 @@ install_oracle_java() {
 
 install_packer() {
     echo "Installing packer"
-    if ! program_exists packer; then
-        local PACKER_VERSION="0.10.1"
-        wget --timestamping --progress=bar:force:noscroll --directory-prefix="/usr/local/bin/" "https://releases.hashicorp.com/packer/$PACKER_VERSION/packer_${PACKER_VERSION}_linux_amd64.zip"
-        # -o tells unzip to overwrite existing files
-        unzip -o "/usr/local/bin/packer_${PACKER_VERSION}_linux_amd64.zip" -d "/usr/local/bin/"
-        rm "/usr/local/bin/packer_${PACKER_VERSION}_linux_amd64.zip"
-    fi
+    local PACKER_VERSION="0.10.1"
+    wget --timestamping --progress=bar:force:noscroll --directory-prefix="/usr/local/bin/" "https://releases.hashicorp.com/packer/$PACKER_VERSION/packer_${PACKER_VERSION}_linux_amd64.zip"
+    # -o tells unzip to overwrite existing files
+    unzip -o "/usr/local/bin/packer_${PACKER_VERSION}_linux_amd64.zip" -d "/usr/local/bin/"
+    rm "/usr/local/bin/packer_${PACKER_VERSION}_linux_amd64.zip"
 }
 
 install_ansible() {
@@ -165,6 +164,16 @@ install_vagrant() {
     fi
 }
 
+install_terraform() {
+    echo "Installing terraform"
+    local TERRAFORM_VERSION="0.6.16"
+    local TERRAFROM_ZIP=terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+    wget --timestamping --progress=bar:force:noscroll --directory-prefix="/usr/local/bin/" "https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION/$TERRAFROM_ZIP"
+    # -o tells unzip to overwrite existing files
+    unzip -o "/usr/local/bin/$TERRAFROM_ZIP" -d "/usr/local/bin/"
+    rm "/usr/local/bin/$TERRAFROM_ZIP"
+}
+
 install_docker() {
     echo "Installing docker-engine"
     # install docker-engine 
@@ -180,17 +189,13 @@ install_docker() {
 
     # install docker-machine
     echo "Installing docker-machine"
-    if ! program_exists docker-machine; then
-        wget --progress=bar:force:noscroll "https://github.com/docker/machine/releases/download/v0.7.0/docker-machine-$(uname -s)-$(uname -m)" -O "/usr/local/bin/docker-machine"
-        chmod +x /usr/local/bin/docker-machine
-    fi
+    wget --progress=bar:force:noscroll "https://github.com/docker/machine/releases/download/v0.7.0/docker-machine-$(uname -s)-$(uname -m)" -O "/usr/local/bin/docker-machine"
+    chmod +x /usr/local/bin/docker-machine
 
     # install docker-compose
     echo "Installing docker-compose"
-    if ! program_exists docker-compose; then
-        wget --progress=bar:force:noscroll "https://github.com/docker/compose/releases/download/1.7.1/docker-compose-$(uname -s)-$(uname -m)" -O "/usr/local/bin/docker-compose"
-        chmod +x "/usr/local/bin/docker-compose"
-    fi
+    wget --progress=bar:force:noscroll "https://github.com/docker/compose/releases/download/1.7.1/docker-compose-$(uname -s)-$(uname -m)" -O "/usr/local/bin/docker-compose"
+    chmod +x "/usr/local/bin/docker-compose"
 }
 
 install_frontend_tools() {
