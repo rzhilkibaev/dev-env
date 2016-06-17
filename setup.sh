@@ -130,6 +130,11 @@ install_java_tools() {
     if ! program_exists ant; then
         apt-get-install ant ant-contrib maven
     fi
+    install_gradle
+}
+
+install_gradle() {
+    make_symlink "$SETUP_HOME/bin/gradle" "/usr/local/bin/gradle"
 }
 
 install_oracle_java() {
