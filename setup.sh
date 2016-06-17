@@ -127,10 +127,14 @@ install_devops_tools() {
 install_java_tools() {
     echo "Installing java tools"
     install_oracle_java 8
+    install_ant
+    install_gradle
+}
+
+instal_ant() {
     if ! program_exists ant; then
         apt-get-install ant ant-contrib maven
     fi
-    install_gradle
 }
 
 install_gradle() {
