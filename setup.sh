@@ -128,7 +128,7 @@ install_java_tools() {
     echo "Installing java tools"
     install_oracle_java 8
     if ! program_exists ant; then
-        apt-get-install ant ant-contrib maven gradle
+        apt-get-install ant ant-contrib maven
     fi
 }
 
