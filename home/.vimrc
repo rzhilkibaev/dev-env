@@ -45,10 +45,12 @@ set expandtab " hitting Tab key inserts softtabstop spaces
 " Buffers
 set hidden " can switch to another buffer without saving the current one
 
-" Highlight current line and column
-"set cursorline                                                                                                                                                                                                                               
+" Highlight current line
+set cursorline                                                                                                                                                                                                                               
+hi CursorLine   cterm=NONE ctermbg=255
+
+" Highlight current column
 "set cursorcolumn
-"hi CursorLine   cterm=NONE ctermbg=255
 "hi CursorColumn cterm=NONE ctermbg=255
 
 " Use CLIPBOARD (gui clipboard) for yank, put, etc...
