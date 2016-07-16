@@ -131,7 +131,7 @@ install_java_tools() {
     install_gradle
 }
 
-instal_ant() {
+install_ant() {
     if ! program_exists ant; then
         apt-get-install ant ant-contrib maven
     fi
