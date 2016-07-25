@@ -27,7 +27,6 @@ call dein#add('nathanaelkane/vim-indent-guides') " adds indentation guides
 call dein#add('valloric/MatchTagAlways') " highlight matching tags
 call dein#add('hashivim/vim-terraform.git') " terraform syntax hightlight and more
 call dein#add('tfnico/vim-gradle') " gradle
-call dein#add('jiangmiao/auto-pairs.git') " autoclose parentheses/quotes/...
 call dein#add('tpope/vim-surround.git') " surround stuff with other stuff
 call dein#end()
 
