@@ -90,7 +90,7 @@ function! MyFoldText()
 
     let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
     let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
+    return line . ' ' . repeat(" ",fillcharcount) . foldedlinecount . ' ' . ' '
 endfunction
 set foldtext=MyFoldText() 
 
