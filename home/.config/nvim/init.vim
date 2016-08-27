@@ -19,6 +19,7 @@ call dein#add('neomake/neomake')
 call dein#add('hashivim/vim-terraform.git', {'on_ft': 'terraform'})
 call dein#add('ekalinin/Dockerfile.vim', {'on_ft': 'Dockerfile'})
 call dein#add('tfnico/vim-gradle', {'on_ft': 'groovy'})
+call dein#add('tmhedberg/SimpylFold', {'on_ft': 'python'})
 
 " Install all {{{2
 if dein#check_install()
@@ -40,9 +41,9 @@ au ColorScheme * hi Normal ctermbg=none guibg=none
 " vim {{{2
 autocmd FileType vim setlocal foldmethod=marker
 " xml {{{2
-autocmd FileType xml let g:xml_syntax_folding=1
+let g:xml_syntax_folding=1
 autocmd FileType xml setlocal foldmethod=syntax
-autocmd FileType xml set foldlevel=99 " unfold everything on start
+autocmd FileType xml setlocal foldlevel=99 " unfold everything on start
 
 " Keys {{{1
 map q <Nop>
@@ -75,6 +76,24 @@ set hlsearch " highlight all occurences while typing
 vmap < <gv
 vmap > >gv
 
+" Folding {{{2
+function! MyFoldText() 
+    let line = getline(v:foldstart)
+
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
+
+    " expand tabs into spaces
+    let onetab = strpart('          ', 0, &tabstop)
+    let line = substitute(line, '\t', onetab, 'g')
+
+    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
+endfunction
+set foldtext=MyFoldText() 
+
 " Deoplete {{{1
 let g:deoplete#enable_at_startup = 1
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif " autoclose preview window
@@ -82,3 +101,4 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif " autoc
 " Neomake {{{1
 autocmd! BufWritePost * Neomake " run Neomake on save
 let g:neomake_open_list = 2 " open errors list, close when no errors
+
