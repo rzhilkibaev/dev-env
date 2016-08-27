@@ -22,6 +22,7 @@ function main() {
 
     install_oh_my_zh
     install_vim
+    install_nvim
     install_git
     install_subversion
 
@@ -94,7 +95,23 @@ install_vim() {
     install_powerline_fonts
 }
 
+install_nvim() {
+    echo "Installing neovim"
+    add-apt-repository ppa:neovim-ppa/unstable -y
+    # also install xsel for clipboard support
+    apt-get-install neovim xsel
+    sudo pip install neovim
+    sudo pip3 install neovim
+    sudo pip install jedi
+
+    mkdir -p "$USERHOME/.config/nvim"
+    make_symlink "$SETUP_HOME/home/.config/nvim/init.vim" "$USERHOME/.config/nvim/init.vim"
+    chown -h $USERNAME:$USERNAME "$USERHOME/.config/nvim"
+    install_powerline_fonts
+}
+
 install_powerline_fonts() {
+    echo "installing Powerline fonts"
     # install powerline fonts
     local font_dir="$USERHOME/.local/share/fonts"
     mkdir -p $font_dir
