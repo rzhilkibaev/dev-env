@@ -72,6 +72,7 @@ set number " show line numbers
 set sidescroll=1 " horizontal scrolling reveals this many characters at once, not half a window
 set clipboard+=unnamedplus " use system clipboard (make sure xsel is installed)
 set hlsearch " highlight all occurences while typing
+set wildmode=longest:full,full
 " Align blocks of text and keep them selected
 vmap < <gv
 vmap > >gv
