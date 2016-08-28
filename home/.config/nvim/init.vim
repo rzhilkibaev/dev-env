@@ -47,10 +47,21 @@ autocmd FileType xml setlocal foldlevel=99 " unfold everything on start
 
 " Keys {{{1
 map q <Nop>
+" Backspace to switch between two latest buffers
+nnoremap <BS> <C-^>
 " Ctrl+n to jump to next buffer
 nnoremap <C-n> :bnext<CR>
 " Ctrl+p to jump to previous buffer
 nnoremap <C-p> :bprevious<CR>
+" <Tab> completion:
+" 1. If popup menu is visible, select and insert next item
+" 2. Otherwise, if within a snippet, jump to next input
+" 3. Otherwise, if preceding chars are whitespace, insert tab char
+" 4. Otherwise, start manual autocomplete
+imap <silent><expr><Tab> pumvisible() ? "\<C-n>"
+            \ : (neosnippet#jumpable() ? "\<Plug>(neosnippet_jump)"
+            \ : (<SID>is_whitespace() ? "\<Tab>"
+            \ : deoplete#manual_complete()))
 
 " Tab character handling {{{1
 set tabstop=4 " show existing Tab character as 4 spaces
@@ -97,6 +108,7 @@ set foldtext=MyFoldText()
 
 " Deoplete {{{1
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#jedi#show_docstring = 1
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif " autoclose preview window
 
 " Neomake {{{1
