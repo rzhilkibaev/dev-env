@@ -13,6 +13,9 @@ call dein#add('Shougo/dein.vim')
 call dein#add('vim-airline/vim-airline') " advanced status line
 call dein#add('morhetz/gruvbox')
 call dein#add('tpope/vim-fugitive') " git support
+call dein#add('gregsexton/gitv') " git browser
+call dein#add('Shougo/neosnippet')
+call dein#add('Shougo/neosnippet-snippets')
 call dein#add('Shougo/deoplete.nvim') " autocomplete
 call dein#add('zchee/deoplete-jedi') " autocomplete for python (make sure to install jedi)
 call dein#add('neomake/neomake')
@@ -53,7 +56,7 @@ nnoremap <BS> <C-^>
 nnoremap <C-n> :bnext<CR>
 " Ctrl+p to jump to previous buffer
 nnoremap <C-p> :bprevious<CR>
-" <Tab> completion:
+" Tab completion {{{2
 " 1. If popup menu is visible, select and insert next item
 " 2. Otherwise, if within a snippet, jump to next input
 " 3. Otherwise, if preceding chars are whitespace, insert tab char
@@ -62,6 +65,11 @@ imap <silent><expr><Tab> pumvisible() ? "\<C-n>"
             \ : (neosnippet#jumpable() ? "\<Plug>(neosnippet_jump)"
             \ : (<SID>is_whitespace() ? "\<Tab>"
             \ : deoplete#manual_complete()))
+
+function! s:is_whitespace()
+	let col = col('.') - 1
+	return ! col || getline('.')[col - 1] =~? '\s'
+endfunction
 
 " Tab character handling {{{1
 set tabstop=4 " show existing Tab character as 4 spaces
