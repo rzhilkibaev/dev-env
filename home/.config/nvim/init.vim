@@ -80,6 +80,10 @@ set expandtab " hitting Tab key inserts softtabstop spaces
 " Airline {{{1
 let g:airline_powerline_fonts=1 " Enable powerline fonts (nice looking airline with extra glyphs)
 let g:airline#extensions#tabline#enabled = 1 " Enable bufer list on top
+let g:airline#extensions#tabline#show_buffers = 1 " Show buffers even if one buffer
+let g:airline#extensions#tabline#show_close_button = 0 " 'X' in the top right corner
+let g:airline#extensions#tabline#show_tabs = 0 " Never show tabs, they hide buffers
+let g:airline#extensions#tabline#show_tab_type = 0 " remove 'buffers' word in the top right corner
 let g:airline#extensions#tabline#left_sep = '' " Straight bufer tabs
 let g:airline#extensions#tabline#left_alt_sep = '' " Straight bufer tabs
 
