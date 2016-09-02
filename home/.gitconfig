@@ -1,11 +1,13 @@
 [push]
     default = simple
 [diff]
-    tool = vimdiff
+    tool = nvimdiff
 [merge]
 	tool = mygitmerge
 [difftool]
     prompt = false
+[difftool "nvimdiff"]
+    cmd = nvim -d $LOCAL $REMOTE
 [mergetool "mygitmerge"]
 	cmd = mygitmerge vim $BASE $LOCAL $REMOTE $MERGED
     keepBackup = false
