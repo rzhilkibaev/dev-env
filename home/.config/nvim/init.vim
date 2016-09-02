@@ -48,6 +48,10 @@ let g:xml_syntax_folding=1
 autocmd FileType xml setlocal foldmethod=syntax
 autocmd FileType xml setlocal foldlevel=99 " unfold everything on start
 
+" yaml {{{2
+autocmd FileType yaml setlocal foldmethod=indent
+autocmd FileType yaml setlocal foldlevel=99 " unfold everything on start
+
 " Keys {{{1
 map q <Nop>
 " Backspace to switch between two latest buffers
