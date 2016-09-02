@@ -17,7 +17,7 @@ call dein#add('gregsexton/gitv') " git browser
 call dein#add('Shougo/neosnippet')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('Shougo/deoplete.nvim') " autocomplete
-call dein#add('zchee/deoplete-jedi') " autocomplete for python (make sure to install jedi)
+call dein#add('zchee/deoplete-jedi', {'on_ft': 'python'}) " autocomplete for python (make sure to install jedi)
 call dein#add('neomake/neomake')
 call dein#add('hashivim/vim-terraform.git', {'on_ft': 'terraform'})
 call dein#add('ekalinin/Dockerfile.vim', {'on_ft': 'Dockerfile'})
