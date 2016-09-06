@@ -127,7 +127,8 @@ install_powerline_fonts() {
 
 install_basic_tools() {
     echo "Installing basic tools"
-    apt-get-install tree python-pip python3-pip sshfs cifs-utils htop terminator
+    # use gnome-terminal supports true color, terminator doesn't
+    apt-get-install tree python-pip python3-pip sshfs cifs-utils htop gnome-terminal
     make_symlink "$SETUP_HOME/bin/f" "/usr/local/bin/f"
     make_symlink "$SETUP_HOME/bin/pack" "/usr/local/bin/pack"
     make_symlink "$SETUP_HOME/bin/unpack" "/usr/local/bin/unpack"
@@ -151,9 +152,7 @@ install_java_tools() {
 install_ant() {
     if ! program_exists ant; then
         apt-get-install ant ant-contrib maven
-    fi
-}
-
+    fi } 
 install_gradle() {
     make_symlink "$SETUP_HOME/bin/gradle" "/usr/local/bin/gradle"
 }
