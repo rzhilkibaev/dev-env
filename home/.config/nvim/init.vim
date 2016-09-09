@@ -93,8 +93,8 @@ imap <silent><expr><Tab> pumvisible() ? "\<C-n>"
             \ : deoplete#manual_complete()))
 
 function! s:is_whitespace()
-	let col = col('.') - 1
-	return ! col || getline('.')[col - 1] =~? '\s'
+    let col = col('.') - 1
+    return ! col || getline('.')[col - 1] =~? '\s'
 endfunction
 
 " Tab character handling {{{1
@@ -117,7 +117,7 @@ vmap < <gv
 vmap > >gv
 
 " Folding {{{1
-function! MyFoldText() 
+function! MyFoldText()
     let line = getline(v:foldstart)
 
     let nucolwidth = &fdc + &number * &numberwidth
@@ -132,7 +132,7 @@ function! MyFoldText()
     let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
     return line . ' ' . repeat(" ",fillcharcount) . foldedlinecount . ' ' . ' '
 endfunction
-set foldtext=MyFoldText() 
+set foldtext=MyFoldText()
 
 " Deoplete {{{1
 let g:deoplete#enable_at_startup = 1
