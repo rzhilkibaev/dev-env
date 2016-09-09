@@ -10,15 +10,24 @@ call dein#begin(expand('~/.config/nvim'))
 call dein#add('Shougo/dein.vim')
 
 " Plugins {{{2
+" themes
 call dein#add('vim-airline/vim-airline') " advanced status line
 call dein#add('morhetz/gruvbox')
+" git
 call dein#add('tpope/vim-fugitive') " git support
 call dein#add('gregsexton/gitv') " git browser
+" quick search
+call dein#add('junegunn/fzf', { 'build': './install --all' }) " fuzzy finder
+call dein#add('junegunn/fzf.vim')
+" snippets
 call dein#add('Shougo/neosnippet')
 call dein#add('Shougo/neosnippet-snippets')
+" autocomplete
 call dein#add('Shougo/deoplete.nvim') " autocomplete
 call dein#add('zchee/deoplete-jedi', {'on_ft': 'python'}) " autocomplete for python (make sure to install jedi)
+" autobuild
 call dein#add('neomake/neomake')
+" file types
 call dein#add('hashivim/vim-terraform.git', {'on_ft': 'terraform'})
 call dein#add('ekalinin/Dockerfile.vim', {'on_ft': 'Dockerfile'})
 call dein#add('tfnico/vim-gradle', {'on_ft': 'groovy'})
@@ -39,6 +48,15 @@ set background=dark
 colorscheme gruvbox
 " enable transparent background
 au ColorScheme * hi Normal ctermbg=none guibg=none
+" Airline
+let g:airline_powerline_fonts=1 " Enable powerline fonts (nice looking airline with extra glyphs)
+let g:airline#extensions#tabline#enabled = 1 " Enable bufer list on top
+let g:airline#extensions#tabline#show_buffers = 1 " Show buffers even if one buffer
+let g:airline#extensions#tabline#show_close_button = 0 " 'X' in the top right corner
+let g:airline#extensions#tabline#show_tabs = 0 " Never show tabs, they hide buffers
+let g:airline#extensions#tabline#show_tab_type = 0 " remove 'buffers' word in the top right corner
+let g:airline#extensions#tabline#left_sep = '' " Straight bufer tabs
+let g:airline#extensions#tabline#left_alt_sep = '' " Straight bufer tabs
 
 " File types {{{1
 " vim {{{2
@@ -85,16 +103,6 @@ set softtabstop=4 " how many spaces to insert when hitting Tab key
 set shiftwidth=4 " how many spaces to insert for each step of identation
 set expandtab " hitting Tab key inserts softtabstop spaces
 
-" Airline {{{1
-let g:airline_powerline_fonts=1 " Enable powerline fonts (nice looking airline with extra glyphs)
-let g:airline#extensions#tabline#enabled = 1 " Enable bufer list on top
-let g:airline#extensions#tabline#show_buffers = 1 " Show buffers even if one buffer
-let g:airline#extensions#tabline#show_close_button = 0 " 'X' in the top right corner
-let g:airline#extensions#tabline#show_tabs = 0 " Never show tabs, they hide buffers
-let g:airline#extensions#tabline#show_tab_type = 0 " remove 'buffers' word in the top right corner
-let g:airline#extensions#tabline#left_sep = '' " Straight bufer tabs
-let g:airline#extensions#tabline#left_alt_sep = '' " Straight bufer tabs
-
 " Misc {{{1
 set undofile
 set hidden " can switch to another buffer without saving the current one
@@ -108,7 +116,7 @@ set wildmode=longest:full,full
 vmap < <gv
 vmap > >gv
 
-" Folding {{{2
+" Folding {{{1
 function! MyFoldText() 
     let line = getline(v:foldstart)
 
