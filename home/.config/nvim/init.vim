@@ -76,12 +76,18 @@ autocmd FileType yaml setlocal shiftwidth=2 " how many spaces to insert for each
 
 " Keys {{{1
 map q <Nop>
+let mapleader="\<Space>"
 " Backspace to switch between two latest buffers
 nnoremap <BS> <C-^>
 " Ctrl+n to jump to next buffer
 nnoremap <C-n> :bnext<CR>
 " Ctrl+p to jump to previous buffer
 nnoremap <C-p> :bprevious<CR>
+" find file
+nnoremap <leader>ff :Files<cr>
+" find line
+nnoremap <leader>fl :Ag<cr>
+
 " Tab completion {{{2
 " 1. If popup menu is visible, select and insert next item
 " 2. Otherwise, if within a snippet, jump to next input
