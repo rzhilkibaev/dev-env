@@ -79,6 +79,24 @@ autocmd FileType yaml setlocal shiftwidth=2 " how many spaces to insert for each
 " Keys {{{1
 map q <Nop>
 let mapleader="\<Space>"
+" move between windows with Ctrl+h/j/k/l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+" delete not into unnambed buffer but into the black hole
+nnoremap d "_d
+vnoremap d "_d
+nnoremap D "_D
+vnoremap D "_D
+nnoremap c "_c
+vnoremap c "_c
+nnoremap C "_C
+vnoremap C "_C
+nnoremap x "_x
+vnoremap x "_x
+nnoremap dd "_dd
+vnoremap dd "_dd
 " Backspace to switch between two latest buffers
 nnoremap <BS> <C-^>
 " Ctrl+n to jump to next buffer
