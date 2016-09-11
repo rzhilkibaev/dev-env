@@ -113,6 +113,7 @@ set expandtab " hitting Tab key inserts softtabstop spaces
 set undofile
 set hidden " can switch to another buffer without saving the current one
 set nowrap " disable word wrapping
+set virtualedit=all " allow moving cursor past end of line in all modes
 set number " show line numbers
 set sidescroll=1 " horizontal scrolling reveals this many characters at once, not half a window
 set clipboard+=unnamedplus " use system clipboard (make sure xsel is installed)
