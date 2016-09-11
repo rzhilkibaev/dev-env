@@ -40,7 +40,6 @@ if dein#check_install()
 endif
 
 call dein#end()
-filetype plugin indent on
 
 " Theme {{{1
 set termguicolors
