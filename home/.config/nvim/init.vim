@@ -13,6 +13,7 @@ call dein#add('Shougo/dein.vim')
 " themes
 call dein#add('vim-airline/vim-airline') " advanced status line
 call dein#add('morhetz/gruvbox')
+call dein#add('Yggdroot/indentLine')
 " git
 call dein#add('tpope/vim-fugitive') " git support
 call dein#add('gregsexton/gitv') " git browser
@@ -46,6 +47,7 @@ filetype plugin indent on
 set termguicolors
 set background=dark
 colorscheme gruvbox
+let g:indentLine_char='│'
 " enable transparent background
 au ColorScheme * hi Normal ctermbg=none guibg=none
 " Airline
