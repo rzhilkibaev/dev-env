@@ -79,6 +79,7 @@ autocmd FileType yaml setlocal shiftwidth=2 " how many spaces to insert for each
 " Keys {{{1
 map q <Nop>
 let mapleader="\<Space>"
+nnoremap <leader>qq :qa!<cr>
 " move between windows with Alt+h/j/k/l (Ctrl+j/k is used in fzf)
 nnoremap <A-h> <C-w>h
 nnoremap <A-j> <C-w>j
@@ -111,6 +112,14 @@ nnoremap <C-p> :bprevious<CR>
 nnoremap <leader>ff :Files<cr>
 " find line
 nnoremap <leader>fl :Ag<cr>
+" git add current file
+nnoremap <leader>gw :Gwrite<cr>
+" git commit
+nnoremap <leader>gc :Gcommit<cr>i
+" git status
+nnoremap <leader>gs :Gstatus<cr>
+" git diff current file
+nnoremap <leader>gd :Gdiff<cr>
 
 " Tab completion {{{2
 " 1. If popup menu is visible, select and insert next item
