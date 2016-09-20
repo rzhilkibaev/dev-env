@@ -79,15 +79,16 @@ autocmd FileType yaml setlocal shiftwidth=2 " how many spaces to insert for each
 " Keys {{{1
 map q <Nop>
 let mapleader="\<Space>"
-" move between windows with Ctrl+h/j/k/l
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-tnoremap <C-h> <C-\><C-n><C-w>h
-tnoremap <C-j> <C-\><C-n><C-w>j
-tnoremap <C-k> <C-\><C-n><C-w>k
-tnoremap <C-l> <C-\><C-n><C-w>l
+nnoremap <leader>qq :qa!<cr>
+" move between windows with Alt+h/j/k/l (Ctrl+j/k is used in fzf)
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
+tnoremap <A-h> <C-\><C-n><C-w>h
+tnoremap <A-j> <C-\><C-n><C-w>j
+tnoremap <A-k> <C-\><C-n><C-w>k
+tnoremap <A-l> <C-\><C-n><C-w>l
 " delete not into unnambed buffer but into the black hole
 nnoremap d "_d
 vnoremap d "_d
@@ -111,6 +112,14 @@ nnoremap <C-p> :bprevious<CR>
 nnoremap <leader>ff :Files<cr>
 " find line
 nnoremap <leader>fl :Ag<cr>
+" git add current file
+nnoremap <leader>gw :Gwrite<cr>
+" git commit
+nnoremap <leader>gc :Gcommit<cr>i
+" git status
+nnoremap <leader>gs :Gstatus<cr>
+" git diff current file
+nnoremap <leader>gd :Gdiff<cr>
 
 " Tab completion {{{2
 " 1. If popup menu is visible, select and insert next item
