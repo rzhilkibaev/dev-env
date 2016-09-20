@@ -27,7 +27,7 @@ call dein#add('Shougo/neosnippet-snippets')
 call dein#add('Shougo/deoplete.nvim') " autocomplete
 call dein#add('zchee/deoplete-jedi', {'on_ft': 'python'}) " autocomplete for python (make sure to install jedi)
 " autobuild
-call dein#add('neomake/neomake', {'if': !&diff })
+call dein#add('neomake/neomake')
 " file types
 call dein#add('hashivim/vim-terraform.git', {'on_ft': 'terraform'})
 call dein#add('ekalinin/Dockerfile.vim', {'on_ft': 'Dockerfile'})
@@ -180,6 +180,5 @@ let g:deoplete#sources#jedi#show_docstring = 1
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif " autoclose preview window
 
 " Neomake {{{1
-autocmd! BufWritePost * if !&diff | Neomake | endif " run Neomake on save
 let g:neomake_open_list = 2 " open errors list, close when no errors
 
