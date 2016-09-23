@@ -77,18 +77,10 @@ autocmd FileType yaml setlocal softtabstop=2 " how many spaces to insert when hi
 autocmd FileType yaml setlocal shiftwidth=2 " how many spaces to insert for each step of identation
 
 " Keys {{{1
+" When mapping keys keep in maind that Ctrl+{j,k} is used in fzf
 map q <Nop>
 let mapleader="\<Space>"
 nnoremap <leader>qq :qa!<cr>
-" move between windows with Alt+h/j/k/l (Ctrl+j/k is used in fzf)
-nnoremap <A-h> <C-w>h
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-l> <C-w>l
-tnoremap <A-h> <C-\><C-n><C-w>h
-tnoremap <A-j> <C-\><C-n><C-w>j
-tnoremap <A-k> <C-\><C-n><C-w>k
-tnoremap <A-l> <C-\><C-n><C-w>l
 " go into normal mode with double esc
 tnoremap <esc><esc> <C-\><C-n>
 " delete not into unnambed buffer but into the black hole
