@@ -14,8 +14,8 @@ USERNAME=$SUDO_USER
 USERHOME=/home/$USERNAME
 export DEBIAN_FRONTEND=noninteractive
 
-function main() {
-    
+main() {
+
     check_root
 
     install_basic_tools
@@ -154,7 +154,8 @@ install_java_tools() {
 install_ant() {
     if ! program_exists ant; then
         apt-get-install ant ant-contrib maven
-    fi } 
+    fi }
+
 install_gradle() {
     make_symlink "$SETUP_HOME/bin/gradle" "/usr/local/bin/gradle"
 }
@@ -203,7 +204,7 @@ install_terraform() {
 
 install_docker() {
     echo "Installing docker-engine"
-    # install docker-engine 
+    # install docker-engine
     if ! program_exists docker; then
         apt-key adv --keyserver "hkp://p80.pool.sks-keyservers.net:80" --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
         echo "deb https://apt.dockerproject.org/repo ubuntu-$(lsb_release -cs) main" > "/etc/apt/sources.list.d/docker.list"
