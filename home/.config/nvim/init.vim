@@ -1,5 +1,4 @@
-" Plugins  {{{1
-" Setup dein {{{2
+" Setup dein {{{1
 if (!isdirectory(expand("$HOME/.config/nvim/repos/github.com/Shougo/dein.vim")))
     call system(expand("mkdir -p $HOME/.config/nvim/repos/github.com"))
     call system(expand("git clone https://github.com/Shougo/dein.vim $HOME/.config/nvim/repos/github.com/Shougo/dein.vim"))
@@ -9,7 +8,7 @@ set runtimepath+=~/.config/nvim/repos/github.com/Shougo/dein.vim/
 call dein#begin(expand('~/.config/nvim'))
 call dein#add('Shougo/dein.vim')
 
-" Plugins {{{2
+" Plugins {{{1
 " themes
 call dein#add('vim-airline/vim-airline') " advanced status line
 call dein#add('morhetz/gruvbox')
@@ -20,6 +19,7 @@ call dein#add('gregsexton/gitv') " git browser
 " quick search
 call dein#add('junegunn/fzf', { 'build': './install --all' }) " fuzzy finder
 call dein#add('junegunn/fzf.vim')
+call dein#add('scrooloose/nerdtree')
 " snippets
 call dein#add('Shougo/neosnippet')
 call dein#add('Shougo/neosnippet-snippets')
@@ -34,7 +34,7 @@ call dein#add('ekalinin/Dockerfile.vim', {'on_ft': 'Dockerfile'})
 call dein#add('tfnico/vim-gradle', {'on_ft': 'groovy'})
 call dein#add('tmhedberg/SimpylFold', {'on_ft': 'python'})
 
-" Install all {{{2
+" Install all {{{1
 if dein#check_install()
     call dein#install()
     let pluginsExist=1
@@ -104,6 +104,8 @@ nnoremap <C-p> :bprevious<CR>
 nnoremap <leader>ff :Files<cr>
 " find line
 nnoremap <leader>fl :Ag<cr>
+" NERDTree
+nnoremap <leader>ft :NERDTreeToggle<cr>
 " git add current file
 nnoremap <leader>gw :Gwrite<cr>
 " git commit
@@ -147,6 +149,8 @@ set wildmode=longest:full,full
 " Align blocks of text and keep them selected
 vmap < <gv
 vmap > >gv
+let g:NERDTreeWinPos = "right"
+let NERDTreeQuitOnOpen=1
 
 " Folding {{{1
 function! MyFoldText()
