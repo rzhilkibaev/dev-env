@@ -75,6 +75,8 @@ install_git() {
     # setup merge script
     make_symlink "$SETUP_HOME/bin/mygitmerge" /usr/local/bin/mygitmerge
     apt-get-install tig
+    make_symlink "$SETUP_HOME/home/.tigrc" "$USERHOME/.tigrc"
+    chown $USERNAME:$USERNAME "$USERHOME/.tigrc"
 }
 
 install_vim() {

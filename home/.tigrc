@@ -1,0 +1,1 @@
+bind generic <F4> !git difftool -y %(commit) %(file)
