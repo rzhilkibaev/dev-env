@@ -92,8 +92,6 @@ nnoremap c "_c
 vnoremap c "_c
 nnoremap C "_C
 vnoremap C "_C
-nnoremap x "_x
-vnoremap x "_x
 nnoremap dd "_dd
 vnoremap dd "_dd
 " Backspace to switch between two latest buffers
