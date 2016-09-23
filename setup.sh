@@ -130,10 +130,13 @@ install_powerline_fonts() {
 install_basic_tools() {
     echo "Installing basic tools"
     # use gnome-terminal supports true color, terminator doesn't
-    apt-get-install tree python-pip python3-pip sshfs cifs-utils htop gnome-terminal
+    apt-get-install tree python-pip python3-pip sshfs cifs-utils htop gnome-terminal vifm
     make_symlink "$SETUP_HOME/bin/f" "/usr/local/bin/f"
     make_symlink "$SETUP_HOME/bin/pack" "/usr/local/bin/pack"
     make_symlink "$SETUP_HOME/bin/unpack" "/usr/local/bin/unpack"
+    mkdir -p "$USERHOME/.vifm"
+    make_symlink "$SETUP_HOME/home/.vifm/vifmrc" "$USERHOME/.vifm/vifmrc"
+    chown -R $USERNAME:$USERNAME "$USERHOME/.vifm"
 }
 
 install_devops_tools() {
