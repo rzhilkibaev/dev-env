@@ -12,3 +12,8 @@
 	cmd = mygitmerge nvim $BASE $LOCAL $REMOTE $MERGED
     keepBackup = false
     trustExitCode = true
+[alias]
+	co = checkout
+    st = status
+    ci = commit
+    lo = log --graph --decorate --abbrev-commit
