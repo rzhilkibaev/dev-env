@@ -79,6 +79,7 @@ autocmd FileType yaml setlocal shiftwidth=2 " how many spaces to insert for each
 " Keys {{{1
 " When mapping keys keep in maind that Ctrl+{j,k} is used in fzf
 map q <Nop>
+nnoremap ; :
 let mapleader="\<Space>"
 nnoremap <leader>qq :qa!<cr>
 " go into normal mode with double esc
