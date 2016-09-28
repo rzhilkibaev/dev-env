@@ -44,6 +44,7 @@ call dein#end()
 filetype plugin indent on
 
 " Theme {{{1
+set cursorline
 set termguicolors
 set background=dark
 colorscheme gruvbox
