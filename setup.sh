@@ -40,19 +40,13 @@ install_oh_my_zh() {
     if [ ! -d "$USERHOME/.oh-my-zsh" ]; then
         git clone "https://github.com/robbyrussell/oh-my-zsh.git" "$USERHOME/.oh-my-zsh"
     fi
-    cp "$USERHOME/.oh-my-zsh/templates/zshrc.zsh-template" "$USERHOME/.zshrc"
     install_powerline_fonts
     # install powerlevel9k theme
     if [ ! -d "$USERHOME/.oh-my-zsh/custom/themes/powerlevel9k" ]; then
         git clone "https://github.com/bhilburn/powerlevel9k.git" "$USERHOME/.oh-my-zsh/custom/themes/powerlevel9k"
     fi
-    # configure oh-my-zsh
-    sed -i "1iPOWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv vcs background_jobs)" "$USERHOME/.zshrc"
-    sed -i "1iPOWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)" "$USERHOME/.zshrc"
-    sed -i "1iDEFAULT_USER=$USERNAME" "$USERHOME/.zshrc"
-    sed -i "1iexport TERM=xterm-256color" "$USERHOME/.zshrc"
-    sed -i "/^ZSH_THEME=.*/c\ZSH_THEME=powerlevel9k\/powerlevel9k" "$USERHOME/.zshrc"
     chown -R $USERNAME:$USERNAME "$USERHOME/.oh-my-zsh"
+    make_symlink "$SETUP_HOME/home/.zshrc" "$USERHOME/.zshrc"
     chown $USERNAME:$USERNAME "$USERHOME/.zshrc"
 }
 
