@@ -18,17 +18,17 @@ main() {
 
     check_root
 
-    install_basic_tools
-
-    install_oh_my_zh
-    install_vim
-    install_nvim
-    install_git
-    install_subversion
-
-    install_java_tools
+#    install_basic_tools
+#
+#    install_oh_my_zh
+#    install_vim
+#    install_nvim
+#    install_git
+#    install_subversion
+#
+#    install_java_tools
     install_devops_tools
-    install_frontend_tools
+#    install_frontend_tools
 
     echo Done
 }
@@ -134,10 +134,10 @@ install_basic_tools() {
 }
 
 install_devops_tools() {
-    install_ansible
-    install_vagrant
-    install_packer
-    install_docker
+#    install_ansible
+#    install_vagrant
+#    install_packer
+#    install_docker
     install_terraform
 }
 
@@ -191,7 +191,7 @@ install_vagrant() {
 
 install_terraform() {
     echo "Installing terraform"
-    local TERRAFORM_VERSION="0.6.16"
+    local TERRAFORM_VERSION="0.7.5"
     local TERRAFROM_ZIP=terraform_${TERRAFORM_VERSION}_linux_amd64.zip
     wget --timestamping --progress=bar:force:noscroll --directory-prefix="/usr/local/bin/" "https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION/$TERRAFROM_ZIP"
     # -o tells unzip to overwrite existing files
