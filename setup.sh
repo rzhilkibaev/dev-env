@@ -18,17 +18,17 @@ main() {
 
     check_root
 
-#    install_basic_tools
-#
-#    install_oh_my_zh
-#    install_vim
-#    install_nvim
-#    install_git
-#    install_subversion
-#
-#    install_java_tools
+    install_basic_tools
+
+    install_oh_my_zh
+    install_vim
+    install_nvim
+    install_git
+    install_subversion
+
+    install_java_tools
     install_devops_tools
-#    install_frontend_tools
+    install_frontend_tools
 
     echo Done
 }
@@ -134,11 +134,11 @@ install_basic_tools() {
 }
 
 install_devops_tools() {
-#    install_ansible
-#    install_vagrant
-#    install_packer
+    install_ansible
+    install_vagrant
+    install_packer
     install_docker
-#    install_terraform
+    install_terraform
 }
 
 install_java_tools() {
@@ -202,25 +202,25 @@ install_terraform() {
 install_docker() {
     echo "Installing docker-engine"
     # install docker-engine
-#    if ! program_exists docker; then
-#        apt-key adv --keyserver "hkp://p80.pool.sks-keyservers.net:80" --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-#        echo "deb https://apt.dockerproject.org/repo ubuntu-$(lsb_release -cs) main" > "/etc/apt/sources.list.d/docker.list"
-#        apt-get-install linux-image-extra-$(uname -r) docker-engine
-#        if [ -z "$CI" ]; then
-#            # allow running docker without sudo
-#            usermod -aG docker $USERNAME
-#        fi
-#    fi
+    if ! program_exists docker; then
+        apt-key adv --keyserver "hkp://p80.pool.sks-keyservers.net:80" --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+        echo "deb https://apt.dockerproject.org/repo ubuntu-$(lsb_release -cs) main" > "/etc/apt/sources.list.d/docker.list"
+        apt-get-install linux-image-extra-$(uname -r) docker-engine
+        if [ -z "$CI" ]; then
+            # allow running docker without sudo
+            usermod -aG docker $USERNAME
+        fi
+    fi
 
     # install docker-machine
     echo "Installing docker-machine"
     wget --progress=bar:force:noscroll "https://github.com/docker/machine/releases/download/v0.8.2/docker-machine-$(uname -s)-$(uname -m)" -O "/usr/local/bin/docker-machine"
     chmod +x /usr/local/bin/docker-machine
 
-#    # install docker-compose
-#    echo "Installing docker-compose"
-#    wget --progress=bar:force:noscroll "https://github.com/docker/compose/releases/download/1.7.1/docker-compose-$(uname -s)-$(uname -m)" -O "/usr/local/bin/docker-compose"
-#    chmod +x "/usr/local/bin/docker-compose"
+    # install docker-compose
+    echo "Installing docker-compose"
+    wget --progress=bar:force:noscroll "https://github.com/docker/compose/releases/download/1.8.1/docker-compose-$(uname -s)-$(uname -m)" -O "/usr/local/bin/docker-compose"
+    chmod +x "/usr/local/bin/docker-compose"
 }
 
 install_frontend_tools() {
