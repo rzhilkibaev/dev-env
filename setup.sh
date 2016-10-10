@@ -167,7 +167,7 @@ install_oracle_java() {
 
 install_packer() {
     echo "Installing packer"
-    local PACKER_VERSION="0.10.1"
+    local PACKER_VERSION="0.10.2"
     wget --timestamping --progress=bar:force:noscroll --directory-prefix="/usr/local/bin/" "https://releases.hashicorp.com/packer/$PACKER_VERSION/packer_${PACKER_VERSION}_linux_amd64.zip"
     # -o tells unzip to overwrite existing files
     unzip -o "/usr/local/bin/packer_${PACKER_VERSION}_linux_amd64.zip" -d "/usr/local/bin/"
