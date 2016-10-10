@@ -151,7 +151,8 @@ install_java_tools() {
 install_ant() {
     if ! program_exists ant; then
         apt-get-install ant ant-contrib maven
-    fi }
+    fi
+}
 
 install_gradle() {
     # a one liner to execute gradlew in current directory
