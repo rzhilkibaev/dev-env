@@ -77,6 +77,14 @@ autocmd FileType yaml setlocal tabstop=2 " show existing Tab character as this m
 autocmd FileType yaml setlocal softtabstop=2 " how many spaces to insert when hitting Tab key
 autocmd FileType yaml setlocal shiftwidth=2 " how many spaces to insert for each step of identation
 
+" json {{{2
+autocmd FileType json setlocal foldmethod=indent
+autocmd FileType json setlocal foldlevel=99 " unfold everything on start
+" indentation
+autocmd FileType json setlocal tabstop=2 " show existing Tab character as this many spaces
+autocmd FileType json setlocal softtabstop=2 " how many spaces to insert when hitting Tab key
+autocmd FileType json setlocal shiftwidth=2 " how many spaces to insert for each step of identation
+
 " terraform {{{2
 autocmd FileType terraform setlocal foldmarker={,}
 autocmd FileType terraform setlocal foldmethod=marker
