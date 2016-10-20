@@ -193,7 +193,7 @@ install_vagrant() {
 
 install_terraform() {
     echo "Installing terraform"
-    local TERRAFORM_VERSION="0.7.5"
+    local TERRAFORM_VERSION="0.7.7"
     local TERRAFROM_ZIP=terraform_${TERRAFORM_VERSION}_linux_amd64.zip
     wget --timestamping --progress=bar:force:noscroll --directory-prefix="/usr/local/bin/" "https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION/$TERRAFROM_ZIP"
     # -o tells unzip to overwrite existing files
