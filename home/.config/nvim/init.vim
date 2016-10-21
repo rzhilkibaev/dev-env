@@ -88,6 +88,10 @@ autocmd FileType json setlocal shiftwidth=2 " how many spaces to insert for each
 " terraform {{{2
 autocmd FileType terraform setlocal foldmarker={,}
 autocmd FileType terraform setlocal foldmethod=marker
+" indentation
+autocmd FileType terraform setlocal tabstop=2 " show existing Tab character as this many spaces
+autocmd FileType terraform setlocal softtabstop=2 " how many spaces to insert when hitting Tab key
+autocmd FileType terraform setlocal shiftwidth=2 " how many spaces to insert for each step of identation
 
 " Keys {{{1
 " When mapping keys keep in maind that Ctrl+{j,k} is used in fzf
