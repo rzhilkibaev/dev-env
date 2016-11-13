@@ -19,7 +19,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv vcs background_jobs)
 plugins=(git)
 
 # User configuration
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -32,3 +32,6 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # aliases
 alias ":q"="exit"
 alias ":qa"="exit"
+
+# added by travis gem
+[ -f /home/rz/.travis/travis.sh ] && source /home/rz/.travis/travis.sh
