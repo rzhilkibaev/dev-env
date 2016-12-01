@@ -166,6 +166,7 @@ set hlsearch " highlight all occurences while typing
 set ignorecase
 set smartcase
 set wildmode=longest:full,full
+set inccommand=split " show substitute result live
 " Align blocks of text and keep them selected
 vmap < <gv
 vmap > >gv
