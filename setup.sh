@@ -155,8 +155,7 @@ install_ant() {
 }
 
 install_gradle() {
-    # a one liner to execute gradlew in current directory
-    make_symlink "$SETUP_HOME/bin/gradle" "/usr/local/bin/gradle"
+    apt-get-install gradle
 }
 
 install_oracle_java() {

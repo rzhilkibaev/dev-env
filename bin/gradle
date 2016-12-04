@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-#
-# Executes gradlew script in the current directory
-
-set -eo pipefail
-
-$PWD/gradlew "$@"
