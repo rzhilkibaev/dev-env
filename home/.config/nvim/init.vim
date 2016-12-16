@@ -172,6 +172,7 @@ vmap < <gv
 vmap > >gv
 let g:NERDTreeWinPos = "right"
 let NERDTreeQuitOnOpen=1
+let g:indentLine_faster=1 " makes it faster for long lines, might cause issues
 
 " Folding {{{1
 function! MyFoldText()
