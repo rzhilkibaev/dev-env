@@ -29,12 +29,11 @@ export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# make command line behave like vi
-bindkey -v
-
 # aliases
 alias ":q"="exit"
 alias ":qa"="exit"
 
 # added by travis gem
 [ -f /home/rz/.travis/travis.sh ] && source /home/rz/.travis/travis.sh
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
