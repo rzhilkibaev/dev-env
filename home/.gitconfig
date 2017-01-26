@@ -19,3 +19,7 @@
     lo = log --graph --decorate --abbrev-commit
     dt = difftool
     mt = mergetool
+[diff "gpg"]
+	textconv = gpg --use-agent -q --no-tty -decrypt
+[diff "eyaml"]
+	textconv = eyaml decrypt -e
