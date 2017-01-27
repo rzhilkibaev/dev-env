@@ -12,7 +12,6 @@ call dein#add('Shougo/dein.vim')
 " themes
 call dein#add('vim-airline/vim-airline') " advanced status line
 call dein#add('morhetz/gruvbox')
-call dein#add('Yggdroot/indentLine')
 " git
 call dein#add('tpope/vim-fugitive') " git support
 call dein#add('gregsexton/gitv') " git browser
@@ -48,7 +47,6 @@ set cursorline
 set termguicolors
 set background=dark
 colorscheme gruvbox
-let g:indentLine_char='│'
 " enable transparent background
 au ColorScheme * hi Normal ctermbg=none guibg=none
 " Airline
@@ -172,7 +170,6 @@ vmap < <gv
 vmap > >gv
 let g:NERDTreeWinPos = "right"
 let NERDTreeQuitOnOpen=1
-let g:indentLine_faster=1 " makes it faster for long lines, might cause issues
 
 " Folding {{{1
 function! MyFoldText()
