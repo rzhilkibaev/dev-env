@@ -130,6 +130,9 @@ nnoremap <leader>gc :Gcommit<cr>i
 nnoremap <leader>gs :Gstatus<cr>
 " git diff current file
 nnoremap <leader>gd :Gdiff<cr>
+" make (! prevents jumping to the file with first error, vim doesn't recognize
+" file names correctly sometimes.
+nnoremap <leader>m :make!<cr>
 
 " Tab completion {{{2
 " 1. If popup menu is visible, select and insert next item
