@@ -16,7 +16,7 @@
     co = checkout
     st = status
     ci = commit
-    lo = log --graph --decorate --abbrev-commit
+    bl = log --abbrev-commit --first-parent HEAD
     dt = difftool
     mt = mergetool
 [diff "gpg"]
