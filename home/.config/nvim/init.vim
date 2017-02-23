@@ -28,7 +28,7 @@ call dein#add('zchee/deoplete-jedi', {'on_ft': 'python'}) " autocomplete for pyt
 " autobuild
 call dein#add('neomake/neomake')
 " file types
-call dein#add('hashivim/vim-terraform.git', {'on_ft': 'terraform'})
+call dein#add('hashivim/vim-terraform.git')
 call dein#add('ekalinin/Dockerfile.vim', {'on_ft': 'Dockerfile'})
 call dein#add('tfnico/vim-gradle', {'on_ft': 'groovy'})
 call dein#add('tmhedberg/SimpylFold', {'on_ft': 'python'})
