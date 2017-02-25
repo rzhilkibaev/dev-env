@@ -32,6 +32,8 @@ call dein#add('hashivim/vim-terraform.git')
 call dein#add('ekalinin/Dockerfile.vim', {'on_ft': 'Dockerfile'})
 call dein#add('tfnico/vim-gradle', {'on_ft': 'groovy'})
 call dein#add('tmhedberg/SimpylFold', {'on_ft': 'python'})
+" google word under cursor
+call dein#add('szw/vim-g')
 
 " Install all {{{1
 if dein#check_install()
@@ -133,6 +135,8 @@ nnoremap <leader>gd :Gdiff<cr>
 " make (! prevents jumping to the file with first error, vim doesn't recognize
 " file names correctly sometimes.
 nnoremap <leader>m :make!<cr>
+" google a word under cursor on F1
+nnoremap <F1> :Googlef<cr>
 
 " Tab completion {{{2
 " 1. If popup menu is visible, select and insert next item
