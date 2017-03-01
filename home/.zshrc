@@ -37,3 +37,5 @@ alias ":qa"="exit"
 [ -f /home/rz/.travis/travis.sh ] && source /home/rz/.travis/travis.sh
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+source <(awless completion zsh)
+
