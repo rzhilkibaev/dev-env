@@ -136,6 +136,9 @@ nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>m :make!<cr>
 " google a word under cursor on F1
 nnoremap <F1> :Googlef<cr>
+" open terminal
+nnoremap <leader>t :split<cr>:wincmd j<cr>:terminal<cr><C-\><C-n>:setlocal nobuflisted<cr>i
+nnoremap <leader>vt :vsplit<cr>:wincmd l<cr>:terminal<cr><C-\><C-n>:setlocal nobuflisted<cr>i
 
 " Tab completion {{{2
 " 1. If popup menu is visible, select and insert next item
