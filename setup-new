@@ -31,6 +31,8 @@ main() {
     echo "USER_HOME=$USER_HOME"
     echo "OS=$OS"
 
+    install_package wget
+
     install_shell
 
     echo 'Done'
