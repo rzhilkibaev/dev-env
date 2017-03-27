@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+SETUP_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+echo "SETUP_HOME=$SETUP_HOME"
+
