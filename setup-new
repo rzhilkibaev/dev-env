@@ -40,7 +40,7 @@ main() {
 install_shell() {
     install_package zsh
     # Change default shell
-    change_shell $(which zsh)
+    change_default_shell $(which zsh)
     #if [ ! -d "$USERHOME/.oh-my-zsh" ]; then
     #    git clone "https://github.com/robbyrussell/oh-my-zsh.git" "$USERHOME/.oh-my-zsh"
     #fi
@@ -54,7 +54,7 @@ install_shell() {
     #chown $USERNAME:$USERNAME "$USERHOME/.zshrc"
 }
 
-change_shell() {
+change_default_shell() {
 	local new_shell="$1"
 	case $OS in
 		redhat)
