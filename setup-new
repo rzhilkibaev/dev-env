@@ -38,7 +38,7 @@ main() {
 }
 
 install_shell() {
-    install_package zsh aaa
+    install_package zsh
     #chsh -s /bin/zsh
     #if [ ! -d "$USERHOME/.oh-my-zsh" ]; then
     #    git clone "https://github.com/robbyrussell/oh-my-zsh.git" "$USERHOME/.oh-my-zsh"
@@ -56,11 +56,14 @@ install_shell() {
 install_package() {
     local packages="$@"
     case $OS in
+	    redhat)
+		    sudo yum -y install $@
+		    ;;
 	    ubuntu)
-		    echo "apt-get instal $@"
+		    sudo apt-get -y install $@
 		    ;;
 	    macos)
-		    echo "brew install $@"
+		    brew install $@
 		    ;;
     esac
 }
