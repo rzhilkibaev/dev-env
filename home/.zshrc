@@ -34,8 +34,7 @@ alias ":q"="exit"
 alias ":qa"="exit"
 
 # added by travis gem
-[ -f /home/rz/.travis/travis.sh ] && source /home/rz/.travis/travis.sh
+[ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-source <(awless completion zsh)
 
