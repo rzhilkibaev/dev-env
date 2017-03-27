@@ -2,7 +2,10 @@
 
 set -eo pipefail
 
+# Needed to know where to look for additional scripts and links
 SETUP_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# Needed to chown new files/directories
+USERNAME=$USER
 
 echo "SETUP_HOME=$SETUP_HOME"
-
+echo "USERNAME=$USERNAME"
