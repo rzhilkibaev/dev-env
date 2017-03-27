@@ -41,17 +41,45 @@ install_shell() {
     install_package zsh
     # Change default shell
     change_default_shell $(which zsh)
-    #if [ ! -d "$USERHOME/.oh-my-zsh" ]; then
-    #    git clone "https://github.com/robbyrussell/oh-my-zsh.git" "$USERHOME/.oh-my-zsh"
-    #fi
-    #install_powerline_fonts
-    ## install powerlevel9k theme
-    #if [ ! -d "$USERHOME/.oh-my-zsh/custom/themes/powerlevel9k" ]; then
-    #    git clone "https://github.com/bhilburn/powerlevel9k.git" "$USERHOME/.oh-my-zsh/custom/themes/powerlevel9k"
-    #fi
-    #chown -R $USERNAME:$USERNAME "$USERHOME/.oh-my-zsh"
-    #make_symlink "$SETUP_HOME/home/.zshrc" "$USERHOME/.zshrc"
-    #chown $USERNAME:$USERNAME "$USERHOME/.zshrc"
+    # Install Oh My Zsh
+    local oh_my_zsh_home=$USER_HOME/.oh-my-zsh
+    if [ ! -d $oh_my_zsh_home ]; then
+        git clone "https://github.com/robbyrussell/oh-my-zsh.git" $oh_my_zsh_home
+    else
+	git -C $oh_my_zsh_home pull
+    fi
+    install_powerline_fonts
+    # install powerlevel9k theme
+    local powerlevel9k_home=$oh_my_zsh_home/custom/themes/powerlevel9k
+    if [ ! -d $powerlevel9k_home ]; then
+        git clone "https://github.com/bhilburn/powerlevel9k.git" $powerlevel9k_home
+    else
+	git -C $powerlevel9k_home pull
+    fi
+    make_symlink $SETUP_HOME/home/.zshrc $USER_HOME/.zshrc
+}
+
+install_powerline_fonts() {
+    echo "Installing Powerline fonts"
+    local font_dir="$USER_HOME/.local/share/fonts"
+    mkdir -p $font_dir
+    cd $font_dir
+    # install font DejaVu Sans Mono
+    wget -q --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20Bold%20Oblique%20for%20Powerline.ttf"
+    wget -q --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20Bold%20for%20Powerline.ttf"
+    wget -q --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20Oblique%20for%20Powerline.ttf"
+    wget -q --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20for%20Powerline.ttf"
+    [[ $OS == 'redhat' || $OS == 'debian' ]] && fc-cache -vf $font_dir
+}
+
+make_symlink() {
+    local target="$1"
+    local link_name="$2"
+
+    # ensure link path (won't complain if exists)
+    mkdir -p $(dirname "$link_name")
+    rm -f "$link_name"
+    ln -s "$target" "$link_name"
 }
 
 change_default_shell() {

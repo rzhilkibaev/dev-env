@@ -9,11 +9,13 @@ export EDITOR=nvim
 export TERM=xterm-256color
 
 # Set name of the theme to load.
-ZSH_THEME=powerlevel9k/powerlevel9k
-# this is what's shown on the left
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
-# this is what's shown on the right
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv vcs background_jobs)
+if [ -d $ZSH/custom/themes/powerlevel9k ]; then
+    ZSH_THEME=powerlevel9k/powerlevel9k
+    # this is what's shown on the left
+    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
+    # this is what's shown on the right
+    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv vcs background_jobs)
+fi
 
 # load following plugins
 plugins=(git)
