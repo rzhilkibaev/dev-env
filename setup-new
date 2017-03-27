@@ -39,7 +39,7 @@ main() {
 
 install_shell() {
     install_package zsh
-    # Change default shell (requires restart)
+    # Change default shell
     change_shell $(which zsh)
     #if [ ! -d "$USERHOME/.oh-my-zsh" ]; then
     #    git clone "https://github.com/robbyrussell/oh-my-zsh.git" "$USERHOME/.oh-my-zsh"
@@ -55,15 +55,22 @@ install_shell() {
 }
 
 change_shell() {
+	local new_shell="$1"
 	case $OS in
 		redhat)
-			sudo usermod -s "$1" "$USER_NAME"
+ 			#todo: currently requires restart, fix it
+			sudo usermod -s "$new_shell" "$USER_NAME"
 			;;
 		debian)
-			chsh -s "$1"
+			chsh -s "$new_shell"
 			;;
 		macos)
-			chsh -s "$1"
+			# Add the new shell to the accepted list of shells if it's not there yet
+			# Without this chsh will fail with 'non-standard shell'
+			if grep -q $new_shell /etc/shells; then
+				echo $new_shell >> /etc/shells
+			fi
+			chsh -s "$new_shell"
 	esac
 }
 
