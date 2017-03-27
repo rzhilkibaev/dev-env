@@ -2,10 +2,17 @@
 
 set -eo pipefail
 
-# Needed to know where to look for additional scripts and links
+# Needed to know where to look for additional scripts
 SETUP_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Remember user details before runnig sudo
+# (running sudo changes those)
+
 # Needed to chown new files/directories
-USERNAME=$USER
+USER_NAME=$USER
+# Where to create symlinks
+USER_HOME="$HOME"
 
 echo "SETUP_HOME=$SETUP_HOME"
-echo "USERNAME=$USERNAME"
+echo "USER_NAME=$USER_NAME"
+echo "USER_HOME=$USER_HOME"
