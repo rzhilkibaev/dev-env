@@ -62,12 +62,13 @@ change_shell() {
 			sudo usermod -s "$new_shell" "$USER_NAME"
 			;;
 		debian)
-			chsh -s "$new_shell"
+			sudo chsh -s "$new_shell" $USER_NAME
 			;;
 		macos)
 			# Add the new shell to the accepted list of shells if it's not there yet
 			# Without this chsh will fail with 'non-standard shell'
 			if ! grep -q $new_shell /etc/shells; then
+				# Cannot use sudo together with >>, so appending with tee
 				echo $new_shell | sudo tee -a /etc/shells
 			fi
 			sudo chsh -s $new_shell $USER_NAME
