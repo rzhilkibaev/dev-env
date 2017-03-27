@@ -12,7 +12,57 @@ SETUP_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 USER_NAME=$USER
 # Where to create symlinks
 USER_HOME="$HOME"
+# OS
+if [[ -f /etc/redhat-release ]]; then
+	OS='redhat'
+elif [[ -f /etc/debian_version ]]; then
+	OS='debian'
+elif [[ $(uname) == 'Darwin' ]]; then
+	OS='macos'
+else
+	echo "Unsupported OS $(uname)"
+	exit 1
+fi
 
-echo "SETUP_HOME=$SETUP_HOME"
-echo "USER_NAME=$USER_NAME"
-echo "USER_HOME=$USER_HOME"
+main() {
+
+    echo "SETUP_HOME=$SETUP_HOME"
+    echo "USER_NAME=$USER_NAME"
+    echo "USER_HOME=$USER_HOME"
+    echo "OS=$OS"
+
+    install_shell
+
+    echo 'Done'
+
+}
+
+install_shell() {
+    install_package zsh aaa
+    #chsh -s /bin/zsh
+    #if [ ! -d "$USERHOME/.oh-my-zsh" ]; then
+    #    git clone "https://github.com/robbyrussell/oh-my-zsh.git" "$USERHOME/.oh-my-zsh"
+    #fi
+    #install_powerline_fonts
+    ## install powerlevel9k theme
+    #if [ ! -d "$USERHOME/.oh-my-zsh/custom/themes/powerlevel9k" ]; then
+    #    git clone "https://github.com/bhilburn/powerlevel9k.git" "$USERHOME/.oh-my-zsh/custom/themes/powerlevel9k"
+    #fi
+    #chown -R $USERNAME:$USERNAME "$USERHOME/.oh-my-zsh"
+    #make_symlink "$SETUP_HOME/home/.zshrc" "$USERHOME/.zshrc"
+    #chown $USERNAME:$USERNAME "$USERHOME/.zshrc"
+}
+
+install_package() {
+    local packages="$@"
+    case $OS in
+	    ubuntu)
+		    echo "apt-get instal $@"
+		    ;;
+	    macos)
+		    echo "brew install $@"
+		    ;;
+    esac
+}
+
+main
