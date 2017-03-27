@@ -39,7 +39,8 @@ main() {
 
 install_shell() {
     install_package zsh
-    #chsh -s /bin/zsh
+    # Change default shell (requires restart)
+    change_shell $(which zsh)
     #if [ ! -d "$USERHOME/.oh-my-zsh" ]; then
     #    git clone "https://github.com/robbyrussell/oh-my-zsh.git" "$USERHOME/.oh-my-zsh"
     #fi
@@ -51,6 +52,19 @@ install_shell() {
     #chown -R $USERNAME:$USERNAME "$USERHOME/.oh-my-zsh"
     #make_symlink "$SETUP_HOME/home/.zshrc" "$USERHOME/.zshrc"
     #chown $USERNAME:$USERNAME "$USERHOME/.zshrc"
+}
+
+change_shell() {
+	case $OS in
+		redhat)
+			sudo usermod -s "$1" "$USER_NAME"
+			;;
+		debian)
+			chsh -s "$1"
+			;;
+		macos)
+			chsh -s "$1"
+	esac
 }
 
 install_package() {
