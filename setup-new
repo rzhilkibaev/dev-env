@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -eo pipefail
+set -x
 
 # Needed to know where to look for additional scripts
 SETUP_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -78,7 +79,9 @@ install_powerline_fonts() {
     wget -q --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20Bold%20for%20Powerline.ttf"
     wget -q --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20Oblique%20for%20Powerline.ttf"
     wget -q --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20for%20Powerline.ttf"
-    [[ $OS == 'redhat' || $OS == 'debian' ]] && fc-cache -vf $font_dir
+    if [[ $OS == 'redhat' || $OS == 'debian' ]]; then
+	    fc-cache -vf $font_dir
+    fi
 }
 
 make_symlink() {
