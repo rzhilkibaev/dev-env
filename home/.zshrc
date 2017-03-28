@@ -1,5 +1,5 @@
 # username is not shown for default user in command prompt
-DEFAULT_USER=rz
+DEFAULT_USER=$USER
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -12,7 +12,7 @@ export TERM=xterm-256color
 if [ -d $ZSH/custom/themes/powerlevel9k ]; then
     ZSH_THEME=powerlevel9k/powerlevel9k
     # this is what's shown on the left
-    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
+    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status context dir)
     # this is what's shown on the right
     POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv vcs background_jobs)
 fi
