@@ -63,7 +63,14 @@ install_shell() {
 
 install_powerline_fonts() {
     echo "Installing Powerline fonts"
-    local font_dir="$USER_HOME/.local/share/fonts"
+    case $OS in
+	    macos)
+		    local font_dir="$USER_HOME/Library/Fonts"
+		    ;;
+	    *)
+		    local font_dir="$USER_HOME/.local/share/fonts"
+		    ;;
+    esac
     mkdir -p $font_dir
     cd $font_dir
     # install font DejaVu Sans Mono
