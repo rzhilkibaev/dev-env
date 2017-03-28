@@ -35,6 +35,8 @@ main() {
     install_package wget
 
     install_shell
+    install_pip
+    install_nvim
 
     echo 'Done'
 
@@ -62,6 +64,39 @@ install_shell() {
     make_symlink $SETUP_HOME/home/.zshrc $USER_HOME/.zshrc
 }
 
+install_pip() {
+    case $OS in
+	    macos)
+		    brew install python
+		    brew install python3
+		    ;;
+    esac
+}
+
+install_nvim() {
+    echo "Installing neovim"
+    case $OS in
+	    debian)
+		    add-apt-repository ppa:neovim-ppa/unstable -y
+		    # also install xsel for clipboard support
+		    install_package neovim xsel
+		    sudo pip install neovim
+		    sudo pip3 install neovim
+		    sudo pip install jedi
+		    ;;
+	    macos)
+		    brew install neovim/neovim/neovim
+		    pip install neovim
+		    pip3 install neovim
+		    pip install jedi
+		    ;;
+    esac
+
+    mkdir -p "$USER_HOME/.config/nvim"
+    make_symlink "$SETUP_HOME/home/.config/nvim/init.vim" "$USER_HOME/.config/nvim/init.vim"
+    install_powerline_fonts
+}
+
 install_powerline_fonts() {
     echo "Installing Powerline fonts"
     case $OS in
@@ -81,6 +116,7 @@ install_powerline_fonts() {
     wget -q --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20for%20Powerline.ttf"
     if [[ $OS == 'redhat' || $OS == 'debian' ]]; then
 	    fc-cache -vf $font_dir
+
     fi
 }
 
