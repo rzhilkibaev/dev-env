@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -eo pipefail
-set -x
+#set -x
 
 # Needed to know where to look for additional scripts
 SETUP_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
