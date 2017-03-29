@@ -38,6 +38,7 @@ main() {
     install_pip
     install_nvim
     install_custom_tools
+    install_git
 
     echo 'Done'
 
@@ -126,6 +127,15 @@ install_powerline_fonts() {
 	    fc-cache -vf $font_dir
 
     fi
+}
+
+install_git() {
+    echo "Installing git"
+    # git is already installed, just configure
+    # setup .gitconfig
+    make_symlink "$SETUP_HOME/home/.gitconfig" "$USER_HOME/.gitconfig"
+    # setup merge script
+    make_symlink "$SETUP_HOME/bin/mygitmerge" "/usr/local/bin/mygitmerge"
 }
 
 make_symlink() {
