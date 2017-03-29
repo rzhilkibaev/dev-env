@@ -63,6 +63,7 @@ install_shell() {
 	git -C $powerlevel9k_home pull
     fi
     make_symlink $SETUP_HOME/home/.zshrc $USER_HOME/.zshrc
+    make_symlink $SETUP_HOME/home/.tmux.conf $USER_HOME/.tmux.conf
 }
 
 install_custom_tools() {
