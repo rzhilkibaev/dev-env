@@ -43,7 +43,7 @@ main() {
 }
 
 install_shell() {
-    install_package zsh
+    install_package zsh tmux
     # Change default shell
     change_default_shell $(which zsh)
     # Install Oh My Zsh

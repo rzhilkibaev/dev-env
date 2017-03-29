@@ -17,8 +17,13 @@ if [ -d $ZSH/custom/themes/powerlevel9k ]; then
     POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv vcs background_jobs)
 fi
 
+# Start tmux when starting zsh
+ZSH_TMUX_AUTOSTART=true
+# Reconnect to existing session for every terminal instance
+ZSH_TMUX_AUTOCONNECT=false
+
 # load following plugins
-plugins=(git)
+plugins=(git tmux)
 
 # User configuration
 export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:$PATH
