@@ -19,8 +19,6 @@ fi
 
 # Start tmux when starting zsh
 ZSH_TMUX_AUTOSTART=true
-# Reconnect to existing session for every terminal instance
-ZSH_TMUX_AUTOCONNECT=false
 # Quit shell when tmux exits
 # Can't connect to existing sessions if set to true
 ZSH_TMUX_AUTOQUIT=false
