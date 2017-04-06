@@ -141,11 +141,17 @@ install_git() {
 make_symlink() {
     local target="$1"
     local link_name="$2"
+    sudo_cmd=""
+
+    # need sudo for some locations
+    if [[ $link_name == /usr/* ]]; then
+        sudo_cmd="sudo"
+    fi
 
     # ensure link path (won't complain if exists)
-    mkdir -p $(dirname "$link_name")
-    rm -f "$link_name"
-    ln -s "$target" "$link_name"
+    $sudo_cmd mkdir -p $(dirname "$link_name")
+    $sudo_cmd rm -f "$link_name"
+    $sudo_cmd ln -s "$target" "$link_name"
 }
 
 change_default_shell() {
