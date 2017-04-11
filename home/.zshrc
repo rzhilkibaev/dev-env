@@ -37,8 +37,11 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # aliases
+# vim-like exit
 alias ":q"="exit"
 alias ":qa"="exit"
+# easy virtualenv
+alias "venv"="source ./venv/bin/activate"
 
 # added by travis gem
 [ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
