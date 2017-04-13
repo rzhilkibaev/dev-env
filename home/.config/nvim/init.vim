@@ -34,6 +34,8 @@ call dein#add('tfnico/vim-gradle', {'on_ft': 'groovy'})
 call dein#add('tmhedberg/SimpylFold', {'on_ft': 'python'})
 " google word under cursor
 call dein#add('szw/vim-g')
+" some extra file operations (:Rename, :Move, :SudoWrite,...)
+call dein#add('tpope/vim-eunuch')
 
 " Install all {{{1
 if dein#check_install()
