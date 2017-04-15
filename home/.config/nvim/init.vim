@@ -130,7 +130,7 @@ nnoremap <leader>gc :Gcommit<cr>i
 " git status
 nnoremap <leader>gs :Gstatus<cr>
 " git diff current file
-nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gd :Gvdiff<cr>
 " make (! prevents jumping to the file with first error, vim doesn't recognize
 " file names correctly sometimes.
 nnoremap <leader>m :make!<cr>
