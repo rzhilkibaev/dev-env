@@ -11,7 +11,7 @@ call dein#add('Shougo/dein.vim')
 " Plugins {{{1
 " themes
 call dein#add('vim-airline/vim-airline') " advanced status line
-call dein#add('morhetz/gruvbox')
+call dein#add('rzhilkibaev/gruvbox')
 " git
 call dein#add('tpope/vim-fugitive') " git support
 call dein#add('gregsexton/gitv') " git browser
@@ -52,7 +52,7 @@ set termguicolors
 set background=dark
 colorscheme gruvbox
 " enable transparent background
-au ColorScheme * hi Normal ctermbg=none guibg=none
+" au ColorScheme * hi Normal ctermbg=none guibg=none
 " Airline
 let g:airline_powerline_fonts=1 " Enable powerline fonts (nice looking airline with extra glyphs)
 let g:airline#extensions#tabline#enabled = 1 " Enable bufer list on top
