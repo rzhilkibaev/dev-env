@@ -117,6 +117,9 @@ nnoremap C "_C
 vnoremap C "_C
 nnoremap dd "_dd
 vnoremap dd "_dd
+" Shift+h/l to go to behining/end of the line
+nnoremap H ^
+nnoremap L $
 " Backspace to switch between two latest buffers
 nnoremap <BS> <C-^>
 " Ctrl+n to jump to next buffer
