@@ -150,6 +150,7 @@ nnoremap <leader>t :split<cr>:wincmd j<cr>:terminal<cr><C-\><C-n>:setlocal nobuf
 nnoremap <leader>vt :vsplit<cr>:wincmd l<cr>:terminal<cr><C-\><C-n>:setlocal nobuflisted<cr>i
 " vimux
 nnoremap <leader>c :VimuxPromptCommand<cr>
+nnoremap <leader>vl :VimuxRunLastCommand<cr>
 
 " Tab completion {{{2
 " 1. If popup menu is visible, select and insert next item
