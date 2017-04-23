@@ -36,8 +36,10 @@ call dein#add('tmhedberg/SimpylFold', {'on_ft': 'python'})
 call dein#add('szw/vim-g')
 " some extra file operations (:Rename, :Move, :SudoWrite,...)
 call dein#add('tpope/vim-eunuch')
-" tmux
+" seamlessly navigate between tmux and vim panels
 call dein#add('christoomey/vim-tmux-navigator')
+" send commands to tmux
+call dein#add('benmills/vimux')
 
 " Install all {{{1
 if dein#check_install()
@@ -143,6 +145,8 @@ nnoremap <F1> :Googlef<cr>
 " open terminal
 nnoremap <leader>t :split<cr>:wincmd j<cr>:terminal<cr><C-\><C-n>:setlocal nobuflisted<cr>i
 nnoremap <leader>vt :vsplit<cr>:wincmd l<cr>:terminal<cr><C-\><C-n>:setlocal nobuflisted<cr>i
+" vimux
+nnoremap <leader>c :VimuxPromptCommand<cr>
 
 " Tab completion {{{2
 " 1. If popup menu is visible, select and insert next item
