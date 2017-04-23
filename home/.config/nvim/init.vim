@@ -36,6 +36,8 @@ call dein#add('tmhedberg/SimpylFold', {'on_ft': 'python'})
 call dein#add('szw/vim-g')
 " some extra file operations (:Rename, :Move, :SudoWrite,...)
 call dein#add('tpope/vim-eunuch')
+" tmux
+call dein#add('christoomey/vim-tmux-navigator')
 
 " Install all {{{1
 if dein#check_install()
@@ -176,6 +178,9 @@ set ignorecase
 set smartcase
 set wildmode=longest:full,full
 set inccommand=split " show substitute result live
+" Open new split panes to right and bottom, which feels more natural than Vim’s default
+set splitbelow
+set splitright
 " Align blocks of text and keep them selected
 vmap < <gv
 vmap > >gv
