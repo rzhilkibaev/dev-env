@@ -216,6 +216,11 @@ let g:deoplete#sources#jedi#show_docstring = 1
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif " autoclose preview window
 
 " Neomake {{{1
-let g:neomake_open_list = 2 " open errors list, close when no errors
 nnoremap <F5> :Neomake<cr>
+let g:neomake_open_list = 2 " open errors list, close when no errors
+if executable('mypy')
+    " add mypy to the list of makers
+    let g:neomake_python_enabled_makers = neomake#makers#ft#python#EnabledMakers()
+    call add(g:neomake_python_enabled_makers, 'mypy')
+endif
 
