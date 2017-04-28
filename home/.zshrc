@@ -43,6 +43,9 @@ alias ":qa"="exit"
 # easy virtualenv
 alias "venv"="source ./venv/bin/activate"
 
+# disable *.pyc files
+export PYTHONDONTWRITEBYTECODE=true
+
 # added by travis gem
 [ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
 
