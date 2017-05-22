@@ -19,9 +19,6 @@ fi
 
 # Start tmux when starting zsh
 ZSH_TMUX_AUTOSTART=true
-# Quit shell when tmux exits
-# Can't connect to existing sessions if set to true
-ZSH_TMUX_AUTOQUIT=false
 # load following plugins
 plugins=(git tmux)
 
