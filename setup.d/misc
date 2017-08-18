@@ -1,0 +1,6 @@
+# vim: set ft=sh:
+. $INIT_SCRIPT
+
+make_symlink "$SETUP_HOME/bin/f" "/usr/local/bin/f"
+make_symlink "$SETUP_HOME/bin/pack" "/usr/local/bin/pack"
+make_symlink "$SETUP_HOME/bin/unpack" "/usr/local/bin/unpack"
