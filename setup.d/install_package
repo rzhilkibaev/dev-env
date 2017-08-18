@@ -1,0 +1,4 @@
+# vim: set ft=sh:
+. $INIT_SCRIPT
+
+install_package "$@"
