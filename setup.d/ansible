@@ -1,0 +1,11 @@
+. $SETUP_HOME/setup.d/_init
+
+if [ "$OS_FAMILY" == "debian" ]; then
+    # without this a much older version will be installed
+    apt-add-repository ppa:ansible/ansible -y
+    apt-get update -qq
+fi
+
+install_package ansible
+
+! grep --quiet "export ANSIBLE_NOCOWS" "$USERHOME/.bashrc" && echo "export ANSIBLE_NOCOWS=1" >> "$USERHOME/.bashrc"
