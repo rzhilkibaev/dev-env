@@ -1,0 +1,6 @@
+# vim: set ft=sh:
+. $INIT_SCRIPT
+
+download "https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh" "/tmp/nvm-install.sh"
+chmod +x /tmp/nvm-install.sh
+runuser -l $USERNAME -c '/tmp/nvm-install.sh'
