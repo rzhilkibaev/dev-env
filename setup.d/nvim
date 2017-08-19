@@ -1,0 +1,27 @@
+# vim: set ft=sh:
+. $INIT_SCRIPT
+
+case $OS_FAMILY in
+    debian)
+        add-apt-repository ppa:neovim-ppa/stable -y
+        apt-get update -qq
+        # also install xsel for clipboard support
+        install_package neovim python-dev python-pip python3-dev python3-pip xsel
+        runuser -l $USERNAME -c 'pip  install --user --upgrade neovim'
+        runuser -l $USERNAME -c 'pip3 install --user --upgrade neovim'
+        ;;
+    redhat)
+        install_package neovim python-pip python3-pip xsel
+        runuser -l $USERNAME -c 'pip  install --user --upgrade neovim'
+        runuser -l $USERNAME -c 'pip3 install --user --upgrade neovim'
+        ;;
+    macos)
+        brew install neovim/neovim/neovim
+        runuser -l $USERNAME -c 'pip  install --user --upgrade neovim'
+        runuser -l $USERNAME -c 'pip3 install --user --upgrade neovim'
+        ;;
+esac
+
+mkdir -p "$USER_HOME/.config/nvim"
+make_symlink "$SETUP_HOME/home/.config/nvim/init.vim" "$USER_HOME/.config/nvim/init.vim"
+#install_powerline_fonts
