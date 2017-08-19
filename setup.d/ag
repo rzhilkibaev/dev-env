@@ -1,0 +1,13 @@
+# vim: set ft=sh:
+. $INIT_SCRIPT
+
+case $OS_FAMILY in
+    debian)
+        package_name="silversearcher-ag"
+        ;;
+    redhat)
+        package_name="the_silver_searcher"
+        ;;
+esac
+
+install_package "$package_name"
