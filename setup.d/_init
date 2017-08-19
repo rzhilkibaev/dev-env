@@ -66,3 +66,9 @@ make_symlink() {
     rm -f "$link_name"
     ln -s "$target" "$link_name"
 }
+
+download() {
+    src="$1"
+    dst="$2"
+    wget -q --progress=bar:force:noscroll "$src" -O "$dst"
+}

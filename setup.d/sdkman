@@ -1,5 +1,5 @@
 # vim: set ft=sh:
 . $INIT_SCRIPT
-wget "https://get.sdkman.io" -O /tmp/sdkman
+download "https://get.sdkman.io" /tmp/sdkman
 chmod +x /tmp/sdkman
 runuser -l $USERNAME -c '/tmp/sdkman'
