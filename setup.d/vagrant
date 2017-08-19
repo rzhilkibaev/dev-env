@@ -15,7 +15,7 @@ case $OS_FAMILY in
         ;;
 esac
 
-wget -q --timestamping --progress=bar:force:noscroll "https://releases.hashicorp.com/vagrant/$VERSION/vagrant_${VERSION}_x86_64.$PACKAGE_TYPE" -O "/tmp/vagrant.$PACKAGE_TYPE"
+wget -q --progress=bar:force:noscroll "https://releases.hashicorp.com/vagrant/$VERSION/vagrant_${VERSION}_x86_64.$PACKAGE_TYPE" -O "/tmp/vagrant.$PACKAGE_TYPE"
 
 case $OS_FAMILY in
     debian)
