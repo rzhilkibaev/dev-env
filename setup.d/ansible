@@ -1,4 +1,5 @@
-. $SETUP_HOME/setup.d/_init
+# vim: set ft=sh:
+. $INIT_SCRIPT
 
 if [ "$OS_FAMILY" == "debian" ]; then
     # without this a much older version will be installed
