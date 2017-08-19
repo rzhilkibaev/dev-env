@@ -1,0 +1,7 @@
+# vim: set ft=sh:
+. $INIT_SCRIPT
+
+VERSION="0.10.2"
+wget --progress=bar:force:noscroll "https://releases.hashicorp.com/terraform/$VERSION/terraform_${VERSION}_linux_amd64.zip" -O "/tmp/terraform.zip"
+# -o tells unzip to overwrite existing files
+unzip -o "/tmp/terraform.zip" -d "/usr/local/bin/"
