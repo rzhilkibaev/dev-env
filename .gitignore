@@ -11,3 +11,5 @@ home/.subversion/README.txt
 
 # vagrant
 .vagrant
+
+*.log
