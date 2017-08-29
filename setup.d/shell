@@ -1,0 +1,74 @@
+# vim: set ft=sh:
+. $INIT_SCRIPT
+
+change_default_shell() {
+	local new_shell="$1"
+	case $OS_FAMILY in
+		redhat)
+ 			#todo: currently requires restart, fix it
+			sudo usermod -s "$new_shell" $USERNAME
+			;;
+		debian)
+			sudo chsh -s "$new_shell" $USERNAME
+			;;
+		macos)
+			# Add the new shell to the accepted list of shells if it's not there yet
+			# Without this chsh will fail with 'non-standard shell'
+			if ! grep -q $new_shell /etc/shells; then
+				# Cannot use sudo together with >>, so appending with tee
+				echo $new_shell | sudo tee -a /etc/shells
+			fi
+			sudo chsh -s $new_shell $USERNAME
+	esac
+}
+
+install_powerline_fonts() {
+    case $OS_FAMILY in
+	    macos)
+		    local font_dir="$USERHOME/Library/Fonts"
+		    ;;
+	    *)
+		    local font_dir="$USERHOME/.local/share/fonts"
+		    ;;
+    esac
+    mkdir -p $font_dir
+    cd $font_dir
+    # install font DejaVu Sans Mono
+    wget -q --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20Bold%20Oblique%20for%20Powerline.ttf"
+    wget -q --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20Bold%20for%20Powerline.ttf"
+    wget -q --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20Oblique%20for%20Powerline.ttf"
+    wget -q --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20for%20Powerline.ttf"
+    chown $USERNAME:$USERNAME $font_dir
+}
+
+install_oh_my_zh() {
+    local oh_my_zsh_home=$USERHOME/.oh-my-zsh
+    if [ ! -d $oh_my_zsh_home ]; then
+        git clone "https://github.com/robbyrussell/oh-my-zsh.git" $oh_my_zsh_home
+    else
+        git -C $oh_my_zsh_home pull
+    fi
+    chown $USERNAME:$USERNAME $oh_my_zsh_home
+}
+
+install_powerlevel9k_theme() {
+    local oh_my_zsh_home=$USERHOME/.oh-my-zsh
+    local powerlevel9k_home=$oh_my_zsh_home/custom/themes/powerlevel9k
+    if [ ! -d $powerlevel9k_home ]; then
+        git clone "https://github.com/bhilburn/powerlevel9k.git" $powerlevel9k_home
+    else
+        git -C $powerlevel9k_home pull
+    fi
+    chown $USERNAME:$USERNAME $powerlevel9k_home
+}
+
+install_powerline_fonts
+install_package zsh
+install_package tmux
+install_oh_my_zh
+install_powerlevel9k_theme
+make_symlink $SETUP_HOME/home/.zshrc $USERHOME/.zshrc
+chown $USERNAME:$USERNAME $USERHOME/.zshrc
+make_symlink $SETUP_HOME/home/.tmux.conf $USERHOME/.tmux.conf
+chown $USERNAME:$USERNAME $USERHOME/.tmux.conf
+change_default_shell $(which zsh)
