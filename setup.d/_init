@@ -1,4 +1,8 @@
 # vim: set ft=sh:
+
+#set -x
+set -eo pipefail
+
 USERNAME=$SUDO_USER
 USERHOME=/home/$USERNAME
 
