@@ -10,11 +10,22 @@ case $OS_FAMILY in
         apt-get update -qq
         ;;
     redhat)
+        set +e
         yum remove docker docker-common docker-selinux docker-engine-selinux docker-engine -y
-        #yum install dnf-plugins-core -y
+        set -e
+        yum install dnf-plugins-core -y
         yum config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
         yum makecache -y
         ;;
 esac
 
 install_package docker-ce
+
+usermod -aG docker $USERNAME
+
+case $OS_FAMILY in
+    redhat)
+        # on fedora the daemon is disable by default
+        systemctl enable docker
+        ;;
+esac

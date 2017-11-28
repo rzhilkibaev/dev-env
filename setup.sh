@@ -14,7 +14,8 @@ main() {
     #TOOL_NAMES+=(sdkman) # sdkman can be used to install maven, ant, gradle, java...
     #TOOL_NAMES+=(nvm) # nvm can be used to install nodejs, npm...
     #TOOL_NAMES+=(nvim)
-    TOOL_NAMES+=(shell)
+    #TOOL_NAMES+=(shell)
+    TOOL_NAMES+=(docker)
     #TOOL_NAMES+=(sshfs cifs-utils)
     #TOOL_NAMES+=(gnome-terminal)
     #TOOL_NAMES+=(tree vifm subversion ag)
@@ -23,24 +24,29 @@ main() {
     export SETUP_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
     echo SETUP_HOME=$SETUP_HOME
 
+    # make the name of the init script available to the custom installers
     export INIT_SCRIPT=$SETUP_HOME/setup.d/_init
 
     date -Iseconds > setup.log
 
     for TOOL_NAME in ${TOOL_NAMES[@]}; do
-        echo $TOOL_NAME
-        # use dedicated installer if exists
+        echo "Installing $TOOL_NAME"
+        # use custom installer if exists
         if [ -f $SETUP_HOME/setup.d/$TOOL_NAME ]; then
             $SETUP_HOME/setup.d/$TOOL_NAME &>> setup.log
         else  # otherwise use common package installer 
             $SETUP_HOME/setup.d/install_package $TOOL_NAME &>> setup.log
         fi
         if [ $? -ne 0 ]; then
+            echo "Error occured while installing $TOOL_NAME"
+            echo "START setup.log"
             cat setup.log
+            echo "END of setup.log"
+            echo
         fi
     done
 
-    cat setup.log
+    #cat setup.log
 
     echo Done
 }
