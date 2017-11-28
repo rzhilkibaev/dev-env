@@ -48,3 +48,8 @@ export PYTHONDONTWRITEBYTECODE=true
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
+
+autoload -U +X bashcompinit && bashcompinit
+complete -C /usr/local/bin/terraform terraform
+
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).

@@ -1,0 +1,6 @@
+# vim: set ft=sh:
+. $INIT_SCRIPT
+
+download "https://git.io/n-install" "/tmp/n-install"
+chmod +x /tmp/n-install
+runuser -l $USERNAME -c "/tmp/n-install -y"
