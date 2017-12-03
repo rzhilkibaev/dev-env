@@ -22,5 +22,5 @@ case $OS_FAMILY in
         ;;
 esac
 
-mkdir -p "$USER_HOME/.config/nvim"
-make_symlink "$SETUP_HOME/home/.config/nvim/init.vim" "$USER_HOME/.config/nvim/init.vim"
+mkdir -p "$USERHOME/.config/nvim"
+make_symlink "$SETUP_HOME/home/.config/nvim/init.vim" "$USERHOME/.config/nvim/init.vim"
