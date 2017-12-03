@@ -1,53 +1,55 @@
-" Setup dein {{{1
+" Get dein {{{1
 if (!isdirectory(expand("$HOME/.config/nvim/repos/github.com/Shougo/dein.vim")))
     call system(expand("mkdir -p $HOME/.config/nvim/repos/github.com"))
     call system(expand("git clone https://github.com/Shougo/dein.vim $HOME/.config/nvim/repos/github.com/Shougo/dein.vim"))
 endif
 
 set runtimepath+=~/.config/nvim/repos/github.com/Shougo/dein.vim/
-call dein#begin(expand('~/.config/nvim'))
-call dein#add('Shougo/dein.vim')
+if dein#load_state(expand('~/.config/nvim'))
+    call dein#begin(expand('~/.config/nvim'))
+    call dein#add('Shougo/dein.vim')
 
-" Plugins {{{1
-" themes
-call dein#add('vim-airline/vim-airline') " advanced status line
-call dein#add('rzhilkibaev/gruvbox')
-" git
-call dein#add('tpope/vim-fugitive') " git support
-call dein#add('gregsexton/gitv') " git browser
-" quick search
-call dein#add('junegunn/fzf', { 'build': './install --all' }) " fuzzy finder
-call dein#add('junegunn/fzf.vim')
-call dein#add('scrooloose/nerdtree')
-" snippets
-call dein#add('Shougo/neosnippet')
-call dein#add('Shougo/neosnippet-snippets')
-" autocomplete
-call dein#add('Shougo/deoplete.nvim') " autocomplete
-call dein#add('zchee/deoplete-jedi', {'on_ft': 'python'}) " autocomplete for python (make sure to install jedi)
-" autobuild
-call dein#add('neomake/neomake')
-" file types
-call dein#add('hashivim/vim-terraform.git')
-call dein#add('ekalinin/Dockerfile.vim', {'on_ft': 'Dockerfile'})
-call dein#add('tfnico/vim-gradle', {'on_ft': 'groovy'})
-call dein#add('tmhedberg/SimpylFold', {'on_ft': 'python'})
-" google word under cursor
-call dein#add('szw/vim-g')
-" some extra file operations (:Rename, :Move, :SudoWrite,...)
-call dein#add('tpope/vim-eunuch')
-" seamlessly navigate between tmux and vim panels
-call dein#add('christoomey/vim-tmux-navigator')
-" send commands to tmux
-call dein#add('benmills/vimux')
+    " Plugins {{{1
+    " themes
+    call dein#add('vim-airline/vim-airline') " advanced status line
+    call dein#add('rzhilkibaev/gruvbox')
+    " git
+    call dein#add('tpope/vim-fugitive') " git support
+    call dein#add('gregsexton/gitv') " git browser
+    " quick search
+    call dein#add('junegunn/fzf', { 'build': './install --all' }) " fuzzy finder
+    call dein#add('junegunn/fzf.vim')
+    call dein#add('scrooloose/nerdtree')
+    " snippets
+    call dein#add('Shougo/neosnippet')
+    call dein#add('Shougo/neosnippet-snippets')
+    " autocomplete
+    call dein#add('Shougo/deoplete.nvim') " autocomplete
+    call dein#add('zchee/deoplete-jedi', {'on_ft': 'python'}) " autocomplete for python (make sure to install jedi)
+    " autobuild
+    call dein#add('neomake/neomake')
+    " file types
+    call dein#add('hashivim/vim-terraform.git')
+    call dein#add('ekalinin/Dockerfile.vim', {'on_ft': 'Dockerfile'})
+    call dein#add('tfnico/vim-gradle', {'on_ft': 'groovy'})
+    call dein#add('tmhedberg/SimpylFold', {'on_ft': 'python'})
+    " google word under cursor
+    call dein#add('szw/vim-g')
+    " some extra file operations (:Rename, :Move, :SudoWrite,...)
+    call dein#add('tpope/vim-eunuch')
+    " seamlessly navigate between tmux and vim panels
+    call dein#add('christoomey/vim-tmux-navigator')
+    " send commands to tmux
+    call dein#add('benmills/vimux')
 
-" Install all {{{1
-if dein#check_install()
-    call dein#install()
-    let pluginsExist=1
+    " Install all {{{1
+    if dein#check_install()
+        call dein#install()
+    endif
+
+    call dein#end()
+    call dein#save_state()
 endif
-
-call dein#end()
 filetype plugin indent on
 
 " Theme {{{1
