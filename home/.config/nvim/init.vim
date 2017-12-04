@@ -15,7 +15,6 @@ if dein#load_state(expand('~/.config/nvim'))
     call dein#add('rzhilkibaev/gruvbox')
     " git
     call dein#add('tpope/vim-fugitive') " git support
-    call dein#add('gregsexton/gitv') " git browser
     " quick search
     call dein#add('junegunn/fzf', { 'build': './install --all' }) " fuzzy finder
     call dein#add('junegunn/fzf.vim')
