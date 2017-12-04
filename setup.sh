@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 
-# Usage: setup.sh
+# Usage: sudo setup.sh [name1] [name2] ...
+#   where nameX is a name of the tool to install
+# example: sudo ./setup.sh ansible vagrant
 #
 # Guidelines
 # - This script is executed once in a few months, execution speed doesn't matter much. Readability does.
 
 main() {
 
-    TOOL_NAMES=()
+    TOOL_NAMES=($@)
     #TOOL_NAMES+=(wget curl zip unzip git) # these are used by the other installers
     #TOOL_NAMES+=(python-pip python3-pip)
     #TOOL_NAMES+=(ansible vagrant terraform)
@@ -15,7 +17,7 @@ main() {
     #TOOL_NAMES+=(n) # n can be used to install nodejs, npm...
     #TOOL_NAMES+=(nvim)
     #TOOL_NAMES+=(shell)
-    TOOL_NAMES+=(docker)
+    #TOOL_NAMES+=(docker)
     #TOOL_NAMES+=(sshfs cifs-utils)
     #TOOL_NAMES+=(gnome-terminal)
     #TOOL_NAMES+=(tree vifm subversion ag)
@@ -47,4 +49,4 @@ main() {
     echo Done
 }
 
-main
+main $@
