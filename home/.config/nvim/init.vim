@@ -173,6 +173,7 @@ set shiftwidth=4 " how many spaces to insert for each step of identation
 set expandtab " hitting Tab key inserts softtabstop spaces
 
 " Misc {{{1
+set mouse=a " enable mouse in all modes
 set undofile
 set hidden " can switch to another buffer without saving the current one
 set nowrap " disable word wrapping
