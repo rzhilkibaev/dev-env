@@ -32,9 +32,8 @@ main() {
     date -Iseconds > setup.log
 
     for TOOL_NAME in ${TOOL_NAMES[@]}; do
-        echo "Installing $TOOL_NAME"
-        echo "" >> setup.log
-        echo "========================== Installing $TOOL_NAME" >> setup.log
+        echo "============================================================" >> setup.log
+        echo "Installing $TOOL_NAME" | tee -a setup.log
         # use custom installer if exists
         if [ -f $SETUP_HOME/setup.d/$TOOL_NAME ]; then
             $SETUP_HOME/setup.d/$TOOL_NAME &>> setup.log
