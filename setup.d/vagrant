@@ -5,7 +5,7 @@
 #https://releases.hashicorp.com/vagrant/1.9.7/vagrant_1.9.7_x86_64.deb
 #https://releases.hashicorp.com/vagrant/1.9.7/vagrant_1.9.7_x86_64.rpm
 . $INIT_SCRIPT
-VERSION="1.9.7"
+VERSION="2.0.1"
 case $OS_FAMILY in
     debian)
         PACKAGE_TYPE="deb"
