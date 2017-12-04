@@ -2,4 +2,4 @@ dev-env
 =======
 
 ## Installation
-clone then run `setup.sh`
+clone then run `sudo setup.sh`
