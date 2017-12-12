@@ -24,3 +24,4 @@ esac
 
 mkdir -p "$USERHOME/.config/nvim"
 make_symlink "$SETUP_HOME/home/.config/nvim/init.vim" "$USERHOME/.config/nvim/init.vim"
+make_symlink "$SETUP_HOME/home/.ideavimrc" "$USERHOME/.ideavimrc"

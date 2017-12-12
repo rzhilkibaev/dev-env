@@ -1,0 +1,6 @@
+" use system clipboard
+set clipboard+=unnamed
+" camel hump
+nmap <w> <[><w>
+nmap <e> <]><w>
+nmap <b> <[><b>
