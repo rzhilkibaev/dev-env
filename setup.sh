@@ -12,7 +12,8 @@ main() {
     TOOL_NAMES=($@)
     #TOOL_NAMES+=(wget curl zip unzip git) # these are used by the other installers
     #TOOL_NAMES+=(python-pip python3-pip)
-    #TOOL_NAMES+=(ansible vagrant terraform)
+    #TOOL_NAMES+=(ansible)
+    #TOOL_NAMES+=(awscli vagrant terraform)
     #TOOL_NAMES+=(sdkman) # sdkman can be used to install maven, ant, gradle, java...
     #TOOL_NAMES+=(n) # n can be used to install nodejs, npm...
     #TOOL_NAMES+=(nvim)
