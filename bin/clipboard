@@ -3,7 +3,7 @@
 set -eo pipefail
 
 if [[ $(uname) == 'Darwin' ]]; then
-    copy_cmd=""
+    copy_cmd="pbcopy"
 else
     copy_cmd="xsel --input --clipboard"
 fi
