@@ -19,18 +19,11 @@ if dein#load_state(expand('~/.config/nvim'))
     call dein#add('junegunn/fzf', { 'build': './install --all' }) " fuzzy finder
     call dein#add('junegunn/fzf.vim')
     call dein#add('scrooloose/nerdtree')
-    " snippets
-    call dein#add('Shougo/neosnippet')
-    call dein#add('Shougo/neosnippet-snippets')
     " autocomplete
     call dein#add('Shougo/deoplete.nvim') " autocomplete
-    call dein#add('zchee/deoplete-jedi', {'on_ft': 'python'}) " autocomplete for python (make sure to install jedi)
-    " autobuild
-    call dein#add('neomake/neomake')
     " file types
     call dein#add('hashivim/vim-terraform.git')
     call dein#add('ekalinin/Dockerfile.vim', {'on_ft': 'Dockerfile'})
-    call dein#add('tfnico/vim-gradle', {'on_ft': 'groovy'})
     call dein#add('tmhedberg/SimpylFold', {'on_ft': 'python'})
     " google word under cursor
     call dein#add('szw/vim-g')
@@ -156,9 +149,8 @@ nnoremap <leader>c :VimuxRunLastCommand<cr>
 " 3. Otherwise, if preceding chars are whitespace, insert tab char
 " 4. Otherwise, start manual autocomplete
 imap <silent><expr><Tab> pumvisible() ? "\<C-n>"
-            \ : (neosnippet#jumpable() ? "\<Plug>(neosnippet_jump)"
             \ : (<SID>is_whitespace() ? "\<Tab>"
-            \ : deoplete#manual_complete()))
+            \ : deoplete#manual_complete())
 
 function! s:is_whitespace()
     let col = col('.') - 1
@@ -214,15 +206,4 @@ set foldtext=MyFoldText()
 
 " Deoplete {{{1
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#jedi#show_docstring = 1
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif " autoclose preview window
-
-" Neomake {{{1
-nnoremap <F5> :Neomake<cr>
-let g:neomake_open_list = 2 " open errors list, close when no errors
-if executable('mypy')
-    " add mypy to the list of makers
-    let g:neomake_python_enabled_makers = neomake#makers#ft#python#EnabledMakers()
-    call add(g:neomake_python_enabled_makers, 'mypy')
-endif
-
