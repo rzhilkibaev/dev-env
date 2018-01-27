@@ -1,5 +1,7 @@
 " use system clipboard
 set clipboard+=unnamed
+" case-insensitive search
+set ignorecase
 " camel hump
 nmap <w> <[><w>
 nmap <e> <]><w>
