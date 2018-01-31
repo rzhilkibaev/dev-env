@@ -33,6 +33,8 @@ if dein#load_state(expand('~/.config/nvim'))
     call dein#add('christoomey/vim-tmux-navigator')
     " send commands to tmux
     call dein#add('benmills/vimux')
+    " code formatter
+    call dein#add('sbdchd/neoformat')
 
     " Install all {{{1
     if dein#check_install()
