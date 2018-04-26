@@ -25,7 +25,7 @@ if dein#load_state(expand('~/.config/nvim'))
     call dein#add('hashivim/vim-terraform.git')
     call dein#add('ekalinin/Dockerfile.vim', {'on_ft': 'Dockerfile'})
     call dein#add('tmhedberg/SimpylFold', {'on_ft': 'python'})
-    " google word under cursor
+    " google a word under cursor
     call dein#add('szw/vim-g')
     " some extra file operations (:Rename, :Move, :SudoWrite,...)
     call dein#add('tpope/vim-eunuch')
