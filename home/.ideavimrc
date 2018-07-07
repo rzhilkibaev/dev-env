@@ -2,6 +2,8 @@
 set clipboard+=unnamed
 " case-insensitive search
 set ignorecase
+" highlight all occurences when searching
+set hlsearch
 " camel hump
 nmap <w> <[><w>
 nmap <e> <]><w>
