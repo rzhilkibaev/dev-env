@@ -2,10 +2,7 @@
 . $INIT_SCRIPT
 
 install_package git
-make_symlink "$SETUP_HOME/home/.gitconfig" "$USERHOME/.gitconfig"
-chown $USERNAME:$USERNAME "$USERHOME/.gitconfig"
-make_symlink "$SETUP_HOME/bin/mygitmerge" /usr/local/bin/mygitmerge
+ln -sf "$SETUP_HOME/bin/mygitmerge" "/usr/local/bin/mygitmerge"
 
 install_package tig
-make_symlink "$SETUP_HOME/home/.tigrc" "$USERHOME/.tigrc"
-chown $USERNAME:$USERNAME "$USERHOME/.tigrc"
+ln -sf "$SETUP_HOME/home/.tigrc" "$USERHOME/.tigrc"
