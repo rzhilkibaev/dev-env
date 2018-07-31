@@ -1,0 +1,11 @@
+# vim: set ft=sh:
+. $INIT_SCRIPT
+
+case $OS_FAMILY in
+    macos)
+	# need to do that otherwise tmux fails to start
+	brew install reattach-to-user-namespace
+        ;;
+esac
+
+install_package tmux
