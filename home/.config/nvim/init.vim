@@ -35,6 +35,8 @@ if dein#load_state(expand('~/.config/nvim'))
     call dein#add('benmills/vimux')
     " code formatter
     call dein#add('sbdchd/neoformat')
+    " Ruby
+    call dein#add('tpope/vim-rails')
 
     " Install all {{{1
     if dein#check_install()
