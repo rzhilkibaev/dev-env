@@ -39,6 +39,7 @@ alias ":q"="exit"
 alias ":qa"="exit"
 # easy virtualenv
 alias "venv"="source ./venv/bin/activate"
+alias "goo"="googler"
 
 # disable *.pyc files
 export PYTHONDONTWRITEBYTECODE=true
