@@ -67,5 +67,5 @@ install_powerlevel9k_theme
 ln -sf $SETUP_HOME/home/.zshrc $USERHOME/.zshrc
 ln -sf $SETUP_HOME/home/.tmux.conf $USERHOME/.tmux.conf
 ln -sf $SETUP_HOME/home/.tmux-osx.conf $USERHOME/.tmux-osx.conf
-mkdir $USERHOME/.zshrc.d
+mkdir -p $USERHOME/.zshrc.d
 change_default_shell $(which zsh)
