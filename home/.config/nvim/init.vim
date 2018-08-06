@@ -115,6 +115,7 @@ nnoremap <silent> <Leader>fc :Ag \bclass\b .*\b<C-R><C-W>\b($\| \|::)<CR>
 map q <Nop>
 let mapleader="\<Space>"
 nnoremap <leader>qq :qa!<cr>
+nnoremap <leader>w :w<cr>
 " go into normal mode with double esc
 tnoremap <esc><esc> <C-\><C-n>
 " delete not into unnambed buffer but into the black hole
