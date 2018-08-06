@@ -97,6 +97,19 @@ autocmd FileType terraform setlocal tabstop=2 " show existing Tab character as t
 autocmd FileType terraform setlocal softtabstop=2 " how many spaces to insert when hitting Tab key
 autocmd FileType terraform setlocal shiftwidth=2 " how many spaces to insert for each step of identation
 
+" ruby {{{2
+autocmd FileType ruby setlocal foldmethod=indent
+autocmd FileType ruby setlocal foldlevel=99 " unfold everything on start
+" indentation
+autocmd FileType ruby setlocal tabstop=2 " show existing Tab character as this many spaces
+autocmd FileType ruby setlocal softtabstop=2 " how many spaces to insert when hitting Tab key
+autocmd FileType ruby setlocal shiftwidth=2 " how many spaces to insert for each step of identation
+" find method definition
+" match whole word def, match whole current word
+nnoremap <silent> <Leader>fm :Ag \bdef\b \b<C-R><C-W>\b<CR>
+" find class definition
+" match whole word class, match whole current word, match eol or space or ::
+nnoremap <silent> <Leader>fc :Ag \bclass\b .*\b<C-R><C-W>\b($\| \|::)<CR>
 " Keys {{{1
 " When mapping keys keep in maind that Ctrl+{j,k} is used in fzf
 map q <Nop>
@@ -128,6 +141,8 @@ nnoremap <C-p> :bprevious<CR>
 nnoremap <leader>ff :Files<cr>
 " find line
 nnoremap <leader>fl :Ag<cr>
+" find word under cursor
+nnoremap <silent> <Leader>fw :Ag <C-R><C-W><CR>
 " NERDTree
 nnoremap <leader>ft :NERDTreeToggle<cr>
 " git add current file
