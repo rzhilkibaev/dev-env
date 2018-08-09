@@ -227,3 +227,6 @@ set foldtext=MyFoldText()
 " Deoplete {{{1
 let g:deoplete#enable_at_startup = 1
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif " autoclose preview window
+
+" Source extra configs {{{1
+runtime! init.d/*.vim
