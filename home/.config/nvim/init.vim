@@ -37,6 +37,8 @@ if dein#load_state(expand('~/.config/nvim'))
     call dein#add('sbdchd/neoformat')
     " Ruby
     call dein#add('tpope/vim-rails')
+    " VimWiki
+    call dein#add('vimwiki/vimwiki')
 
     " Install all {{{1
     if dein#check_install()
@@ -68,6 +70,8 @@ let g:airline#extensions#tabline#left_alt_sep = '' " Straight bufer tabs
 " File types {{{1
 " vim {{{2
 autocmd FileType vim setlocal foldmethod=marker
+" log {{{2
+autocmd FileType text setlocal foldmethod=marker
 " xml {{{2
 let g:xml_syntax_folding=1
 autocmd FileType xml setlocal foldmethod=syntax
@@ -138,17 +142,11 @@ nnoremap <BS> <C-^>
 nnoremap <C-n> :bnext<CR>
 " Ctrl+p to jump to previous buffer
 nnoremap <C-p> :bprevious<CR>
-" find file
-nnoremap <leader>ff :Files<cr>
-" find line
-nnoremap <leader>fl :Ag<cr>
-" find word under cursor
-nnoremap <silent> <Leader>fw :Ag <C-R><C-W><CR>
 " NERDTree
 nnoremap <leader>ft :NERDTreeToggle<cr>
 " git add current file
 nnoremap <leader>gw :Gwrite<cr>
-" git commit
+" git commit (i - go to insert mode)
 nnoremap <leader>gc :Gcommit<cr>i
 " git status
 nnoremap <leader>gs :Gstatus<cr>
@@ -162,6 +160,27 @@ nnoremap <F1> :Googlef<cr>
 " vimux
 nnoremap <leader>vc :VimuxPromptCommand<cr>
 nnoremap <leader>c :VimuxRunLastCommand<cr>
+" fzf
+" Override :Ag to show a preview window (toggle with Ctrl-?)
+" If called as :Ag! then take up entire screen and put the preview window up above
+command! -bang -nargs=* Ag
+      \ call fzf#vim#ag(<q-args>,
+      \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+      \                         : fzf#vim#with_preview('right:60%', '?'),
+      \                 <bang>0)
+command! -bang -nargs=* BLines
+      \ call fzf#vim#buffer_lines(<q-args>,
+      \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+      \                         : fzf#vim#with_preview('right:60%', '?'),
+      \                 <bang>0)
+" find file
+nnoremap <leader>ff :Files<cr>
+" find line
+nnoremap <leader>fl :Ag<cr>
+" find word under cursor
+nnoremap <silent> <Leader>fw :Ag <C-R><C-W><CR>
+" find in current buffer
+nnoremap <silent> <Leader>fb :BLines<cr>
 
 " Tab completion {{{2
 " 1. If popup menu is visible, select and insert next item
