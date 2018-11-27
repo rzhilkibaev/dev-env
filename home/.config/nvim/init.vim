@@ -36,7 +36,7 @@ if dein#load_state(expand('~/.config/nvim'))
     " code formatter
     call dein#add('sbdchd/neoformat')
     " Ruby
-    call dein#add('tpope/vim-rails')
+    call dein#add('tpope/vim-surround')
     " VimWiki
     call dein#add('vimwiki/vimwiki')
 
