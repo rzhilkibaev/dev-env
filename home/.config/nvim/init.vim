@@ -22,7 +22,6 @@ if dein#load_state(expand('~/.config/nvim'))
     " autocomplete
     call dein#add('Shougo/deoplete.nvim') " autocomplete
     " file types
-    call dein#add('hashivim/vim-terraform.git')
     call dein#add('ekalinin/Dockerfile.vim', {'on_ft': 'Dockerfile'})
     call dein#add('tmhedberg/SimpylFold', {'on_ft': 'python'})
     " google a word under cursor
@@ -33,12 +32,8 @@ if dein#load_state(expand('~/.config/nvim'))
     call dein#add('christoomey/vim-tmux-navigator')
     " send commands to tmux
     call dein#add('benmills/vimux')
-    " code formatter
-    call dein#add('sbdchd/neoformat')
     " Ruby
     call dein#add('tpope/vim-surround')
-    " VimWiki
-    call dein#add('vimwiki/vimwiki')
 
     " Install all {{{1
     if dein#check_install()
