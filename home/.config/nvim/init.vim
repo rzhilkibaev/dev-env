@@ -153,6 +153,12 @@ nnoremap <leader>m :make!<cr>
 " google a word under cursor on F1
 nnoremap <F1> :Googlef<cr>
 " vimux
+function! VimuxSendSelection()
+    call VimuxSendText(@v)
+    call VimuxSendKeys("Enter")
+endfunction
+" If text is selected, save it in the v buffer and send that buffer it to tmux
+vmap <leader>vs "vy :call VimuxSendSelection()<CR>
 nnoremap <leader>vc :VimuxPromptCommand<cr>
 nnoremap <leader>c :VimuxRunLastCommand<cr>
 " fzf
