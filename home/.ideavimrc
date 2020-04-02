@@ -4,12 +4,12 @@ set clipboard+=unnamed
 set ignorecase
 " highlight all occurences when searching
 set hlsearch
-" camel hump
-" nmap <w> <[><w>
-" nmap <e> <]><w>
-" nmap <b> <[><b>
-" vmap <w> <[><w>
-" vmap <e> <]><w>
-" vmap <b> <[><b>
 " emulate vim-surround
-set vim-surround
+set surround
+" Tab navigation
+nmap H :action VimMotionPreviousTab<CR>
+nmap L :action VimMotionNextTab<CR>
+" jump between matching brackets
+nmap % :action EditorMatchBrace<CR>
+" syntax aware join
+set ideajoin
