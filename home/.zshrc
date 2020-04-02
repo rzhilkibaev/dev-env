@@ -18,9 +18,10 @@ if [ -d $ZSH/custom/themes/powerlevel9k ]; then
 fi
 
 # Start tmux when starting zsh
-ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOSTART=false
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 # load following plugins
-plugins=(git tmux)
+plugins=(git tmux zsh-syntax-highlighting)
 
 # User configuration
 export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:$PATH
