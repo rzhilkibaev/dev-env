@@ -38,6 +38,8 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # vim-like exit
 alias ":q"="exit"
 alias ":qa"="exit"
+# vim-like nvim
+alias "vim"="nvim"
 # easy virtualenv
 alias "venv"="source ./venv/bin/activate"
 alias "goo"="googler"
