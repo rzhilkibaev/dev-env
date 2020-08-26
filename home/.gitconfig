@@ -28,3 +28,5 @@
 	userConfigOnly = true
 	name = Renat
 	email = rzhilkibaev@gmail.com
+[pull]
+	ff = only
