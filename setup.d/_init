@@ -3,9 +3,6 @@
 #set -x
 set -eo pipefail
 
-USERNAME=$SUDO_USER
-USERHOME=/home/$USERNAME
-
 if [[ -f /etc/redhat-release ]]; then
     OS_FAMILY='redhat'
 elif [[ -f /etc/debian_version ]]; then
@@ -16,6 +13,19 @@ else
     echo "Unsupported OS $(uname)"
     exit 1
 fi
+
+USERNAME=$USER
+USERHOME=/home/$USERNAME
+
+case $OS_FAMILY in
+    macos)
+            USERHOME=/Users/$USERNAME
+	    ;;
+    *)
+            USERHOME=/home/$USERNAME
+	    ;;
+esac
+
 
 program_exists() {
     hash "$1" 2>/dev/null

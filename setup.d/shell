@@ -38,7 +38,6 @@ install_powerline_fonts() {
     wget -q --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20Bold%20for%20Powerline.ttf"
     wget -q --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20Oblique%20for%20Powerline.ttf"
     wget -q --timestamping --progress=bar:force:noscroll "https://github.com/powerline/fonts/raw/master/DejaVuSansMono/DejaVu%20Sans%20Mono%20for%20Powerline.ttf"
-    chown $USERNAME:$USERNAME $font_dir
 }
 
 install_oh_my_zh() {
@@ -48,7 +47,6 @@ install_oh_my_zh() {
     else
         git -C $oh_my_zsh_home pull
     fi
-    chown $USERNAME:$USERNAME $oh_my_zsh_home
 }
 
 install_powerlevel9k_theme() {
@@ -59,7 +57,6 @@ install_powerlevel9k_theme() {
     else
         git -C $powerlevel9k_home pull
     fi
-    chown $USERNAME:$USERNAME $powerlevel9k_home
 }
 
 install_powerline_fonts
@@ -67,9 +64,8 @@ install_package zsh
 install_package tmux
 install_oh_my_zh
 install_powerlevel9k_theme
-make_symlink $SETUP_HOME/home/.zshrc $USERHOME/.zshrc
-chown $USERNAME:$USERNAME $USERHOME/.zshrc
-make_symlink $SETUP_HOME/home/.tmux.conf $USERHOME/.tmux.conf
-chown $USERNAME:$USERNAME $USERHOME/.tmux.conf
-chown $USERNAME:$USERNAME $USERHOME/.tmux-osx.conf
+ln -sf $SETUP_HOME/home/.zshrc $USERHOME/.zshrc
+ln -sf $SETUP_HOME/home/.tmux.conf $USERHOME/.tmux.conf
+ln -sf $SETUP_HOME/home/.tmux-osx.conf $USERHOME/.tmux-osx.conf
+mkdir -p $USERHOME/.zshrc.d
 change_default_shell $(which zsh)

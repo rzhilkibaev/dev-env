@@ -30,16 +30,19 @@ main() {
     # make the name of the init script available to the custom installers
     export INIT_SCRIPT=$SETUP_HOME/setup.d/_init
 
-    date -Iseconds > setup.log
+    # date -Iseconds is not supported on mac
+    date -u +"%Y-%m-%dT%H:%M:%SZ" > setup.log
 
     for TOOL_NAME in ${TOOL_NAMES[@]}; do
         echo "============================================================" >> setup.log
         echo "Installing $TOOL_NAME" | tee -a setup.log
         # use custom installer if exists
         if [ -f $SETUP_HOME/setup.d/$TOOL_NAME ]; then
-            $SETUP_HOME/setup.d/$TOOL_NAME &>> setup.log
+            # &>> doesn't work on mac
+            $SETUP_HOME/setup.d/$TOOL_NAME 2>&1 >> setup.log
         else  # otherwise use common package installer 
-            $SETUP_HOME/setup.d/install_package $TOOL_NAME &>> setup.log
+            # &>> doesn't work on mac
+            $SETUP_HOME/setup.d/install_package $TOOL_NAME 2>&1 >> setup.log
         fi
         if [ $? -ne 0 ]; then
             echo "Error occured while installing $TOOL_NAME, see setup.log"
