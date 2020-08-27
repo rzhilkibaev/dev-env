@@ -26,7 +26,5 @@
 [user]
     # Require setting user.name and email per-repo
 	userConfigOnly = true
-	name = Renat
-	email = rzhilkibaev@gmail.com
 [pull]
 	ff = only
