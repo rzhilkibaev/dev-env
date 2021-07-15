@@ -42,6 +42,8 @@ alias ":qa"="exit"
 alias "vim"="nvim"
 # easy virtualenv
 alias "venv"="source ./venv/bin/activate"
+# ls
+alias "ll"="ls -lAhtr"
 
 # disable *.pyc files
 export PYTHONDONTWRITEBYTECODE=true
