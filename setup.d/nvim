@@ -16,7 +16,7 @@ case $OS_FAMILY in
         runuser -l $USERNAME -c 'pip3 install --user --upgrade neovim'
         ;;
     macos)
-        brew install neovim/neovim/neovim
+        brew install neovim
         runuser -l $USERNAME -c 'pip  install --user --upgrade neovim'
         runuser -l $USERNAME -c 'pip3 install --user --upgrade neovim'
         ;;
