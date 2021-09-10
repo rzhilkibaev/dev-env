@@ -1,9 +1,6 @@
 # vim: set ft=sh:
 . $INIT_SCRIPT
 
-echo "SETUP_HOME: $SETUP_HOME"
-echo "USER_HOME: $USER_HOME"
-
 install_package git
 make_symlink "$SETUP_HOME/bin/mygitmerge" "/usr/local/bin/mygitmerge"
 make_symlink "$SETUP_HOME/home/.gitconfig" "$USER_HOME/.gitconfig"
