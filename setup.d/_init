@@ -77,8 +77,7 @@ make_symlink() {
 
     # ensure link path (won't complain if exists)
     mkdir -p $(dirname "$link_name")
-    rm -f "$link_name"
-    ln -s "$target" "$link_name"
+    ln -sf "$target" "$link_name"
 }
 
 download() {
