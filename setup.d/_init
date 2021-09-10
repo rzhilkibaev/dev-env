@@ -14,18 +14,20 @@ else
     exit 1
 fi
 
-USERNAME=$USER
-USERHOME=/home/$USERNAME
+USER_NAME=$USER
+USER_HOME=/home/$USER_NAME
 
 case $OS_FAMILY in
     macos)
-            USERHOME=/Users/$USERNAME
+            USER_HOME=/Users/$USER_NAME
 	    ;;
     *)
-            USERHOME=/home/$USERNAME
+            USER_HOME=/home/$USER_NAME
 	    ;;
 esac
 
+export USER_NAME
+export USER_HOME
 
 program_exists() {
     hash "$1" 2>/dev/null
@@ -77,7 +79,10 @@ make_symlink() {
 
     # ensure link path (won't complain if exists)
     mkdir -p $(dirname "$link_name")
-    ln -sf "$target" "$link_name"
+    # Can't use ln -f because the target might be a file not a link.
+    rm -f "$link_name"
+    echo "$target - $link_name"
+    ln -s "$target" "$link_name"
 }
 
 download() {
