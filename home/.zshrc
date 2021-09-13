@@ -21,7 +21,7 @@ fi
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 # load following plugins
-plugins=(zsh-syntax-highlighting)
+plugins=()
 
 # User configuration
 export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:$PATH
