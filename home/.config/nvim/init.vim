@@ -145,6 +145,8 @@ set splitright
 " Align blocks of text and keep them selected
 vmap < <gv
 vmap > >gv
+" Enable syntax highlight for code blocks in markdown files.
+let g:markdown_fenced_languages = ['javascript', 'sh', 'bash']
 
 " Folding {{{1
 function! MyFoldText()
