@@ -146,7 +146,7 @@ set splitright
 vmap < <gv
 vmap > >gv
 " Enable syntax highlight for code blocks in markdown files.
-let g:markdown_fenced_languages = ['javascript', 'sh', 'bash']
+let g:markdown_fenced_languages = ['javascript', 'sh', 'bash', 'sql']
 
 " Folding {{{1
 function! MyFoldText()
