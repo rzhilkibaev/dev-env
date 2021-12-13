@@ -48,18 +48,12 @@ alias "ll"="ls -lAhtr"
 # disable *.pyc files
 export PYTHONDONTWRITEBYTECODE=true
 
-# added by travis gem
-[ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
 autoload -U +X bashcompinit && bashcompinit
-
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 
 for rc in ~/.zshrc.d/*; do source $rc; done
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+#true at the end makes the script exit with 0 instead of 1 if the directory is not found
 export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh" || true
 
