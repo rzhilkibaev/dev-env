@@ -28,3 +28,5 @@
 	userConfigOnly = true
 [pull]
 	ff = only
+[core]
+	excludesfile = /Users/rz/.gitignore_global
