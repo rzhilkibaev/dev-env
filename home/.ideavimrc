@@ -2,6 +2,8 @@
 set clipboard+=unnamed
 " case-insensitive search
 set ignorecase
+" case-sensitive search if uppercase letters used in search
+set smartcase
 " highlight all occurences when searching
 set hlsearch
 " emulate vim-surround
