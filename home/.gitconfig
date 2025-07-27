@@ -30,3 +30,7 @@
 	ff = only
 [core]
 	excludesfile = /Users/rz/.gitignore_global
+	autocrlf = input
+[init]
+	defaultBranch = main
+

@@ -21,6 +21,8 @@ if dein#load_state(expand('~/.cache/dein'))
     call dein#add('christoomey/vim-tmux-navigator')
     " send commands to tmux
     call dein#add('benmills/vimux')
+    " sessions
+    call dein#add('tpope/vim-obsession')
 
     call dein#end()
     call dein#save_state()
@@ -91,6 +93,7 @@ nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gd :Gvdiff<cr>
 " vimux
 function! VimuxSendSelection()
+    call VimuxOpenRunner()
     call VimuxSendText(@v)
     call VimuxSendKeys("Enter")
 endfunction
@@ -133,6 +136,7 @@ set nowrap " disable word wrapping
 set virtualedit=all " allow moving cursor past end of line in all modes
 set number " show line numbers
 set sidescroll=1 " horizontal scrolling reveals this many characters at once, not half a window
+set sidescrolloff=10 " when scrolling horizontally, keep this many columns between the cursor and the edge of the screen 
 set clipboard+=unnamedplus " use system clipboard (make sure xsel is installed)
 set hlsearch " highlight all occurences while typing
 set ignorecase

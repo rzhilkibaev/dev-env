@@ -43,7 +43,9 @@ alias "vim"="nvim"
 # easy virtualenv
 alias "venv"="source ./venv/bin/activate"
 # ls
-alias "ll"="ls -lAhtr"
+alias "ll"="eza --long --header --all --group-directories-first"
+alias "tree"="eza --tree --all"
+alias "http"="http --body"
 
 # disable *.pyc files
 export PYTHONDONTWRITEBYTECODE=true
