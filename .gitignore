@@ -13,3 +13,6 @@ home/.subversion/README.txt
 .vagrant
 
 *.log
+
+# IDEA
+.idea
