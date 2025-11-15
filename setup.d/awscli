@@ -1,5 +1,0 @@
-# vim: set ft=sh:
-. $INIT_SCRIPT
-
-# run as user, otherwise installs for root user
-runuser -l $USERNAME -c 'pip  install --user --upgrade awscli'

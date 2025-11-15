@@ -1,7 +1,0 @@
-line 1
-<<<<<<< .working
-line duo branch1
-=======
-line two trunk 
->>>>>>> .merge-right.r5
-line 3

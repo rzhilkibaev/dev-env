@@ -1,9 +1,0 @@
-# vim: set ft=sh:
-. $INIT_SCRIPT
-
-install_package subversion
-
-make_symlink "$SETUP_HOME/bin/mysvnmerge" /usr/local/bin/mysvnmerge
-make_symlink "$SETUP_HOME/bin/mysvndiff" /usr/local/bin/mysvndiff
-make_symlink "$SETUP_HOME/home/.subversion/config" "$USERHOME/.subversion/config"
-chown $USERNAME:$USERNAME "$USERHOME/.subversion"

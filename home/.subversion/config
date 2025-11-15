@@ -1,9 +1,0 @@
-[helpers]
-editor-cmd = vim
-diff-cmd = mysvndiff
-#diff3-cmd = svn-diff-vimdiff.sh
-merge-tool-cmd = mysvnmerge
-[auth]
-password-stores =
-[miscellany]
-global-ignores = .settings .project .classpath test-output *.sw* target

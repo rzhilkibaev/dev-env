@@ -1,7 +1,0 @@
-# vim: set ft=sh:
-. $INIT_SCRIPT
-
-install_package vifm
-mkdir -p "$USERHOME/.vifm"
-make_symlink "$SETUP_HOME/home/.vifm/vifmrc" "$USERHOME/.vifm/vifmrc"
-chown -R $USERNAME:$USERNAME "$USERHOME/.vifm"
