@@ -1,8 +1,10 @@
 dev-env
 =======
 
+!macOS only!
+
 ## Usage
-`sudo ./install PACKAGE...`
+`./install PACKAGE...`
 
 ## Tools
 Alacritty

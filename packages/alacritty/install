@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+#brew install --cask alacritty
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+mkdir -p ~/.config/alacritty
+cp -i $SCRIPT_DIR/alacritty.toml ~/.config/alacritty/alacritty.toml

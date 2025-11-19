@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+# Usage: ./install PACKAGE...
+#   where PACKAGE is the name of the package to install
+# Example: ./install nvim tmux
+#
+# Guidelines
+# - This script is executed once in a few years, execution speed doesn't matter much. Readability does.
+
+main() {
+  ## Setup logging
+  LOG_FILE=$(date +"%Y-%m-%dT%H-%M-%S").log
+  echo "Log file: ${LOG_FILE}"
+
+  log() {
+    echo "$1" | tee -a $LOG_FILE
+  }
+
+  # Parse package names
+  PACKAGES=($@)
+  log "Installing packages ${PACKAGES[*]}"
+
+#    export SETUP_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+#    echo SETUP_HOME=$SETUP_HOME
+    # make the name of the init script available to the custom installers
+#    export INIT_SCRIPT=$SETUP_HOME/setup.d/_init
+
+  for PACKAGE in ${PACKAGES[@]}; do
+    log "============================================================"
+    log "Installing package $PACKAGE"
+    ./packages/$PACKAGE/install | tee -a $LOG_FILE
+
+    if [ $? -ne 0 ]; then
+      echo "Error occurred while installing package $PACKAGE, see $LOG_FILE"
+    fi
+  done
+}
+
+main $@

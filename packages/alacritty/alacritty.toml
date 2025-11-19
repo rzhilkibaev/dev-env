@@ -1,0 +1,5 @@
+[env]
+TERM = "alacritty"
+
+[font]
+size = 14
