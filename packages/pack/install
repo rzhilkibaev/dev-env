@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Symlink pack scripts
+make_symlink "$PACKAGE_DIR/pack" "/usr/local/bin/pack"
+make_symlink "$PACKAGE_DIR/unpack" "/usr/local/bin/unpack"
+
