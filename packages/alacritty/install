@@ -3,5 +3,8 @@
 # Install Alacritty
 brew install --cask alacritty
 
+# Install Fira Code Nerd Font
+brew install --cask font-fira-code-nerd-font
+
 # Symlink Alacritty config
 make_symlink "$PACKAGE_DIR/alacritty.toml" "$HOME/.config/alacritty/alacritty.toml"
