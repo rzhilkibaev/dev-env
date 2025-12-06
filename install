@@ -9,11 +9,11 @@
 
 main() {
   ## Setup logging
-  LOG_FILE=$(date +"%Y-%m-%dT%H-%M-%S").log
+  LOG_FILE="$(date +"%Y-%m-%dT%H-%M-%S").log"
   echo "Log file: ${LOG_FILE}"
 
   log() {
-    echo "$1" | tee -a $LOG_FILE
+    echo "$1" | tee -a "$LOG_FILE"
   }
 
   # Parse package names
@@ -24,7 +24,7 @@ main() {
     log "============================================================"
     log "Installing package $PACKAGE"
 
-    ./instal_package "$PACKAGE" | tee -a "$LOG_FILE"
+    ./install_package "$PACKAGE" | tee -a "$LOG_FILE"
 
     if [ $? -ne 0 ]; then
       echo "Error occurred while installing package $PACKAGE, see $LOG_FILE"
