@@ -9,7 +9,6 @@ dev-env
 ## Tools
 Alacritty
 Zsh
-git
 tmux
 nvim
 fzf
