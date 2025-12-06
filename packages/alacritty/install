@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
+# Install Alacritty
 brew install --cask alacritty
 
-mkdir -p ~/.config/alacritty
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-cp -i $SCRIPT_DIR/alacritty.toml ~/.config/alacritty/alacritty.toml
+# Symlink Alacritty config
+make_symlink "$PACKAGE_DIR/alacritty.toml" "$HOME/.config/alacritty/alacritty.toml"
