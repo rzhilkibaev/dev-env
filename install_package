@@ -22,10 +22,8 @@ make_symlink() {
 
     # Use sudo if creating a link outside of $HOME
     if [[ "$link_name" == $HOME/* ]]; then
-      echo "Not using sudo"
       sudo_cmd=
     else
-      echo "Using sudo"
       sudo_cmd=sudo
     fi
 
