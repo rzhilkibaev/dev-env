@@ -21,6 +21,7 @@ family = "FiraCode Nerd Font"
 style = "Bold Italic"
 
 # Colors (Gruvbox dark)
+# https://github.com/alacritty/alacritty-theme/blob/master/themes/gruvbox_dark.toml
 
 # Default colors
 [colors.primary]
