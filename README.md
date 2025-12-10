@@ -7,13 +7,13 @@ dev-env
 `./install PACKAGE...`
 
 ## Tools
-Alacritty
-Zsh
+alacritty
+oh-my-zsh
 tmux
 nvim
 fzf
 ag
-pack/unpack
+pack (pack/unpack)
 
 ## Directory structure
 ```

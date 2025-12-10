@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Install gruvbox theme
+curl -L "https://raw.githubusercontent.com/sbugzu/gruvbox-zsh/master/gruvbox.zsh-theme" > "$HOME/.oh-my-zsh/custom/themes/gruvbox.zsh-theme"
+
+# Install Fira Code Nerd Font
+brew install --cask font-fira-code-nerd-font
+
+mkdir -p "$HOME/.zshrc.d"
+
+# Symlink all files in .zshrc.d/
+for rc in "$PACKAGE_DIR/.zshrc.d/"*; do
+  make_symlink "$rc" "$HOME/.zshrc.d/$(basename "$rc")"
+done
+
+# Symlink .zshrc
+make_symlink "$PACKAGE_DIR/.zshrc" "$HOME/.zshrc"
+
+# Install eza (ls alternative)
+brew install eza
+
+# Install eza theme
+mkdir -p "$HOME/Library/Application Support/eza"
+make_symlink "$PACKAGE_DIR/eza-theme-gruvbox-dark.yml" "$HOME/Library/Application Support/eza/theme.yml"
