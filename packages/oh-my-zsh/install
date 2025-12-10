@@ -24,3 +24,5 @@ brew install eza
 # Install eza theme
 mkdir -p "$HOME/Library/Application Support/eza"
 make_symlink "$PACKAGE_DIR/eza-theme-gruvbox-dark.yml" "$HOME/Library/Application Support/eza/theme.yml"
+
+brew install zsh-syntax-highlighting

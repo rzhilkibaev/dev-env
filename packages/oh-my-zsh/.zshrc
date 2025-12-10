@@ -106,4 +106,7 @@ source $ZSH/oh-my-zsh.sh
 PROMPT="%F{blue}%f "
 RPROMPT="%F{blue}%~%f"
 
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+
 for rc in ~/.zshrc.d/*; do source $rc; done # load custom config files
