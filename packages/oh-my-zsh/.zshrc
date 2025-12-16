@@ -103,8 +103,10 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-PROMPT="%F{blue}%f "
-RPROMPT="%F{blue}%~%f"
+# Prompt
+# ┌─[~/some/path]
+# └─$
+PROMPT=$'%F{blue}┌─[%~]\n└─$%f '
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
