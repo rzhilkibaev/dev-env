@@ -16,3 +16,4 @@ home/.subversion/README.txt
 
 # IDEA
 .idea
+/packages/oh-my-zsh/.zshrc.d/amplitude
