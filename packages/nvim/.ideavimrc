@@ -1,0 +1,19 @@
+" use system clipboard
+set clipboard+=unnamed
+" case-insensitive search
+set ignorecase
+" case-sensitive search if uppercase letters used in search
+set smartcase
+" highlight all occurences when searching
+set hlsearch
+" emulate vim-surround
+set surround
+" Tab navigation
+nmap H :action VimMotionPreviousTab<CR>
+nmap L :action VimMotionNextTab<CR>
+" jump between matching brackets
+nmap % :action EditorMatchBrace<CR>
+" git pull
+command! Pull action Git.Pull
+" syntax aware join
+set ideajoin

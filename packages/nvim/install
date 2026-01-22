@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+brew install neovim
+
+# Symlink Tmux config
+mkdir -p "$USER_HOME/.config/nvim"
+make_symlink "$PACKAGE_DIR/init.vim" "$HOME/.config/nvim/init.vim"
+make_symlink "$PACKAGE_DIR/.ideavimrc" "$HOME/.ideavimrc"
