@@ -111,6 +111,8 @@ PROMPT=$'%F{blue}┌─[%~]\n└─$%f '
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
+alias vim=nvim
+
 for rc in ~/.zshrc.d/*; do source $rc; done # load custom config files
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
