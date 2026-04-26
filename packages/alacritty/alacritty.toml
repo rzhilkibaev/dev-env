@@ -1,6 +1,17 @@
 [env]
 TERM = "alacritty"
 
+[cursor.style]
+shape = "Beam"
+blinking = "On"
+[cursor]
+blink_interval = 400
+blink_timeout = 0
+
+[cursor.vi_mode_style]
+shape = "Block"
+blinking = "On"
+
 [font]
 size = 14
 
