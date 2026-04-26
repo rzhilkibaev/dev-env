@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH="$HOME/.local/bin:$PATH"
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -108,7 +109,7 @@ source $ZSH/oh-my-zsh.sh
 # └─$
 PROMPT=$'%F{blue}┌─[%~]\n└─$%f '
 
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
 alias vim=nvim
