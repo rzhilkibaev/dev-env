@@ -74,6 +74,15 @@ autocmd FileType ruby setlocal shiftwidth=2 " how many spaces to insert for each
 " Keys {{{1
 " When mapping keys keep in maind that Ctrl+{j,k} is used in fzf
 map q <Nop>
+
+" Move by display lines instead of physical lines
+nnoremap j gj
+nnoremap k gk
+
+" Keep standard behavior if a count is provided (e.g., 5j still moves 5 physical lines)
+nnoremap <expr> j v:count ? 'j' : 'gj'
+nnoremap <expr> k v:count ? 'k' : 'gk'
+
 let mapleader="\<Space>"
 " go into normal mode with double esc
 tnoremap <esc><esc> <C-\><C-n>
@@ -130,9 +139,11 @@ set mouse=a " enable mouse in all modes
 " Disable persistent undo for faster startup.
 " set undofile
 set hidden " can switch to another buffer without saving the current one
-set nowrap " disable word wrapping
+set wrap " enable word wrapping
+set linebreak " wrap only at spaces or punctuation
 set virtualedit=all " allow moving cursor past end of line in all modes
 set number " show line numbers
+set relativenumber " show relative line numbers
 set sidescroll=1 " horizontal scrolling reveals this many characters at once, not half a window
 set sidescrolloff=10 " when scrolling horizontally, keep this many columns between the cursor and the edge of the screen 
 set clipboard+=unnamedplus " use system clipboard (make sure xsel is installed)
