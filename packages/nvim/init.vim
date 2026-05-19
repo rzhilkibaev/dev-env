@@ -116,13 +116,13 @@ command! -bang -nargs=? -complete=dir Files
       \ call fzf#vim#files(<q-args>, fzf#vim#with_preview('down:60%', '?'), <bang>0)
 command! -bang -nargs=* Ag
       \ call fzf#vim#ag(<q-args>,
-      \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-      \                         : fzf#vim#with_preview('down:60%', '?'),
+      \                 <bang>0 ? fzf#vim#with_preview({'options': '--no-hscroll'}, 'up:60%')
+      \                         : fzf#vim#with_preview({'options': '--no-hscroll'}, 'down:60%', '?'),
       \                 <bang>0)
 command! -bang -nargs=* BLines
       \ call fzf#vim#buffer_lines(<q-args>,
-      \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-      \                         : fzf#vim#with_preview('down:60%', '?'),
+      \                 <bang>0 ? fzf#vim#with_preview({'options': '--no-hscroll'}, 'up:60%')
+      \                         : fzf#vim#with_preview({'options': '--no-hscroll'}, 'down:60%', '?'),
       \                 <bang>0)
 " find file
 nnoremap <leader>ff :Files<cr>
