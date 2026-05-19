@@ -112,15 +112,17 @@ nnoremap <leader>c :VimuxRunLastCommand<cr>
 let g:fzf_layout = { 'window': { 'width': 1.0, 'height': 0.6 } }
 " Override :Ag to show a preview window (toggle with Ctrl-?)
 " If called as :Ag! then take up entire screen and put the preview window up above
+command! -bang -nargs=? -complete=dir Files
+      \ call fzf#vim#files(<q-args>, fzf#vim#with_preview('down:60%', '?'), <bang>0)
 command! -bang -nargs=* Ag
       \ call fzf#vim#ag(<q-args>,
       \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-      \                         : fzf#vim#with_preview('right:60%', '?'),
+      \                         : fzf#vim#with_preview('down:60%', '?'),
       \                 <bang>0)
 command! -bang -nargs=* BLines
       \ call fzf#vim#buffer_lines(<q-args>,
       \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-      \                         : fzf#vim#with_preview('right:60%', '?'),
+      \                         : fzf#vim#with_preview('down:60%', '?'),
       \                 <bang>0)
 " find file
 nnoremap <leader>ff :Files<cr>
