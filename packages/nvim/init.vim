@@ -109,6 +109,7 @@ vmap <leader>vs "vy :call VimuxSendSelection()<CR>
 nnoremap <leader>vc :VimuxPromptCommand<cr>
 nnoremap <leader>c :VimuxRunLastCommand<cr>
 " fzf
+let g:fzf_layout = { 'window': { 'width': 1.0, 'height': 0.6 } }
 " Override :Ag to show a preview window (toggle with Ctrl-?)
 " If called as :Ag! then take up entire screen and put the preview window up above
 command! -bang -nargs=* Ag
